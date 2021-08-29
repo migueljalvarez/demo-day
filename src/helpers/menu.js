@@ -1,15 +1,17 @@
-const menu = [
+const principalMenu = [
   {
-    label: "example",
-    path: "/example",
+    label: "Home",
+    path: "/home",
   },
   {
-    label: "example",
-    path: "/example",
-  },
-  {
-    label: "example",
-    path: "/example",
+    label: "Services",
+    path: "/service",
   },
 ];
-export default menu;
+const dropDownMenu = [
+  {
+    label: "Profile",
+    path: "/profile",
+  },
+];
+export { principalMenu, dropDownMenu };
