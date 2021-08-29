@@ -10,6 +10,7 @@ import { firebase } from "../config/firebase/firebaseConfig";
 import { login } from "../redux/actions/authActions";
 
 import Example from "../views/Example";
+import NavBar from "../components/NavBar";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Routers = () => {
   return (
     <div>
       <Router>
-        {/* Aqui va el NavBar */}
+        <NavBar />
         <Switch>
           <Route exact path="/" component={Example} />
           <Redirect to="/" />
