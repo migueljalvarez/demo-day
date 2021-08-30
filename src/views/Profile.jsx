@@ -12,9 +12,10 @@ import {
   Paragraph,
   Colors,
   ContainerTitleH1,
+  Button,
 } from "../assets/styles/style";
 import Avatar from "../components/Avatar";
-import { FaPen, FaTools, FaUser } from "react-icons/fa";
+import { FaWhatsapp, FaUserEdit } from "react-icons/fa";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const Profile = () => {
@@ -50,15 +51,7 @@ const Profile = () => {
                 border={`${Colors.dividerColor} 1px solid`}
                 self="flex-start"
               />
-              <Container justifyContent="flex-end" padding="0px">
-                <ContainerText
-                  margin="5px"
-                  position="static"
-                  margin="-73px 6px 0px 0px"
-                >
-                  <FaPen />
-                </ContainerText>
-              </Container>
+
               <Container direction="column" padding="0px">
                 <ContainerTitle margin="0px 10px" align="left">
                   {user.name}
@@ -69,6 +62,30 @@ const Profile = () => {
                 <Paragraph align="left" margin="2px 10px">
                   Medellin, Antioquia
                 </Paragraph>
+                <Container
+                  justifyContent="flex-end"
+                  padding="0px"
+                  position="static"
+                  margin="-46px 6px 0px -7px"
+                >
+                  <Button
+                    radius="0.25rem"
+                    background={Colors.accentColor}
+                    color={Colors.textPrimaryColor}
+                    margin="5px"
+                  >
+                    <FaUserEdit /> Editar
+                  </Button>
+                  <Button
+                    radius="0.25rem"
+                    background="#128C7E"
+                    color={Colors.textPrimaryColor}
+                    margin="5px"
+                  >
+                    <FaWhatsapp /> Contactar
+                  </Button>
+                </Container>
+
                 <Divider />
                 <ContainerTitle margin="5px 0px 5px 10px" align="left">
                   Acerca de

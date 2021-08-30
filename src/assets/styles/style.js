@@ -107,6 +107,11 @@ const Button = styled.button`
   font-size: 1rem;
   border-radius: ${(props) => (props.radius ? props.radius : "0.25rem")};
   align-self: center;
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  align-items: center;
+  & svg {
+    margin: 0px 5px;
+  }
 `;
 
 const Input = styled.input`
