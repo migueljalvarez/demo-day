@@ -37,6 +37,7 @@ const Container = styled.div`
     props.justifyContent ? props.justifyContent : "flex-start"};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   box-shadow: ${(props) => props.boxShadow};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
 `;
 
 const SuperContainer = styled.div`
@@ -46,7 +47,9 @@ const SuperContainer = styled.div`
   width: "100%";
   height: ${(props) => (props.height ? props.height : "auto")};
   padding: ${(props) => (props.padding ? props.padding : "5px")};
-  justify-content: center;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "center"};
+  flex-direction: ${(props) => (props.direction ? props.direction : "row")};
 `;
 
 const NavMenu = styled.ul`
@@ -76,7 +79,8 @@ const Wrapper = styled.div`
   display: flex;
   max-width: 1366px;
   width: 100%;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "space-between"};
 `;
 
 const SearchBar = styled.form`
@@ -153,7 +157,7 @@ const ContainerTitle = styled.h3`
   text-align: ${(props) => (props.align ? props.align : "center")};
 `;
 
-const ContainerSubTitle = styled.h4`
+const ContainerSubTitle = styled.p`
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
@@ -179,6 +183,11 @@ const Paragraph = styled.p`
   position: ${(props) => (props.position ? props.position : "unset")};
 `;
 
+const ContainerTitleH1 = styled.h1`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
+  text-align: ${(props) => (props.align ? props.align : "center")};
+`;
 export {
   Button,
   Colors,
@@ -197,4 +206,5 @@ export {
   Wrapper,
   Divider,
   Paragraph,
+  ContainerTitleH1,
 };
