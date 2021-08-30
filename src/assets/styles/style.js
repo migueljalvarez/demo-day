@@ -17,6 +17,7 @@ body {
   margin: unset;
   padding: unset;
   font-family: 'Montserrat', sans-serif;
+  color: ${Colors.primaryTextColor}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -56,6 +57,9 @@ const NavMenu = styled.ul`
     text-decoration: none;
     font-family: "Nunito", sans-serif;
     font-weight: bold;
+    &:hover{
+      color: ${Colors.secondaryTextColor}
+    }
   }
 `;
 
