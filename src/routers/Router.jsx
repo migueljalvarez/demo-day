@@ -11,6 +11,7 @@ import { login } from "../redux/actions/authActions";
 
 import Example from "../views/Example";
 import NavBar from "../components/NavBar";
+import Auth from "../views/Auth";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Routers = () => {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Example} />
+          <Route exact path="/" component={Auth} />
           <Redirect to="/" />
         </Switch>
         {/* Aqui va el Footer */}
