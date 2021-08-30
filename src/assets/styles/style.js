@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 
 const Container = styled.div`
   display: ${(props) => (props.display ? props.display : "flex")};
+  flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
   width: ${(props) => (props.width ? props.width : "100%")};
@@ -34,6 +35,8 @@ const Container = styled.div`
   padding: ${(props) => (props.padding ? props.padding : "5px")};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  box-shadow: ${(props) => props.boxShadow};
 `;
 
 const SuperContainer = styled.div`
@@ -63,8 +66,10 @@ const Img = styled.img`
   width: ${(props) => (props.width ? props.width : "150px")};
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
-  align-self: center;
-  margin: 0 5px;
+  align-self: ${(props) => (props.self ? props.self : "center")};
+  margin: ${(props) => (props.margin ? props.margin : "0 5px")};
+  position: ${(props) => (props.position ? props.position : "unset")};
+  border: ${(props) => props.border};
 `;
 
 const Wrapper = styled.div`
@@ -102,10 +107,12 @@ const Button = styled.button`
 
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
+  height: 38px;
   border: none;
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   font-size: initial;
   padding-left: 10px;
+  align-self: center;
 `;
 
 const DropDown = styled.div`
@@ -140,10 +147,47 @@ const DropDownMenu = styled.div`
   }
 `;
 
+const ContainerTitle = styled.h3`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
+  text-align: ${(props) => (props.align ? props.align : "center")};
+`;
+
+const ContainerSubTitle = styled.h4`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
+  text-align: ${(props) => (props.align ? props.align : "center")};
+`;
+
+const ContainerText = styled.h5`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
+  text-align: ${(props) => (props.align ? props.align : "center")};
+  position: ${(props) => (props.position ? props.position : "unset")};
+`;
+
+const Divider = styled.hr`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  border: 0;
+  border-top: 1px solid ${Colors.dividerColor};
+`;
+
+const Paragraph = styled.p`
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
+  text-align: ${(props) => (props.align ? props.align : "center")};
+  position: ${(props) => (props.position ? props.position : "unset")};
+`;
+
 export {
   Button,
   Colors,
   Container,
+  ContainerSubTitle,
+  ContainerText,
+  ContainerTitle,
+  DropDown,
+  DropDownMenu,
   GlobalStyle,
   Img,
   Input,
@@ -151,6 +195,6 @@ export {
   SearchBar,
   SuperContainer,
   Wrapper,
-  DropDown,
-  DropDownMenu,
+  Divider,
+  Paragraph,
 };

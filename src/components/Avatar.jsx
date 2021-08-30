@@ -1,18 +1,22 @@
-import React from 'react'
-import { Img } from '../assets/styles/style'
-const Avatar = ({user}) => {
+import React from "react";
+import { Img } from "../assets/styles/style";
+const Avatar = ({ user, width, height, position, margin, border, self }) => {
   return (
     <>
       <Img
-          className="rounded-circle mx-1"
-          width="40px"
-          height="40px"
-          radius="50%"
-          src={user.imageUrl}
-          alt={user.name}
-        />
+        className=""
+        width={width}
+        height={height}
+        radius="50%"
+        position={position}
+        margin={margin}
+        border={border}
+        self={self}
+        src={user.imageUrl}
+        alt={user.name}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;
