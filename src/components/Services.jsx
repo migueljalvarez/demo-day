@@ -1,6 +1,5 @@
 import React from 'react'
-import {Colors, Container } from '../assets/styles/style'
-import { Button } from '../assets/styles/styleServices';
+import {Button, Colors, Container, SuperContainer } from '../assets/styles/style'
 import ServicesCard from './ServicesCard';
 
 const properties = {
@@ -17,9 +16,9 @@ const Services = () => {
                 <Button width={properties.width} background={properties.background}>Buscar servicios</Button>
             </Container>
 
-            <main>
+            <SuperContainer>
                 <ServicesCard />
-            </main>
+            </SuperContainer>
         </div>
     )
 }
