@@ -140,6 +140,63 @@ const DropDownMenu = styled.div`
   }
 `;
 
+const CarouselWrapper = styled.div`
+  height: 350px;
+  margin: 10px;
+
+  & img {
+    height: 350px;
+  }
+`;
+
+const Box = styled.div`
+  padding: 80px 60px;
+  background: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  @media (max-width: 1000px) {
+    padding: 70px 30px;
+  }
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 60px;
+`;
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  grid-gap: 20px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+`;
+
+const FooterLink = styled.a`
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-decoration: none;
+
+  &:hover {
+    color: green;
+    transition: 200ms ease-in;
+  }
+`;
+
+const Heading = styled.p`
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 40px;
+  font-weight: bold;
+`;
+
 export {
   Button,
   Colors,
@@ -153,4 +210,10 @@ export {
   Wrapper,
   DropDown,
   DropDownMenu,
+  CarouselWrapper,
+  Box,
+  Column,
+  Row,
+  FooterLink,
+  Heading,
 };
