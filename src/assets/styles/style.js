@@ -31,9 +31,18 @@ const Container = styled.div`
     props.background ? props.background : "transparent"};
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "auto")};
-  padding: ${(props) => (props.padding ? props.padding : "5px")};
+  margin: ${(props) => props.margin ? props.margin : "0"};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
+  flex-wrap: ${(props) =>
+    props.flexWrap ? props.flexWrap : "nowrap"};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "row"};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+  position: ${(props) => props.position ? props.position : "static"};
+  top: ${(props) => props.top ? props.top : "auto"};
+  left: ${(props) => props.left ? props.left : "auto"};
 `;
 
 const SuperContainer = styled.div`
@@ -63,8 +72,9 @@ const Img = styled.img`
   width: ${(props) => (props.width ? props.width : "150px")};
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  border: ${(props) => (props.border ? props.border : "none")};
   align-self: center;
-  margin: 0 5px;
+  margin: ${(props) => (props.margin ? props.margin : "0 5px")};
 `;
 
 const Wrapper = styled.div`
@@ -100,12 +110,48 @@ const Button = styled.button`
   align-self: center;
 `;
 
+const ButtonForm = styled.label`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "transparent"};
+  color: ${(props) => props.color ? props.color : Colors.textPrimaryColor};
+  margin-bottom: ${(props) => props.marginBottom ? props.marginBottom : '0'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  margin: ${(props) => props.label ? props.label : "0"};
+  box-sizing: border-box;
+`;
+
+
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
   border: none;
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   font-size: initial;
   padding-left: 10px;
+  
+`;
+
+const InputForm = styled.input`
+  width: ${(props) => props.width ? props.width : "100%"};
+  border-radius: ${(props) => props.radius ? props.radius : "0"};
+  margin: ${(props) => props.margin ? props.margin : "0"};
+  padding: ${(props) => props.padding ? props.padding : "0"};
+  box-sizing: border-box;
+  border: none;
+  outline: none;
 `;
 
 const DropDown = styled.div`
@@ -139,18 +185,52 @@ const DropDownMenu = styled.div`
     font-weight: bold;
   }
 `;
+const Form = styled.form`
+  width: ${(props) => (props.width ? props.width : "auto")};
+  height: ${(props) => (props.height ? props.height : "auto")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : Colors.dividerColor};
+  border: ${(props) =>
+    props.border ? props.border : "3px solid" + Colors.defaultPrimaryColor};
+  position: ${(props) => (props.position ? props.position : "relative")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
+  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : "0")};
+  display: ${(props) => (props.display ? props.display : "flex")};
+  flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : "wrap")};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "row"};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex-start"};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+
+  box-sizing: border-box;
+`;
+const Span = styled.span`
+  margin: ${(props) => props.margin ? props.margin : "0"};
+`;
+const Hr = styled.hr`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  margin: ${(props) => props.margin ? props.margin : "0"};
+`;
 
 export {
   Button,
+  ButtonForm,
   Colors,
   Container,
   GlobalStyle,
   Img,
+  Label,
   Input,
+  InputForm,
   NavMenu,
   SearchBar,
   SuperContainer,
   Wrapper,
   DropDown,
   DropDownMenu,
+  Form,
+  Span,
+  Hr,
 };

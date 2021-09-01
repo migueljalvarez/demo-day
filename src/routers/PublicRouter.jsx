@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 export const PublicRouter = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.login);
   return (
+    
     <Route
       {...rest}
       component={(props) =>

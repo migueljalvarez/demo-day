@@ -1,75 +1,155 @@
 import React from "react";
 
-import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
-
 import {
-  ContainerLogin,
+  Container,
+  Img,
   Form,
-  ImgHeader,
-  ContainerInput,
-  ContainerBtn,
+  Colors,
   Label,
-  Input,
-  BtnLogin,
+  InputForm,
+  ButtonForm,
   Hr,
-  LinkAuth,
-  Link,
-} from "../../assets/styles/auth-styles.js";
+} from "../../assets/styles/style.js";
+import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
+import { Link } from "react-router-dom";
+
+const prop = {
+  width: "calc(50% - 5px)",
+  display: "inline-block",
+  wform: "70%",
+  mform: "auto",
+  pdform: "80px 50px 30px 50px",
+  brform: "10px",
+  wCImg: "100px",
+  hCImg: "100px",
+  posCImg: "absolute",
+  topCImg: "-50px",
+  leftCImg: "calc(50% - 50px)",
+  borderImg: "3px solid" + Colors.darkPrimaryColor,
+  brImg: "50%",
+  mimg: "0",
+  fwCInp: "wrap",
+  mCInp: "0 auto 1rem auto",
+  mLabel: "0 auto 10px auto",
+  brInput: "7px",
+  mInput: "0 auto 10px auto",
+  pdInput: "7px 2px",
+  bcBtn: Colors.defaultPrimaryColor,
+  cBtnGoogle: Colors.primaryTextColor,
+  mbBtn: "1rem",
+  jcCLink: "center",
+  mHr: "1rem 0",
+};
 
 const RegisterComp = () => {
   return (
-    <ContainerLogin>
-      <Form>
-        <ImgHeader>
-          <img src={LogoPrueba} alt="logo" />
-        </ImgHeader>
+    <Container display={prop.display} width={prop.width}>
+      <Form
+        width={prop.wform}
+        margin={prop.mform}
+        padding={prop.pdform}
+        borderRadius={prop.brform}
+      >
+        <Container
+          width={prop.wCImg}
+          height={prop.hCImg}
+          position={prop.posCImg}
+          top={prop.topCImg}
+          left={prop.leftCImg}
+        >
+          <Img
+            border={prop.borderImg}
+            radius={prop.brImg}
+            margin={prop.margin}
+            width="100%"
+            src={LogoPrueba}
+            alt="logo"
+          />
+        </Container>
 
-        <ContainerInput>
-          <Label htmlFor="name">Nombre Completo</Label>
-          <Input type="text" name="name" id="name" />
-        </ContainerInput>
+        <Container flexWrap={prop.fwCInp}>
+          <Label label={prop.mLabel} htmlFor="name">
+            Nombre Completo
+          </Label>
+          <InputForm
+            margin={prop.mInput}
+            padding={prop.pdInput}
+            radius={prop.brInput}
+            type="text"
+            name="name"
+            id="name"
+          />
+        </Container>
 
-        <ContainerInput>
-          <Label htmlFor="lastName">
+        <Container flexWrap={prop.fwCInp}>
+          <Label label={prop.mLabel} htmlFor="lastName">
             Apellidos completos
           </Label>
-          <Input type="text" name="lastName" id="lastName" />
-        </ContainerInput>
+          <InputForm
+            margin={prop.mInput}
+            padding={prop.pdInput}
+            radius={prop.brInput}
+            type="text"
+            name="lastName"
+            id="lastName"
+          />
+        </Container>
 
-        <ContainerInput>
-          <Label htmlFor="email">
+        <Container flexWrap={prop.fwCInp}>
+          <Label label={prop.mLabel} htmlFor="email">
             Correo
           </Label>
-          <Input type="email" name="email" id="email" />
-        </ContainerInput>
+          <InputForm
+            margin={prop.mInput}
+            padding={prop.pdInput}
+            radius={prop.brInput}
+            type="email"
+            name="email"
+            id="email"
+          />
+        </Container>
 
-        <ContainerInput>
-          <Label htmlFor="password">
+        <Container flexWrap={prop.fwCInp}>
+          <Label label={prop.mLabel} htmlFor="password">
             Contraseña
           </Label>
-          <Input type="password" name="password" id="password" />
-        </ContainerInput>
+          <InputForm
+            margin={prop.mInput}
+            padding={prop.pdInput}
+            radius={prop.brInput}
+            type="password"
+            name="password"
+            id="password"
+          />
+        </Container>
 
-        <ContainerInput>
-          <Label htmlFor="password2">
+        <Container margin={prop.mCInp} flexWrap={prop.fwCInp}>
+          <Label label={prop.mLabel} htmlFor="password2">
             Confirma tu contraseña
           </Label>
-          <Input type="password" name="password2" id="password2" />
-        </ContainerInput>
+          <InputForm
+            margin={prop.mInput}
+            padding={prop.pdInput}
+            radius={prop.brInput}
+            type="password"
+            name="password2"
+            id="password2"
+          />
+        </Container>
 
-        <ContainerBtn>
-          <BtnLogin className="btn btn-login" type="submit">
+        <Container>
+          <ButtonForm backgroundColor={prop.bcBtn} type="submit">
             Registrar
-          </BtnLogin>
-        </ContainerBtn>
+          </ButtonForm>
+        </Container>
 
-        <Hr />
+        <Hr margin={prop.mHr} />
 
-        <LinkAuth>
+        <Container justifyContent={prop.jcCLink}>
           <Link href="/">Ya estas registrado</Link>
-        </LinkAuth>
+        </Container >
       </Form>
-    </ContainerLogin>
+    </Container>
   );
 };
 

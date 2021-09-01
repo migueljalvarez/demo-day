@@ -1,13 +1,25 @@
 import React from "react";
 
 import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
-import { ContainerImage } from "../../assets/styles/auth-styles";
+
+import { 
+  Container, 
+  Img
+ } from "../../assets/styles/style.js";
+
+
+
+const prop = {
+  display: "inline-block",
+  width: "calc(50% - 5px)",
+  wImg:'100%'
+}
 
 const ImgAuth = () => {
   return (
-    <ContainerImage>
-      <img src={LogoPrueba} alt="Logo" />
-    </ContainerImage>
+    <Container display={prop.display} width={prop.width}>
+      <Img width={prop.wImg} src={LogoPrueba} alt="Logo" />
+    </Container>
   );
 };
 
