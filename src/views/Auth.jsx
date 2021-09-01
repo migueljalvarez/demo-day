@@ -9,9 +9,9 @@ import RegisterComp from '../components/auth/RegisterComp';
 const Auth = () => {
     return (
         <Container>
-           {/* <LoginComp /> */}
+           <LoginComp />
            <ImgAuth />
-           <RegisterComp />
+           {/* <RegisterComp /> */}
         </Container>
     )
 }

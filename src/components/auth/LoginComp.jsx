@@ -1,8 +1,14 @@
+//IMPORTACION DE TERCEROS
 import React from "react";
 import { Link } from "react-router-dom";
 import { GrFacebookOption } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 
+
+//IMPORTACION DE ESTILOS
 import {
   Container,
   Img,
@@ -14,10 +20,16 @@ import {
   Span,
   Hr,
 } from "../../assets/styles/style.js";
+
+//IMPORTACION DE IMAGENES
 import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
+
+//IMPORTACION DE ACCIONES
+import { loginFacebook, loginGoogle } from "../../redux/actions/authActions.js";
 
 const prop = {
   width: "calc(50% - 5px)",
+  padding: "80px 0 30px 0",
   display: "inline-block",
   wform: "70%",
   mform: "auto",
@@ -34,23 +46,65 @@ const prop = {
   fwCInp: "wrap",
   mCInp: "0 auto 1rem auto",
   mLabel: "0 auto 10px auto",
+  mError: "0 auto 1rem auto",
+  cError: Colors.darkPrimaryColor,
   brInput: "7px",
   mInput: "0 auto 10px auto",
-  pdInput: "7px 2px",
+  pdInput: "10px 20px",
   bcBtn: Colors.defaultPrimaryColor,
   bcBtnGoogle: Colors.textPrimaryColor,
   bcBtnFB: "#3B5998",
   cBtnGoogle: Colors.primaryTextColor,
   mbBtn: "1rem",
   mSpan: "0 1rem",
-  jcCLink: 'center',
+  jcCLink: "center",
   mHr: "1rem 0",
 };
 
 const LoginComp = () => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email requerido"),
+      password: Yup.string()
+        .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
+        .matches(
+          /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S/,
+          "La contraseña debe tener un numero, una mayuscula y un minuscula."
+        )
+        .required("Escribe tu contraseña."),
+    }),
+    onSubmit: () => {
+      console.log("Hola");
+      console.log("Hola");
+      console.log("Hola");
+      console.log("Hola");
+      console.log("Hola");
+    },
+  });
+
+  const { email, password } = formik.values;
+
+  const handleGoogleLogin = () => {
+    // console.log('google');
+    dispatch(loginGoogle());
+  };
+  const handleFacebookLogin = () => {
+    // console.log('facebook');
+    dispatch(loginFacebook());
+  };
+
   return (
-    <Container display={prop.display} width={prop.width}>
+    <Container padding={prop.padding} display={prop.display} width={prop.width}>
       <Form
+        onSubmit={formik.onSubmit}
         width={prop.wform}
         margin={prop.mform}
         padding={prop.pdform}
@@ -84,8 +138,17 @@ const LoginComp = () => {
             type="text"
             name="email"
             id="email"
+            value={email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
         </Container>
+
+        {formik.touched.email && formik.errors.email ? (
+          <Container margin={prop.mError} color={prop.cError}>
+            {formik.errors.email}
+          </Container>
+        ) : null}
 
         <Container margin={prop.mCInp} flexWrap={prop.fwCInp}>
           <Label label={prop.mLabel} htmlFor="password">
@@ -98,7 +161,16 @@ const LoginComp = () => {
             type="password"
             name="password"
             id="password"
+            value={password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+
+          {formik.touched.password && formik.errors.password ? (
+            <Container margin={prop.mError} color={prop.cError}>
+              {formik.errors.password}
+            </Container>
+          ) : null}
         </Container>
 
         <Container>
@@ -115,6 +187,7 @@ const LoginComp = () => {
             marginBottom={prop.mbBtn}
             color={prop.cBtnGoogle}
             type="submit"
+            onClick={handleGoogleLogin}
           >
             <FcGoogle />
             <Span margin={prop.mSpan}>Ingresa con Google</Span>
@@ -126,6 +199,7 @@ const LoginComp = () => {
             backgroundColor={prop.bcBtnFB}
             marginBottom={prop.mbBtn}
             type="submit"
+            onClick={handleFacebookLogin}
           >
             <GrFacebookOption />
             <Span margin={prop.mSpan}>Ingresa con Facebook</Span>

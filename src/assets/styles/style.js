@@ -43,6 +43,7 @@ const Container = styled.div`
   position: ${(props) => props.position ? props.position : "static"};
   top: ${(props) => props.top ? props.top : "auto"};
   left: ${(props) => props.left ? props.left : "auto"};
+  color: ${(props) => (props.color ? props.color : "auto")};
 `;
 
 const SuperContainer = styled.div`
