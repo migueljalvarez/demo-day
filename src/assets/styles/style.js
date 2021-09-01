@@ -34,6 +34,12 @@ const Container = styled.div`
   padding: ${(props) => (props.padding ? props.padding : "5px")};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
+
+    border-radius: ${(props) => (props.radius ? props.radius : "unset")};
+    align-items: ${(props) =>
+    props.alignItems ? props.alignItems : "unset"};
+  flex-direction: ${(props) => (props.flexDirection ? props.flexDirection : "row")};
+  box-shadow: ${(props) => (props.shadow ? props.shadow : "unset")};
 `;
 
 const SuperContainer = styled.div`
@@ -64,7 +70,7 @@ const Img = styled.img`
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   align-self: center;
-  margin: 0 5px;
+  margin: ${(props) => (props.margin ? props.margin : "0px 5px")};
 `;
 
 const Wrapper = styled.div`
@@ -98,6 +104,8 @@ const Button = styled.button`
   font-size: 1rem;
   border-radius: ${(props) => (props.radius ? props.radius : "0.25rem")};
   align-self: center;
+
+  width: ${(props) => (props.width ? props.width : "auto") };
 `;
 
 const Input = styled.input`
