@@ -7,7 +7,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 
-
 //IMPORTACION DE ESTILOS
 import {
   Container,
@@ -15,8 +14,8 @@ import {
   Form,
   Colors,
   Label,
-  InputForm,
-  ButtonForm,
+  Input,
+  Button,
   Span,
   Hr,
 } from "../../assets/styles/style.js";
@@ -25,40 +24,80 @@ import {
 import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
 
 //IMPORTACION DE ACCIONES
-import { loginFacebook, loginGoogle } from "../../redux/actions/authActions.js";
+import { loginFacebook, loginGoogle, startLoginEmailPassword } from "../../redux/actions/authActions.js";
 
 const prop = {
-  width: "calc(50% - 5px)",
-  padding: "80px 0 30px 0",
-  display: "inline-block",
-  wform: "70%",
-  mform: "auto",
-  pdform: "80px 50px 30px 50px",
-  brform: "10px",
-  wCImg: "100px",
-  hCImg: "100px",
-  posCImg: "absolute",
-  topCImg: "-50px",
-  leftCImg: "calc(50% - 50px)",
-  borderImg: "3px solid" + Colors.darkPrimaryColor,
-  brImg: "50%",
-  mimg: "0",
-  fwCInp: "wrap",
-  mCInp: "0 auto 1rem auto",
-  mLabel: "0 auto 10px auto",
-  mError: "0 auto 1rem auto",
-  cError: Colors.darkPrimaryColor,
-  brInput: "7px",
-  mInput: "0 auto 10px auto",
-  pdInput: "10px 20px",
-  bcBtn: Colors.defaultPrimaryColor,
-  bcBtnGoogle: Colors.textPrimaryColor,
-  bcBtnFB: "#3B5998",
-  cBtnGoogle: Colors.primaryTextColor,
-  mbBtn: "1rem",
-  mSpan: "0 1rem",
-  jcCLink: "center",
-  mHr: "1rem 0",
+  containerLogin: {
+    width: "calc(50% - 5px)",
+    display: "inline-block",
+    padding: "80px 0 30px 0",
+  },
+  form: {
+    width: "70%",
+    margin: "auto",
+    padding: "80px 50px 30px 50px",
+    borderRadius: "10px",
+  },
+  containerImg: {
+    width: "100px",
+    heigth: "100px",
+    position: "absolute",
+    top: "-50px",
+    left: "calc(50% - 50px)",
+  },
+
+  img: {
+    border: "3px solid" + Colors.defaultPrimaryColor,
+    borderRadius: "50%",
+    margin: "0",
+  },
+  containerInput: {
+    flexWrap: "wrap",
+    margin: "0 auto 1rem auto",
+  },
+  label: {
+    margin: "0 auto 10px auto",
+  },
+  input: {
+    borderRadius: "7px",
+    margin: "0 auto 10px auto",
+    padding: "10px 20px",
+  },
+  error: {
+    margin: "0 auto 1rem auto",
+    color: "#f60000",
+  },
+  button: {
+    margin: "0 0 1rem 0",
+    fontSize: "0.9rem",
+    padding: "0.75rem 1rem",
+    border: "none",
+    borderRadius: "7px",
+  },
+  buttonLogin: {
+    width: "100%",
+    backgrounColor: Colors.accentColor,
+    color: Colors.textPrimaryColor,
+  },
+  buttonGoogle: {
+    width: "100%",
+    backgrounColor: Colors.textPrimaryColor,
+    color: Colors.primaryTextColor,
+  },
+  buttonFacebook: {
+    width: "100%",
+    backgrounColor: "#3B5998",
+    color: Colors.textPrimaryColor,
+  },
+  span: {
+    margin: "0 1rem",
+  },
+  containerLink: {
+    justifyContent: "center",
+  },
+  hr: {
+    margin: "0 0 1rem 0",
+  },
 };
 
 const LoginComp = () => {
@@ -82,12 +121,8 @@ const LoginComp = () => {
         .required("Escribe tu contraseña."),
     }),
     onSubmit: () => {
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
-    },
+      dispatch(startLoginEmailPassword(email, password))
+    }
   });
 
   const { email, password } = formik.values;
@@ -102,39 +137,44 @@ const LoginComp = () => {
   };
 
   return (
-    <Container padding={prop.padding} display={prop.display} width={prop.width}>
+    <Container
+      padding={prop.containerLogin.padding}
+      display={prop.containerLogin.display}
+      width={prop.containerLogin.width}
+    >
       <Form
-        onSubmit={formik.onSubmit}
-        width={prop.wform}
-        margin={prop.mform}
-        padding={prop.pdform}
-        borderRadius={prop.brform}
+        width={prop.form.width}
+        margin={prop.form.margin}
+        padding={prop.form.padding}
+        borderRadius={prop.form.borderRadius}
+        onSubmit={formik.handleSubmit}
+        method="POST"
       >
         <Container
-          width={prop.wCImg}
-          height={prop.hCImg}
-          position={prop.posCImg}
-          top={prop.topCImg}
-          left={prop.leftCImg}
+          width={prop.containerImg.width}
+          height={prop.containerImg.heigth}
+          position={prop.containerImg.position}
+          top={prop.containerImg.top}
+          left={prop.containerImg.left}
         >
           <Img
-            border={prop.borderImg}
-            radius={prop.brImg}
-            margin={prop.margin}
+            border={prop.img.border}
+            radius={prop.img.borderRadius}
+            margin={prop.img.margin}
             width="100%"
             src={LogoPrueba}
             alt="logo"
           />
         </Container>
 
-        <Container flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="email">
+        <Container flexWrap={prop.containerInput.flexWrap}>
+          <Label margin={prop.label.margin} htmlFor="email">
             Correo electronico
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="text"
             name="email"
             id="email"
@@ -145,19 +185,22 @@ const LoginComp = () => {
         </Container>
 
         {formik.touched.email && formik.errors.email ? (
-          <Container margin={prop.mError} color={prop.cError}>
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.email}
           </Container>
         ) : null}
 
-        <Container margin={prop.mCInp} flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="password">
+        <Container
+          margin={prop.containerInput.margin}
+          flexWrap={prop.containerInput.flexWrap}
+        >
+          <Label margin={prop.label.margin} htmlFor="password">
             Contraseña
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="password"
             name="password"
             id="password"
@@ -167,46 +210,67 @@ const LoginComp = () => {
           />
 
           {formik.touched.password && formik.errors.password ? (
-            <Container margin={prop.mError} color={prop.cError}>
+            <Container margin={prop.error.margin} color={prop.error.color}>
               {formik.errors.password}
             </Container>
           ) : null}
         </Container>
 
         <Container>
-          <ButtonForm backgroundColor={prop.bcBtn} type="submit">
+          <Button
+            margin={prop.button.margin}
+            fontSize={prop.button.fontSize}
+            padding={prop.button.padding}
+            border={prop.button.border}
+            borderRadius={prop.button.borderRadius}
+            width={prop.buttonLogin.width}
+            background={prop.buttonLogin.backgrounColor}
+            color={prop.buttonLogin.color}
+            type="submit"
+          >
             Ingresar
-          </ButtonForm>
+          </Button>
         </Container>
 
-        <Hr margin={prop.mHr} />
+        <Hr margin={prop.hr.margin} />
 
         <Container>
-          <ButtonForm
-            backgroundColor={prop.bcBtnGoogle}
-            marginBottom={prop.mbBtn}
-            color={prop.cBtnGoogle}
+          <Button
+            margin={prop.button.margin}
+            fontSize={prop.button.fontSize}
+            padding={prop.button.padding}
+            border={prop.button.border}
+            borderRadius={prop.button.borderRadius}
+            width={prop.buttonGoogle.width}
+            background={prop.buttonGoogle.backgrounColor}
+            color={prop.buttonGoogle.color}
             type="submit"
             onClick={handleGoogleLogin}
           >
             <FcGoogle />
             <Span margin={prop.mSpan}>Ingresa con Google</Span>
-          </ButtonForm>
+          </Button>
         </Container>
 
         <Container>
-          <ButtonForm
-            backgroundColor={prop.bcBtnFB}
-            marginBottom={prop.mbBtn}
+          <Button
+            margin={prop.button.margin}
+            fontSize={prop.button.fontSize}
+            padding={prop.button.padding}
+            border={prop.button.border}
+            borderRadius={prop.button.borderRadius}
+            width={prop.buttonFacebook.width}
+            background={prop.buttonFacebook.backgrounColor}
+            color={prop.buttonFacebook.color}
             type="submit"
             onClick={handleFacebookLogin}
           >
             <GrFacebookOption />
-            <Span margin={prop.mSpan}>Ingresa con Facebook</Span>
-          </ButtonForm>
+            <Span margin={prop.span.margin}>Ingresa con Facebook</Span>
+          </Button>
         </Container>
 
-        <Container justifyContent={prop.jcCLink}>
+        <Container ustifyContent={prop.containerLink.justifyContent}>
           <Link to="/">Aún no te has registrado</Link>
         </Container>
       </Form>

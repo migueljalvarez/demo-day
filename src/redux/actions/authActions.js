@@ -1,85 +1,88 @@
 import Swal from "sweetalert2";
 
 import { types } from "../types/types";
-import { firebase, google, facebook } from "../../config/firebase/firebaseConfig";
+import {
+  firebase,
+  google,
+  facebook,
+} from "../../config/firebase/firebaseConfig";
 import { FileUpload } from "../../helpers/FileUpload";
 let fileUrl = [];
 
 //ENVIA LA IMAGEN A CLOUDINARY Y LA SUBE
 export const startUploadingImage = (file) => {
+  return async () => {
+    Swal.fire({
+      title: "Uploading...",
+      text: "Please wait ...",
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
 
-    return async () => {
+    fileUrl = await FileUpload(file);
 
-        Swal.fire({
-            title: 'Uploading...',
-            text: 'Please wait ...',
-            allowOutsideClick: false,
-            onBeforeOpen: () => {
-                Swal.showLoading()
-            }
-        })
-
-        fileUrl = await FileUpload(file)
-           
-        // console.log(fileUrl);
-        Swal.close()
-       return fileUrl
-    }
-}
+    // console.log(fileUrl);
+    Swal.close();
+    return fileUrl;
+  };
+};
 //CREA USUARIO CON CORREO Y CONTRASEÑA
-export const startRegisterWithEmailPasswordName = (email, password, name, urlImage) => {
+export const startRegisterWithEmailPasswordNameUrlImg = (
+  email,
+  password,
+  name,
+  urlImage
+) => {
   return (dispatch) => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(async({user}) => {
-
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async ({ user }) => {
         // console.log(user);
 
-        await user.updateProfile({displayName: name, photoURL: urlImage})
+        await user.updateProfile({ displayName: name, photoURL: urlImage });
 
-        dispatch(
-          login(user.uid, user.displayName)
-        )
         // console.log(user);
 
         Swal.fire({
-          position: 'top-end',
-          text: 'Usuario creado',
+          position: "top-end",
+          text: "Usuario creado",
           title: user.displayName,
           showConfirmButton: false,
-          timer: 1500
-        })
-
+          timer: 1500,
+        });
       })
-      .catch(e =>{
+      .catch((e) => {
         console.log(e);
         Swal.fire({
-          icon: 'error',
-          text:  e,
-          title: 'Oops ....',
+          icon: "error",
+          text: e,
+          title: "Oops ....",
           showConfirmButton: true,
-          footer: ''
-        })
-      })
-  }
-}
+          footer: "",
+        });
+      });
+  };
+};
 
 //INICIA SESION CON CORREO Y CONTRASEÑA
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(({user}) => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
         // console.log('hola');
         // console.log(user);
-        dispatch(
-          login(user.uid, user.displayName)
-        )
-        
+        dispatch(login(user));
       })
-      .catch(e =>{
+      .catch((e) => {
         console.log(e);
-      })
-  }
-}
+      });
+  };
+};
 
 //INICIA SESION CON GOOGLE
 export const loginGoogle = () => {
@@ -120,20 +123,14 @@ export const login = (user) => {
 
 //CIERRA SESION EN FIREBASE
 export const logout = () => {
-  return (dispatch) => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        dispatch({
-          type: types.logout,
-          payload: {
-          }
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  return async(dispatch) => {
+    await firebase.auth().signOut();
+    dispatch(logOutReducer());
   };
 };
-
+//CIERRA SESION EN REDUX FUNCION SINCRONICA
+export const logOutReducer = (user) => {
+  return {
+    type: types.logout,
+  };
+};

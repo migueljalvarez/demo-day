@@ -44,6 +44,7 @@ const Container = styled.div`
   top: ${(props) => props.top ? props.top : "auto"};
   left: ${(props) => props.left ? props.left : "auto"};
   color: ${(props) => (props.color ? props.color : "auto")};
+
 `;
 
 const SuperContainer = styled.div`
@@ -92,11 +93,18 @@ const SearchBar = styled.form`
 `;
 
 const Button = styled.button`
-  display: flex;
+  width: ${(props) => (props.width ? props.width : "auto")};
+  display: ${(props) => (props.display ? props.display : "flex")};
+  justify-content: ${(props) => (props.justifyContent ? props.justifyContent : "center")};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
   background: ${(props) =>
     props.background ? props.background : "whitesmoke"};
   color: ${(props) => (props.color ? props.color : "black")};
-  font-weight: 400;
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "0.375rem 0.75rem")};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "auto")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
+  letter-spacing: ${(props) => (props.letterSpacing ? props.letterSpacing : "0")};
   line-height: 1.5;
   text-align: center;
   text-decoration: none;
@@ -104,24 +112,21 @@ const Button = styled.button`
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
-  border: 1px solid transparent;
-  padding: ${(props) => (props.padding ? props.padding : "0.375rem 0.75rem")};
+  border: ${(props) => (props.border ? props.border : "1px solid transparent")} ;
   font-size: 1rem;
   border-radius: ${(props) => (props.radius ? props.radius : "0.25rem")};
   align-self: center;
 `;
 
-const ButtonForm = styled.label`
-  width: ${(props) => (props.width ? props.width : "100%")};
+const ButtonForm = styled.button`
   font-size: 0.9rem;
-  letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
   border: none;
   outline: none;
   border-radius: 7px;
 
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : "transparent"};
+    props.backgroundColor ? props.backgroundColor : Colors.darkPrimaryColor};
   color: ${(props) => props.color ? props.color : Colors.textPrimaryColor};
   margin-bottom: ${(props) => props.marginBottom ? props.marginBottom : '0'};
   display: flex;
@@ -131,29 +136,24 @@ const ButtonForm = styled.label`
 
 const Label = styled.label`
   width: ${(props) => (props.width ? props.width : "100%")};
-  margin: ${(props) => props.label ? props.label : "0"};
+  margin: ${(props) => props.margin ? props.margin : "0"};
+  color: ${(props) => props.color ? props.color : Colors.textPrimaryColor};
   box-sizing: border-box;
 `;
 
 
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
-  border: none;
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  margin: ${(props) => props.margin ? props.margin : "0"};
+  padding: ${(props) => props.padding ? props.padding : "0"};
+  border: none;
+  outline: none;
   font-size: initial;
   padding-left: 10px;
   
 `;
 
-const InputForm = styled.input`
-  width: ${(props) => props.width ? props.width : "100%"};
-  border-radius: ${(props) => props.radius ? props.radius : "0"};
-  margin: ${(props) => props.margin ? props.margin : "0"};
-  padding: ${(props) => props.padding ? props.padding : "0"};
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-`;
 
 const DropDown = styled.div`
   position: relative;
@@ -191,7 +191,7 @@ const Form = styled.form`
   height: ${(props) => (props.height ? props.height : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : Colors.dividerColor};
+    props.backgroundColor ? props.backgroundColor : Colors.defaultPrimaryColor};
   border: ${(props) =>
     props.border ? props.border : "3px solid" + Colors.defaultPrimaryColor};
   position: ${(props) => (props.position ? props.position : "relative")};
@@ -224,7 +224,6 @@ export {
   Img,
   Label,
   Input,
-  InputForm,
   NavMenu,
   SearchBar,
   SuperContainer,

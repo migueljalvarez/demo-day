@@ -10,44 +10,78 @@ import {
   Form,
   Colors,
   Label,
-  InputForm,
-  ButtonForm,
+  Input,
+  Button,
   Hr,
 } from "../../assets/styles/style.js";
 import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
 
-import { startUploadingImage } from "../../redux/actions/authActions.js";
+import { startUploadingImage, startRegisterWithEmailPasswordNameUrlImg } from "../../redux/actions/authActions.js";
 
 const prop = {
-  width: "calc(50% - 5px)",
-  display: "inline-block",
-  padding: '80px 0 30px 0',
-  wform: "70%",
-  mform: "auto",
-  pdform: "80px 50px 30px 50px",
-  brform: "10px",
-  wCImg: "100px",
-  hCImg: "100px",
-  posCImg: "absolute",
-  topCImg: "-50px",
-  leftCImg: "calc(50% - 50px)",
-  borderImg: "3px solid" + Colors.darkPrimaryColor,
-  brImg: "50%",
-  mimg: "0",
-  fwCInp: "wrap",
-  mCInp: "0 auto 1rem auto",
-  mLabel: "0 auto 10px auto",
-  mError: "0 auto 1rem auto",
-  cError: Colors.darkPrimaryColor,
-  brInput: "7px",
-  mInput: "0 auto 10px auto",
-  pdInput: "10px 20px",
-  bcBtn: Colors.defaultPrimaryColor,
-  cBtnGoogle: Colors.primaryTextColor,
-  mbBtn: "1rem",
-  wbtn: "35%",
-  jcCLink: "center",
-  mHr: "1rem 0",
+  containerLogin: {
+    width: "calc(50% - 5px)",
+    display: "inline-block",
+    padding: "80px 0 30px 0",
+  },
+  form: {
+    width: "70%",
+    margin: "auto",
+    padding: "80px 50px 30px 50px",
+    borderRadius: "10px",
+  },
+  containerImg: {
+    width: "100px",
+    heigth: "100px",
+    position: "absolute",
+    top: "-50px",
+    left: "calc(50% - 50px)",
+  },
+
+  img: {
+    border: "3px solid" + Colors.defaultPrimaryColor,
+    borderRadius: "50%",
+    margin: "0",
+  },
+  containerInput: {
+    flexWrap: "wrap",
+    margin: "0 auto 1rem auto",
+  },
+  label: {
+    margin: "0 auto 10px auto",
+  },
+  input: {
+    borderRadius: "7px",
+    margin: "0 auto 10px auto",
+    padding: "10px 20px",
+  },
+  error: {
+    margin: "0 auto 1rem auto",
+    color: "#f60000",
+  },
+  button: {
+    margin: "0 0 1rem 0",
+    fontSize: "0.9rem",
+    padding: "0.75rem 1rem",
+    border: "none",
+    borderRadius: "7px",
+  },
+  buttonLogin: {
+    width: "100%",
+    backgrounColor: Colors.accentColor,
+    color: Colors.textPrimaryColor,
+  },
+  buttonCargarImg: {
+    width: "35%",
+    backgrounColor: Colors.accentColor,
+    color: Colors.textPrimaryColor,
+  },
+  containerLink: {
+    justifyContent: "center",
+  },
+  hr: {
+    margin: "0 0 1rem 0",
+  },
 };
 
 const RegisterComp = () => {
@@ -76,19 +110,12 @@ const RegisterComp = () => {
         )
         .required("Escribe tu contraseña."),
       password2: Yup.string()
-        .oneOf(
-          [Yup.ref("password"), null],
-          "Las contraseñas deben ser iguales"
-        )
+        .oneOf([Yup.ref("password"), null], "Las contraseñas deben ser iguales")
         .required("Escribe tu contraseña."),
-      urlImage: Yup.string().url().required("URL requerido"),
+      urlImg: Yup.string().url().required("URL requerido"),
     }),
     onSubmit: () => {
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
-      console.log("Hola");
+      dispatch(startRegisterWithEmailPasswordNameUrlImg(email, password, name, urlImg));
     },
   });
 
@@ -111,39 +138,43 @@ const RegisterComp = () => {
   };
 
   return (
-    <Container padding={prop.padding} display={prop.display} width={prop.width}>
+    <Container
+      padding={prop.containerLogin.padding}
+      display={prop.containerLogin.display}
+      width={prop.containerLogin.width}
+    >
       <Form
-        onSubmit={(e) =>{console.log('Holaaaaaa')}}
-        width={prop.wform}
-        margin={prop.mform}
-        padding={prop.pdform}
-        borderRadius={prop.brform}
+        width={prop.form.width}
+        margin={prop.form.margin}
+        padding={prop.form.padding}
+        borderRadius={prop.form.borderRadius}
+        onSubmit={formik.handleSubmit}
       >
         <Container
-          width={prop.wCImg}
-          height={prop.hCImg}
-          position={prop.posCImg}
-          top={prop.topCImg}
-          left={prop.leftCImg}
+          width={prop.containerImg.width}
+          height={prop.containerImg.heigth}
+          position={prop.containerImg.position}
+          top={prop.containerImg.top}
+          left={prop.containerImg.left}
         >
           <Img
-            border={prop.borderImg}
-            radius={prop.brImg}
-            margin={prop.margin}
+            border={prop.img.border}
+            radius={prop.img.borderRadius}
+            margin={prop.img.margin}
             width="100%"
             src={LogoPrueba}
             alt="logo"
           />
         </Container>
 
-        <Container flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="name">
+        <Container flexWrap={prop.containerInput.flexWrap}>
+          <Label margin={prop.label.margin} htmlFor="name">
             Nombre Completo
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="text"
             name="name"
             id="name"
@@ -154,22 +185,19 @@ const RegisterComp = () => {
         </Container>
 
         {formik.touched.name && formik.errors.name ? (
-          <Container
-            margin={prop.mError}
-            color={prop.cError}
-          >
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.name}
           </Container>
         ) : null}
 
-        <Container flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="email">
+        <Container flexWrap={prop.containerInput.flexWrap}>
+          <Label margin={prop.label.margin} htmlFor="email">
             Correo
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="email"
             name="email"
             id="email"
@@ -180,19 +208,19 @@ const RegisterComp = () => {
         </Container>
 
         {formik.touched.email && formik.errors.email ? (
-          <Container margin={prop.mError} color={prop.cError}>
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.email}
           </Container>
         ) : null}
 
-        <Container flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="password">
+        <Container flexWrap={prop.containerInput.flexWrap}>
+          <Label margin={prop.label.margin} htmlFor="password">
             Contraseña
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="password"
             name="password"
             id="password"
@@ -203,19 +231,19 @@ const RegisterComp = () => {
         </Container>
 
         {formik.touched.password && formik.errors.password ? (
-          <Container margin={prop.mError} color={prop.cError}>
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.password}
           </Container>
         ) : null}
 
-        <Container flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="password2">
+        <Container flexWrap={prop.containerInput.flexWrap}>
+          <Label margin={prop.label.margin} htmlFor="password2">
             Confirma tu contraseña
           </Label>
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="password"
             name="password2"
             id="password2"
@@ -226,20 +254,23 @@ const RegisterComp = () => {
         </Container>
 
         {formik.touched.password2 && formik.errors.password2 ? (
-          <Container margin={prop.mError} color={prop.cError}>
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.password2}
           </Container>
         ) : null}
 
-        <Container margin={prop.mCInp} flexWrap={prop.fwCInp}>
-          <Label label={prop.mLabel} htmlFor="floatingPassword">
+        <Container
+          margin={prop.containerInput.margin}
+          flexWrap={prop.containerInput.flexWrap}
+        >
+          <Label margin={prop.label.margin} htmlFor="floatingPassword">
             Url imagen
           </Label>
 
-          <InputForm
-            margin={prop.mInput}
-            padding={prop.pdInput}
-            radius={prop.brInput}
+          <Input
+            margin={prop.input.margin}
+            padding={prop.input.padding}
+            radius={prop.input.borderRadius}
             type="url"
             id="urlImg"
             placeholder="Url"
@@ -250,47 +281,59 @@ const RegisterComp = () => {
             disabled
             required
           />
-        </Container>
 
-        <input
-          id="fileSelector"
-          type="file"
-          name="file"
-          accept="image/*"
-          style={{ display: "none" }}
-          onChange={handleFileChange}
-        />
-        <Container>
-          <ButtonForm
-            width={"35%"}
-            backgroundColor={prop.bcBtn}
-            marginBottom={prop.mbBtn}
-            color={prop.cBtn}
-            type="submit"
-            value="Picture"
-            onClick={handleClickFile}
-          >
-            Selecciona imagen
-          </ButtonForm>
+          <input
+            id="fileSelector"
+            type="file"
+            name="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <Container>
+            <Button
+              margin={prop.button.margin}
+              fontSize={prop.button.fontSize}
+              padding={prop.button.padding}
+              border={prop.button.border}
+              borderRadius={prop.button.borderRadius}
+              width={prop.buttonCargarImg.width}
+              background={prop.buttonCargarImg.backgrounColor}
+              color={prop.buttonCargarImg.color}
+              type="submit"
+              value="Picture"
+              onClick={handleClickFile}
+            >
+              Imagen
+            </Button>
+          </Container>
         </Container>
 
         {formik.touched.urlImg && formik.errors.urlImg ? (
-          <Container margin={prop.mError} color={prop.cError}>
+          <Container margin={prop.error.margin} color={prop.error.color}>
             {formik.errors.urlImg}
           </Container>
         ) : null}
 
-        <Container>
-          
-        </Container>
+        <Container></Container>
 
-        <ButtonForm backgroundColor={prop.bcBtn} type="submit">
-            Registrar
-          </ButtonForm>
+        <Button
+          margin={prop.button.margin}
+          fontSize={prop.button.fontSize}
+          padding={prop.button.padding}
+          border={prop.button.border}
+          borderRadius={prop.button.borderRadius}
+          width={prop.buttonLogin.width}
+          background={prop.buttonLogin.backgrounColor}
+          color={prop.buttonLogin.color}
+          type="submit"
+        >
+          Registrar
+        </Button>
 
-        <Hr margin={prop.mHr} />
+        <Hr margin={prop.hr.margin} />
 
-        <Container justifyContent={prop.jcCLink}>
+        <Container justifyContent={prop.containerLink.justifyContent}>
           <Link to="/">Ya estas registrado</Link>
         </Container>
       </Form>
