@@ -39,12 +39,15 @@ const Container = styled.div`
     props.flexDirection ? props.flexDirection : "row"};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
-  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "unset")}; /*arreglar en view auth */
   position: ${(props) => props.position ? props.position : "static"};
   top: ${(props) => props.top ? props.top : "auto"};
   left: ${(props) => props.left ? props.left : "auto"};
   color: ${(props) => (props.color ? props.color : "auto")};
 
+
+    border-radius: ${(props) => (props.radius ? props.radius : "unset")};
+  box-shadow: ${(props) => (props.shadow ? props.shadow : "unset")};
 `;
 
 const SuperContainer = styled.div`
@@ -75,8 +78,8 @@ const Img = styled.img`
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   border: ${(props) => (props.border ? props.border : "none")};
-  align-self: center;
   margin: ${(props) => (props.margin ? props.margin : "0 5px")};
+  align-self: center;
 `;
 
 const Wrapper = styled.div`
@@ -116,6 +119,8 @@ const Button = styled.button`
   font-size: 1rem;
   border-radius: ${(props) => (props.radius ? props.radius : "0.25rem")};
   align-self: center;
+
+  width: ${(props) => (props.width ? props.width : "auto") };
 `;
 
 const ButtonForm = styled.button`
