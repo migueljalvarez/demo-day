@@ -248,7 +248,7 @@ const LoginComp = () => {
             onClick={handleGoogleLogin}
           >
             <FcGoogle />
-            <Span margin={prop.mSpan}>Ingresa con Google</Span>
+            <Span margin={prop.span.margin}>Ingresa con Google</Span>
           </Button>
         </Container>
 
