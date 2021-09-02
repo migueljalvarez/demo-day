@@ -11,9 +11,10 @@ import {
 import { Link } from "react-router-dom";
 import { dropDownMenu, principalMenu } from "../helpers/menu";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Avatar from "./Avatar";
 import DropDownMenu from "./DropDownMenu";
+import { logout } from "../redux/actions/authActions";
 
 const logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
 const properties = {
@@ -21,6 +22,7 @@ const properties = {
 };
 
 const NavBar = () => {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth);
   return (
     <SuperContainer background={properties.background}>
@@ -33,6 +35,9 @@ const NavBar = () => {
                 {item.label}
               </Link>
             ))}
+            <p onClick={() => dispatch(logout())}>
+              logout
+            </p>
           </NavMenu>
         </Container>
         <SearchBar />
