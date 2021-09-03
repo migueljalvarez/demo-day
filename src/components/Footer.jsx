@@ -14,7 +14,7 @@ import { Information, Terms, Help } from "../helpers/footerLink";
 
 const Logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
 const properties = {
-  background: Colors.accentColor,
+  background: Colors.defaultPrimaryColor,
   color: Colors.textPrimaryColor,
 };
 const styledLink = {textDecoration: 'none' };
