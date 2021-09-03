@@ -9,8 +9,9 @@ import { useDispatch } from "react-redux";
 import { firebase } from "../config/firebase/firebaseConfig";
 import { login } from "../redux/actions/authActions";
 
-import Example from "../views/Example";
+import Home from "../views/Home";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -28,10 +29,10 @@ const Routers = () => {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Example} />
+          <Route exact path="/" component={Home} />
           <Redirect to="/" />
         </Switch>
-        {/* Aqui va el Footer */}
+        {Footer}
       </Router>
     </div>
   );

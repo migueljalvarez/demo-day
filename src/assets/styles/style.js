@@ -149,51 +149,38 @@ const CarouselWrapper = styled.div`
   }
 `;
 
-const Box = styled.div`
-  padding: 80px 60px;
-  background: black;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-
-  @media (max-width: 1000px) {
-    padding: 70px 30px;
-  }
-`;
-
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
-  margin-left: 60px;
 `;
 
 const Row = styled.div`
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-  grid-gap: 20px;
+  grid-gap: 50px;
+  margin-left: 10em;
 
   @media (max-width: 1000px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 `;
 
-const FooterLink = styled.a`
-  color: #fff;
-  margin-bottom: 20px;
-  font-size: 18px;
-  text-decoration: none;
-
-  &:hover {
-    color: green;
-    transition: 200ms ease-in;
-  }
+const Footer = styled.div`
+  background: "#448AFF";
+  display: flex;
+  justify-content: space-between;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  height: 145px;
+  left: 0px;
+  top: 800px;
 `;
 
 const Heading = styled.p`
-  font-size: 24px;
+  font-size: 15px;
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-weight: bold;
 `;
 
@@ -211,9 +198,8 @@ export {
   DropDown,
   DropDownMenu,
   CarouselWrapper,
-  Box,
   Column,
   Row,
-  FooterLink,
+  Footer,
   Heading,
 };

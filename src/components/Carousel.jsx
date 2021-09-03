@@ -1,10 +1,11 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { CarouselWrapper, Img } from "../../assets/styles/style";
+import { CarouselWrapper, Img } from "../assets/styles/style";
 
 
-export default function CarouselComponent() {
+
+const CarouselComponent = () => {
   return (
     <CarouselWrapper>
       <Carousel
@@ -28,3 +29,5 @@ export default function CarouselComponent() {
     </CarouselWrapper>
   );
 }
+
+export default CarouselComponent;
