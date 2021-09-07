@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
 *{
   box-sizing: border-box;
 }
+html {
+  min-height: 100vh;
+  position: relative;
+}
 body {
   margin: unset;
   padding: unset;
@@ -26,6 +30,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', sans-serif;
 }
 
+footer {
+  background: ${Colors.defaultPrimaryColor};
+  display: flex;
+  justify-content: center;
+  bottom: 0px;
+  width: 100%;
+  position: absolute;
+}
 `;
 
 const Container = styled.div`
@@ -62,7 +74,9 @@ const SuperContainer = styled.div`
 `;
 
 const NavMenu = styled.ul`
-  align-items: center;
+  margin: unset;
+  padding: 0;
+  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
   display: flex;
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   & a {
@@ -71,6 +85,8 @@ const NavMenu = styled.ul`
     text-decoration: none;
     font-family: "Nunito", sans-serif;
     font-weight: bold;
+    align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+    font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
   }
 `;
 
@@ -274,20 +290,7 @@ const Row = styled.div`
   }
 `;
 
-const Footer = styled.div`
-  background: "#448AFF";
-  display: flex;
-  justify-content: space-between;
-  bottom: 0px;
-  position: absolute;
-  width: 100%;
-  height: 145px;
-  left: 0px;
-  top: 800px;
-`;
-
-const Heading = styled.p`
-  font-size: 15px;
+const Heading = styled.h3`
   color: #fff;
   margin-bottom: 20px;
   font-weight: bold;
@@ -319,6 +322,5 @@ export {
   CarouselWrapper,
   Column,
   Row,
-  Footer,
   Heading,
 };

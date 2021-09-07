@@ -14,8 +14,8 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Services from "../components/Services";
 import Profile from "../views/Profile";
-import Login from "../views/Login"
-import Register from "../views/Register"
+import Login from "../views/Login";
+import Register from "../views/Register";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Routers = () => {
           <Route exact path="/profile" component={Profile} />
           <Redirect to="/" />
         </Switch>
-        {Footer}
+        <Footer />
       </Router>
     </div>
   );
