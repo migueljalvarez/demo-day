@@ -12,6 +12,10 @@ import { login } from "../redux/actions/authActions";
 import Home from "../views/Home";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import Services from "../components/Services";
+import Profile from "../views/Profile";
+import Login from "../views/Login"
+import Register from "../views/Register"
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -30,6 +34,10 @@ const Routers = () => {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/services" component={Services} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Register} />
+          <Route exact path="/profile" component={Profile} />
           <Redirect to="/" />
         </Switch>
         {Footer}
