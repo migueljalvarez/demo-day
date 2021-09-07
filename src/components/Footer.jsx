@@ -77,22 +77,22 @@ const FooterComponent = () => {
                 </NavMenu>
               </Column>
               <Column>
-                <Link href="#">
+                <Link to="/">
                   <FaFacebook size="2em" color="white" />
                 </Link>
               </Column>
               <Column>
-                <Link href="#">
+                <Link to="/">
                   <FaInstagram size="2em" color="white" />
                 </Link>
               </Column>
               <Column>
-                <Link href="#">
+                <Link to="/">
                   <FaTwitter size="2em" color="white" />
                 </Link>
               </Column>
               <Column>
-                <Link href="#">
+                <Link to="/">
                   <FaYoutube size="2em" color="white" />
                 </Link>
               </Column>
