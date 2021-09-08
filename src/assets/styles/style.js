@@ -156,16 +156,30 @@ const Label = styled.label`
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: 38px;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
-  border: none;
   outline: none;
   font-size: initial;
   padding-left: 10px;
   align-self: center;
 `;
+
+const SelectBox = styled.select`
+  height: 38px;
+  padding: ${(props) => (props.padding ? props.padding : "0")};
+`
+
+const TextArea = styled.textarea`
+  min-width: ${(props) => (props.width ? props.width : "100%")};
+  max-width: ${(props) => (props.width ? props.width : "100%")};
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  min-height: ${(props) => (props.minHeight ? props.width : "200px")};
+  max-height: ${(props) => (props.maxHeight ? props.width : "400px")};
+
+  font-size: 18px;
+`
 
 const DropDown = styled.div`
   position: relative;
@@ -312,6 +326,8 @@ export {
   Hr,
   Img,
   Input,
+  SelectBox,
+  TextArea,
   Label,
   NavMenu,
   Paragraph,
