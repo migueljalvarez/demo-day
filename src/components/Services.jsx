@@ -1,26 +1,66 @@
-import React from 'react'
-import {Button, Colors, Container, SuperContainer } from '../assets/styles/style'
-import ServicesCard from './ServicesCard';
+import React from "react";
+import {
+  Button,
+  Colors,
+  Container,
+  SuperContainer,
+  Wrapper,
+} from "../assets/styles/style";
+import ServicesCard from "./ServicesCard";
 
 const properties = {
-    background: Colors.darkPrimaryColor,
+  containerMain: {
+    direction: "column",
+  },
+  containerButton: {
     justifyContent: "space-around",
-    width: "40%"
+  },
+  containerCard: {
+    justifyContent: "center",
+    padding: "10px 0px",
+  },
+  button: {
+    background: Colors.accentColor,
+    color: Colors.textPrimaryColor,
+    width: "40%",
+  },
 };
 
 const Services = () => {
-    return (
-        <div>
-            <Container justifyContent={properties.justifyContent}>
-                <Button width={properties.width} background={properties.background}>Añadir servicios</Button>
-                <Button width={properties.width} background={properties.background}>Buscar servicios</Button>
+  return (
+    <div>
+      <SuperContainer>
+        <Wrapper>
+          <Container direction={properties.containerMain.direction}>
+            <Container
+              justifyContent={properties.containerButton.justifyContent}
+            >
+              <Button
+                width={properties.button.width}
+                background={properties.button.background}
+                color={properties.button.color}
+              >
+                Añadir servicios
+              </Button>
+              <Button
+                width={properties.button.width}
+                background={properties.button.background}
+                color={properties.button.color}
+              >
+                Buscar servicios
+              </Button>
             </Container>
+            <Container
+              justifyContent={properties.containerCard.justifyContent}
+              padding={properties.containerCard.padding}
+            >
+              <ServicesCard />
+            </Container>
+          </Container>
+        </Wrapper>
+      </SuperContainer>
+    </div>
+  );
+};
 
-            <SuperContainer>
-                <ServicesCard />
-            </SuperContainer>
-        </div>
-    )
-}
-
-export default Services
+export default Services;

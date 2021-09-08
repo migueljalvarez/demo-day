@@ -41,7 +41,7 @@ const NavBar = () => {
           </NavMenu>
         </Container>
         <SearchBar />
-        <Avatar user={user} />
+        <Avatar user={user} width="40px" height="40px"/>
         <DropDownMenu items={dropDownMenu} user={user} />
       </Wrapper>
     </SuperContainer>
