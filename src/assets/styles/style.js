@@ -42,9 +42,11 @@ footer {
 
 const Container = styled.div`
   display: ${(props) => (props.display ? props.display : "flex")};
+  flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : "nowrap")};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
+  color: ${(props) => (props.color ? props.color : "black")};
   width: ${(props) => (props.width ? props.width : "100%")};
   height: ${(props) => (props.height ? props.height : "auto")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
@@ -71,6 +73,7 @@ const SuperContainer = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
 `;
 
 const NavMenu = styled.ul`
@@ -117,6 +120,7 @@ const SearchBar = styled.form`
 
 const Button = styled.button`
   width: ${(props) => (props.width ? props.width : "auto")};
+  height: ${(props) => (props.height ? props.height : "auto")};
   display: ${(props) => (props.display ? props.display : "flex")};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
@@ -201,12 +205,13 @@ const DropDownMenu = styled.div`
 const Form = styled.form`
   width: ${(props) => (props.width ? props.width : "auto")};
   height: ${(props) => (props.height ? props.height : "auto")};
-  margin: ${(props) => (props.margin ? props.margin : "0")};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : Colors.defaultPrimaryColor};
   border: ${(props) =>
     props.border ? props.border : "3px solid" + Colors.defaultPrimaryColor};
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
   position: ${(props) => (props.position ? props.position : "relative")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   border-radius: ${(props) => (props.borderRadius ? props.borderRadius : "0")};
   display: ${(props) => (props.display ? props.display : "flex")};
@@ -296,6 +301,39 @@ const Heading = styled.h3`
   font-weight: bold;
 `;
 
+const Select = styled.select`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  height: 38px;
+  border: none;
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "0 0 0 10px")};
+  border: none;
+  outline: none;
+  font-size: initial;
+
+  ::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px;
+}
+  ::-webkit-scrollbar-thumb {
+    background-color: #757575;
+    border-radius: 4px;
+}
+  ::-webkit-scrollbar-track {
+    background-color: #BDBDBD;
+    border-radius: 4px;
+}
+`;
+
+const Option = styled.option`
+  min-height: 1.2em;
+
+  & :hover {
+    background-color: #000;
+  }
+`;
+
 export {
   Button,
   Colors,
@@ -314,8 +352,10 @@ export {
   Input,
   Label,
   NavMenu,
+  Option,
   Paragraph,
   SearchBar,
+  Select,
   Span,
   SuperContainer,
   Wrapper,
