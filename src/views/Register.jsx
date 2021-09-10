@@ -28,6 +28,7 @@ const prop = {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
+    margin: '0 0 297px 0',
   },
   form: {
     width: "70%",
@@ -161,6 +162,7 @@ const RegisterComp = () => {
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
+            margin={prop.containerLogin.margin}
           >
             <Form
               width={prop.form.width}

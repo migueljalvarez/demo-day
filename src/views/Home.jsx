@@ -1,6 +1,9 @@
 import React from "react";
+
+import SearchService from "../components/SearchService";
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
+
 import {
   Container,
   Heading,
@@ -8,13 +11,24 @@ import {
   Wrapper,
 } from "../assets/styles/style";
 
+const PROP ={
+  SuperContainer:{
+    margin: '0 0 297px 0',
+  },
+  containerHome:{
+      flexWrap: 'wrap',
+  }
+}
+
+
 const Home = () => {
   return (
     <div>
-      <SuperContainer>
+      <SuperContainer margin={PROP.SuperContainer.margin}>
         <Wrapper>
-          <Container>
+          <Container flexWrap={PROP.containerHome.flexWrap}>
             <Carousel />
+            <SearchService />
           </Container>
         </Wrapper>
       </SuperContainer>
