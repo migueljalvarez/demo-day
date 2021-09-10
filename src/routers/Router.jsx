@@ -16,6 +16,7 @@ import Services from "../components/Services";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import AddServices from "../components/AddServices";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const Routers = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Register} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/add" component={AddServices} />
           <Redirect to="/" />
         </Switch>
         <Footer />
