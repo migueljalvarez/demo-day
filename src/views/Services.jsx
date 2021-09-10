@@ -6,7 +6,7 @@ import {
   SuperContainer,
   Wrapper,
 } from "../assets/styles/style";
-import ServicesCard from "./ServicesCard";
+import ServicesCard from "../components/ServicesCard";
 
 const properties = {
   containerMain: {

@@ -12,11 +12,11 @@ import { login } from "../redux/actions/authActions";
 import Home from "../views/Home";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Services from "../components/Services";
+import Services from "../views/Services";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
-import AddServices from "../components/AddServices";
+import AddServices from "../views/AddServices";
 
 const Routers = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Routers = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Register} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/add" component={AddServices} />
+          <Route exact path="/services/add" component={AddServices} />
           <Redirect to="/" />
         </Switch>
         <Footer />

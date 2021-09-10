@@ -14,5 +14,6 @@ const constants = {
   SIGN_IN: "Iniciar Sesión",
   SIGN_UP: "Registrarse",
   TEXT_FOOTER: "Hecho con fines de práctica",
+  LOGOUT: "Cerrar Sesión",
 };
 export default constants;

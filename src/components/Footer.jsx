@@ -1,21 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Footer,
   Container,
-  Row,
-  Column,
   Heading,
   Img,
   Colors,
   SuperContainer,
   Wrapper,
   NavMenu,
+  Paragraph,
 } from "../assets/styles/style";
-import { FaFacebook, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import { Information, Terms, Help } from "../helpers/footerLink";
 
-const Logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
+import logo from "../assets/svg/logo.svg";
+import Socials from "./Socials";
 
 const properties = {
   background: Colors.defaultPrimaryColor,
@@ -26,19 +24,18 @@ const properties = {
 const FooterComponent = () => {
   return (
     <footer>
-      <SuperContainer>
+      <SuperContainer direction="">
         <Wrapper>
           <Container
             background={properties.background}
             padding={properties.padding}
           >
-            <Img src={Logo} alt="" />
-            <Row>
-              <Column>
+            <div className="row w-100">
+              <div className="col-md-3 col-sm">
                 <Heading>Información</Heading>
                 <NavMenu
                   direction="column"
-                  alignItems="baseline"
+                  alignItems="flex-start"
                   fontWeight="normal"
                 >
                   {Information.map((item, index) => (
@@ -47,12 +44,13 @@ const FooterComponent = () => {
                     </Link>
                   ))}
                 </NavMenu>
-              </Column>
-              <Column>
+              </div>
+              <div className="col-md-3 col-sm">
+                {" "}
                 <Heading>Términos</Heading>
                 <NavMenu
                   direction="column"
-                  alignItems="baseline"
+                  alignItems="flex-start"
                   fontWeight="normal"
                 >
                   {Terms.map((item, index) => (
@@ -61,12 +59,12 @@ const FooterComponent = () => {
                     </Link>
                   ))}
                 </NavMenu>
-              </Column>
-              <Column>
+              </div>
+              <div className="col-md-3 col-sm">
                 <Heading>Contacto</Heading>
                 <NavMenu
                   direction="column"
-                  alignItems="baseline"
+                  alignItems="flex-start"
                   fontWeight="normal"
                 >
                   {Help.map((item, index) => (
@@ -75,28 +73,24 @@ const FooterComponent = () => {
                     </Link>
                   ))}
                 </NavMenu>
-              </Column>
-              <Column>
-                <Link to="/">
-                  <FaFacebook size="2em" color="white" />
-                </Link>
-              </Column>
-              <Column>
-                <Link to="/">
-                  <FaInstagram size="2em" color="white" />
-                </Link>
-              </Column>
-              <Column>
-                <Link to="/">
-                  <FaTwitter size="2em" color="white" />
-                </Link>
-              </Column>
-              <Column>
-                <Link to="/">
-                  <FaYoutube size="2em" color="white" />
-                </Link>
-              </Column>
-            </Row>
+              </div>
+              <div className="col-md-3 col-sm">
+                <Container className="my-3">
+                  <Img src={logo} alt="dom-service" />
+                </Container>
+                <Socials />
+              </div>
+            </div>
+          </Container>
+        </Wrapper>
+      </SuperContainer>
+      <SuperContainer background={Colors.darkPrimaryColor}>
+        <Wrapper>
+          <Container padding="10px 0px" width="100%" justifyContent="center">
+            <Paragraph color={Colors.textPrimaryColor}>
+              Copyright © {new Date().getFullYear()} Todos los derechos
+              resevados
+            </Paragraph>
           </Container>
         </Wrapper>
       </SuperContainer>

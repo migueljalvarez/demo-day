@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBar from "./SearchBar";
 import {
   Container,
   NavMenu,
@@ -7,25 +6,22 @@ import {
   Wrapper,
   SuperContainer,
   Colors,
+  Paragraph,
 } from "../assets/styles/style";
 import { Link } from "react-router-dom";
 import { dropDownMenu, principalMenu } from "../helpers/menu";
-
-import { useDispatch, useSelector } from "react-redux";
-import Avatar from "./Avatar";
+import { useSelector } from "react-redux";
 import DropDownMenu from "./DropDownMenu";
-import { logout } from "../redux/actions/authActions";
 
-const logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
+import logo from "../assets/svg/logo.svg";
 const properties = {
   background: Colors.defaultPrimaryColor,
 };
 
 const NavBar = () => {
-  const dispatch = useDispatch()
   const user = useSelector((state) => state.auth);
   return (
-    <SuperContainer background={properties.background}>
+    <SuperContainer background={properties.background} padding="10px 0px">
       <Wrapper className="wrapper">
         <Container className="" width="auto">
           <Img src={logo} alt="logo" />
@@ -35,13 +31,8 @@ const NavBar = () => {
                 {item.label}
               </Link>
             ))}
-            <p onClick={() => dispatch(logout())}>
-              logout
-            </p>
           </NavMenu>
         </Container>
-        <SearchBar />
-        <Avatar user={user} width="40px" height="40px"/>
         <DropDownMenu items={dropDownMenu} user={user} />
       </Wrapper>
     </SuperContainer>

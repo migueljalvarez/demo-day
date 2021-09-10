@@ -1,18 +1,26 @@
 import constants from "./constants";
-const { SIGN_IN, SIGN_UP } = constants;
+const { SIGN_IN, SIGN_UP, LOGOUT } = constants;
 const principalMenu = [
   {
-    label: "Home",
+    label: "Inicio",
     path: "/home",
   },
   {
-    label: "Services",
+    label: "Servicios",
     path: "/services",
+  },
+  {
+    label: "Contacto",
+    path: "/contacts",
+  },
+  {
+    label: "Acerca de",
+    path: "/about",
   },
 ];
 const dropDownMenu = [
   {
-    label: "Profile",
+    label: "Perfil",
     path: "/profile",
   },
   {
@@ -24,7 +32,7 @@ const dropDownMenu = [
     path: "/login",
   },
   {
-    label: "Cerrar Session",
+    label: LOGOUT,
     path: "/logout",
   },
 ];

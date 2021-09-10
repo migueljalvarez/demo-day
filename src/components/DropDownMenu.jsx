@@ -1,36 +1,43 @@
-import React, { useState } from "react";
-import {
-  DropDown,
-  DropDownMenu as Menu,
-  Button,
-  Colors,
-} from "../assets/styles/style";
+import React from "react";
+import { Colors } from "../assets/styles/style";
 import { Link } from "react-router-dom";
-import { FaSortDown } from "react-icons/fa";
+import { Dropdown } from "react-bootstrap";
+import Avatar from "./Avatar";
+import constants from "../helpers/constants";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/authActions";
 
+const { LOGOUT } = constants;
 const DropDownMenu = ({ user, items }) => {
-  const [isDropDown, setIsDropDown] = useState(false);
-  const handleDropDown = () => {
-    setIsDropDown(!isDropDown);
-  };
+  const dispatch = useDispatch()
+  const handleLogout = ()=>{
+    dispatch(logout())
+  }
   return (
-    <DropDown background="transparent" padding="6px">
-      <Button
-        background="transparent"
-        color={Colors.textPrimaryColor}
-        padding="6px"
-        onClick={handleDropDown}
+    <Dropdown style={{ alignSelf: "center" }}>
+      <Avatar user={user} width="40px" height="40px" />
+      <Dropdown.Toggle
+        variant="default"
+        style={{ color: Colors.textPrimaryColor }}
+        id="dropdown-basic"
       >
-        {user.name} <FaSortDown />
-      </Button>
-      <Menu display={isDropDown ? "flex" : "none"} direction="column">
-        {items.map((item, index) => (
-          <Link key={index} to={item.path}>
-            {item.label}
-          </Link>
-        ))}
-      </Menu>
-    </DropDown>
+        {user.name}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        {items.map((item, index) =>
+          item.label === LOGOUT ? (
+            <Dropdown.Item key={index} role="button" onClick={handleLogout}>
+              {item.label}
+            </Dropdown.Item>
+          ) : (
+            <Dropdown.Item key={index} as={Link} to={item.path}>
+              {item.label}
+            </Dropdown.Item>
+          )
+        )}
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 

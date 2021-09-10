@@ -32,8 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 
 footer {
   background: ${Colors.defaultPrimaryColor};
-  display: flex;
-  justify-content: center;
   bottom: 0px;
   width: 100%;
   position: absolute;
@@ -42,7 +40,7 @@ footer {
 
 const Container = styled.div`
   display: ${(props) => (props.display ? props.display : "flex")};
-  flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : "nowrap")};
+  flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : "wrap")};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
@@ -67,9 +65,9 @@ const SuperContainer = styled.div`
   display: flex;
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
-  width: "100%";
+  width: 100%;
   height: ${(props) => (props.height ? props.height : "auto")};
-  padding: ${(props) => (props.padding ? props.padding : "5px")};
+  padding: ${(props) => (props.padding ? props.padding : "0px")};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
@@ -83,7 +81,7 @@ const NavMenu = styled.ul`
   display: flex;
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   & a {
-    margin: 10px;
+    margin: 5px;
     color: white;
     text-decoration: none;
     font-family: "Nunito", sans-serif;
@@ -110,6 +108,7 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "space-between"};
+  flex-wrap: wrap;
 `;
 
 const SearchBar = styled.form`
@@ -173,7 +172,7 @@ const Input = styled.input`
 const SelectBox = styled.select`
   height: 38px;
   padding: ${(props) => (props.padding ? props.padding : "0")};
-`
+`;
 
 const TextArea = styled.textarea`
   min-width: ${(props) => (props.width ? props.width : "100%")};
@@ -183,7 +182,7 @@ const TextArea = styled.textarea`
   max-height: ${(props) => (props.maxHeight ? props.width : "400px")};
 
   font-size: 18px;
-`
+`;
 
 const DropDown = styled.div`
   position: relative;
@@ -296,6 +295,7 @@ const CarouselWrapper = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  width: 250px;
 `;
 
 const Row = styled.div`
@@ -327,17 +327,17 @@ const Select = styled.select`
   font-size: initial;
 
   ::-webkit-scrollbar {
-    width: 8px; 
+    width: 8px;
     height: 8px;
-}
+  }
   ::-webkit-scrollbar-thumb {
     background-color: #757575;
     border-radius: 4px;
-}
+  }
   ::-webkit-scrollbar-track {
-    background-color: #BDBDBD;
+    background-color: #bdbdbd;
     border-radius: 4px;
-}
+  }
 `;
 
 const Option = styled.option`
