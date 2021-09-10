@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-
 import { types } from "../types/types";
 import {
   firebase,
@@ -7,6 +6,7 @@ import {
   facebook,
 } from "../../config/firebase/firebaseConfig";
 import { FileUpload } from "../../helpers/FileUpload";
+import { login as authLogin } from "../../services/auth";
 let fileUrl = [];
 
 //ENVIA LA IMAGEN A CLOUDINARY Y LA SUBE
@@ -70,12 +70,8 @@ export const startRegisterWithEmailPasswordNameUrlImg = (
 //INICIA SESION CON CORREO Y CONTRASEÑA
 export const startLoginEmailPassword = (email, password) => {
   return (dispatch) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        // console.log('hola');
-        // console.log(user);
+    authLogin({ email, password })
+      .then((user) => {
         dispatch(login(user));
       })
       .catch((e) => {
@@ -110,12 +106,13 @@ export const loginFacebook = () => {
 
 //FUNCION SINCRONICA(GUARDA INFO DE USUARIO EN REDUCER)
 export const login = (user) => {
+  const { id, displayName, imageUrl } = user;
   return {
     type: types.login,
     payload: {
-      id: user.uid,
-      name: user.displayName,
-      imageUrl: user.photoURL,
+      id: id,
+      displayName: displayName,
+      imageUrl: user.photoURL || imageUrl,
       isAuthenticated: true,
     },
   };
@@ -123,8 +120,13 @@ export const login = (user) => {
 
 //CIERRA SESION EN FIREBASE
 export const logout = () => {
-  return async(dispatch) => {
-    await firebase.auth().signOut();
+  return async (dispatch) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        firebase.auth().signOut();
+      }
+    })
+    localStorage.removeItem("token")
     dispatch(logOutReducer());
   };
 };

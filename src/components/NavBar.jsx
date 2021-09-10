@@ -6,7 +6,6 @@ import {
   Wrapper,
   SuperContainer,
   Colors,
-  Paragraph,
 } from "../assets/styles/style";
 import { Link } from "react-router-dom";
 import { dropDownMenu, principalMenu } from "../helpers/menu";

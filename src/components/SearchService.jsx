@@ -65,9 +65,9 @@ const PROP = {
 
 const SearchService = () => {
 
-  const handleSelect = () => {
-    document.getElementById('departamento')
-  }
+  // const handleSelect = () => {
+  //   document.getElementById('departamento')
+  // }
 
   return (
     <Container flexWrap={PROP.containerForm.flexWrap} padding={PROP.containerForm.padding}>

@@ -28,7 +28,7 @@ const properties = {
 
 const Services = () => {
   return (
-    <div>
+    <>
       <SuperContainer>
         <Wrapper>
           <Container direction={properties.containerMain.direction}>
@@ -59,7 +59,7 @@ const Services = () => {
           </Container>
         </Wrapper>
       </SuperContainer>
-    </div>
+    </>
   );
 };
 

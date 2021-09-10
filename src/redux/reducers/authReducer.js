@@ -13,7 +13,7 @@ const authReducer = (state = initialState, action) => {
     case types.login:
       return {
         id: action.payload.id,
-        name: action.payload.name,
+        name: action.payload.displayName,
         imageUrl: action.payload.imageUrl,
         isAuthenticated: action.payload.isAuthenticated,
       };

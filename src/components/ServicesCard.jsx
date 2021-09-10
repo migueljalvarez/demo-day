@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import {
   Colors,
   Container,
@@ -10,7 +10,7 @@ import {
 import Avatar from "./Avatar";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 const ServicesCard = () => {
-  const user = useSelector((state) => state.auth);
+  // const user = useSelector((state) => state.auth);
 
   return (
     <Container

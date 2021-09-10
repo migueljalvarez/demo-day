@@ -28,8 +28,8 @@ const socials = [
 const Socials = () => {
   return (
     <div>
-      {socials.map((social) => (
-        <Link to="/">
+      {socials.map((social, index) => (
+        <Link key={index} to="/">
           <social.icon size="2em" color="white" className="mx-2"/>
         </Link>
       ))}

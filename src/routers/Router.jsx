@@ -17,16 +17,19 @@ import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import AddServices from "../views/AddServices";
-
+import { PublicRouter } from "./PublicRouter";
+import jwtDecode from "jwt-decode";
 const Routers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    const token = localStorage.getItem("token");
+    const user = jwtDecode(token);
+    if (token !== null) {
       if (user) {
         dispatch(login(user));
       }
-    });
+    }
   }, [dispatch]);
 
   return (
@@ -36,7 +39,7 @@ const Routers = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
-          <Route exact path="/login" component={Login} />
+          <PublicRouter exact path="/login" component={Login} />
           <Route exact path="/signup" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/services/add" component={AddServices} />
