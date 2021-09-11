@@ -2,7 +2,7 @@ import React from "react";
 import { Img } from "../assets/styles/style";
 import constants from "../helpers/constants";
 const { DEFAULT_AVATAR_IMAGES } = constants;
-const Avatar = ({ user, width, height, position, margin, border, self }) => {
+const Avatar = ({ imageUrl, name , width, height, position, margin, border, self }) => {
   return (
     <>
       <Img
@@ -14,8 +14,8 @@ const Avatar = ({ user, width, height, position, margin, border, self }) => {
         margin={margin}
         border={border}
         self={self}
-        src={user?.imageUrl || DEFAULT_AVATAR_IMAGES}
-        alt={user?.name}
+        src={imageUrl || DEFAULT_AVATAR_IMAGES}
+        alt={name}
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = DEFAULT_AVATAR_IMAGES;

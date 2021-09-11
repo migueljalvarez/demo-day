@@ -20,7 +20,7 @@ const DropDownMenu = ({ user, items }) => {
         style={{ color: Colors.textPrimaryColor }}
         id="dropdown-basic"
       >
-        <Avatar user={user} width="40px" height="40px" />
+        <Avatar name={user.name} imageUrl={user.imageUrl} width="40px" height="40px" />
         {user.name}
       </Dropdown.Toggle>
 

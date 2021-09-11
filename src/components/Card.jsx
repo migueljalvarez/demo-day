@@ -37,7 +37,8 @@ const Card = ({ user }) => {
         >
           <Container width={"350px"} padding={"0px"} justifyContent={"center"}>
             <Avatar
-              src={user}
+              imageUrl={user.imageUrl}
+              name={user.displayName}
               position={"static"}
               margin={"-80px 0px 0px 0px"}
               radius={"100%"}
