@@ -9,18 +9,18 @@ import { logout } from "../redux/actions/authActions";
 
 const { LOGOUT } = constants;
 const DropDownMenu = ({ user, items }) => {
-  const dispatch = useDispatch()
-  const handleLogout = ()=>{
-    dispatch(logout())
-  }
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <Dropdown style={{ alignSelf: "center" }}>
-      <Avatar user={user} width="40px" height="40px" />
       <Dropdown.Toggle
         variant="default"
         style={{ color: Colors.textPrimaryColor }}
         id="dropdown-basic"
       >
+        <Avatar user={user} width="40px" height="40px" />
         {user.name}
       </Dropdown.Toggle>
 
@@ -28,6 +28,15 @@ const DropDownMenu = ({ user, items }) => {
         {items.map((item, index) =>
           item.label === LOGOUT ? (
             <Dropdown.Item key={index} role="button" onClick={handleLogout}>
+              {item.label}
+            </Dropdown.Item>
+          ) : item.label === "Perfil" ? (
+            <Dropdown.Item
+              key={index}
+              as={Link}
+              to={`${item.path}/${user.id}`}
+              disabled={user.id === 0}
+            >
               {item.label}
             </Dropdown.Item>
           ) : (

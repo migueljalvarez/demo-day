@@ -24,6 +24,8 @@ const NavBar = () => {
       <Wrapper className="wrapper">
         <Container className="" width="auto">
           <Img src={logo} alt="logo" />
+        </Container>
+        <Container width="auto">
           <NavMenu>
             {principalMenu.map((item, index) => (
               <Link key={index} to={item.path}>
@@ -31,8 +33,8 @@ const NavBar = () => {
               </Link>
             ))}
           </NavMenu>
+          <DropDownMenu items={dropDownMenu} user={user} />
         </Container>
-        <DropDownMenu items={dropDownMenu} user={user} />
       </Wrapper>
     </SuperContainer>
   );

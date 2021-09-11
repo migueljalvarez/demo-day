@@ -129,7 +129,7 @@ const Button = styled.button`
   color: ${(props) => (props.color ? props.color : "black")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0.375rem 0.75rem")};
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "auto")};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "1rem")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
   letter-spacing: ${(props) =>
     props.letterSpacing ? props.letterSpacing : "0"};
@@ -141,9 +141,12 @@ const Button = styled.button`
   -webkit-user-select: none;
   user-select: none;
   border: ${(props) => (props.border ? props.border : "1px solid transparent")};
-  font-size: 1rem;
   border-radius: ${(props) => (props.radius ? props.radius : "0.25rem")};
   align-self: center;
+  &:disabled {
+    background: darkgray;
+    cursor: auto;
+  }
   & svg {
     margin: 0px 5px;
   }

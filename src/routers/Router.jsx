@@ -6,7 +6,6 @@ import {
   Switch,
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { firebase } from "../config/firebase/firebaseConfig";
 import { login } from "../redux/actions/authActions";
 
 import Home from "../views/Home";
@@ -24,8 +23,8 @@ const Routers = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const user = jwtDecode(token);
     if (token !== null) {
+      const user = jwtDecode(token);
       if (user) {
         dispatch(login(user));
       }
@@ -37,11 +36,11 @@ const Routers = () => {
       <Router>
         <NavBar />
         <Switch>
+          <PublicRouter exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
-          <PublicRouter exact path="/login" component={Login} />
           <Route exact path="/signup" component={Register} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/services/add" component={AddServices} />
           <Redirect to="/" />
         </Switch>

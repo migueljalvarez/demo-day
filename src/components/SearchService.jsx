@@ -16,7 +16,7 @@ import {
 const PROP = {
   containerForm: {
     flexWrap: "wrap",
-    padding: '10px'
+    padding: "10px",
   },
   form: {
     width: "100%",
@@ -64,13 +64,15 @@ const PROP = {
 };
 
 const SearchService = () => {
-
   // const handleSelect = () => {
   //   document.getElementById('departamento')
   // }
 
   return (
-    <Container flexWrap={PROP.containerForm.flexWrap} padding={PROP.containerForm.padding}>
+    <Container
+      flexWrap={PROP.containerForm.flexWrap}
+      padding={PROP.containerForm.padding}
+    >
       <Form
         width={PROP.form.width}
         padding={PROP.form.padding}
@@ -108,26 +110,19 @@ const SearchService = () => {
           >
             <FaLocationArrow />
           </Container>
-          
+
           <Select
             width={PROP.inputLocation.width}
             radius={PROP.inputLocation.borderRadius}
             placeholder="Lugar"
             id="departamento"
           >
-            <Option value="0" selected disabled>
-              Lugar
-            </Option>
-
-            {
-              departamento.map((d, i) => (
-              <Option value={d.id}>
+            {departamento.map((d, i) => (
+              <Option key={i} value={d.id}>
                 {d.depart}
               </Option>
-            ))
-            }
+            ))}
           </Select>
-          
         </Container>
 
         <Button
