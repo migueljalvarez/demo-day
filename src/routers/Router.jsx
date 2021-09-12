@@ -17,6 +17,7 @@ import Login from "../views/Login";
 import Register from "../views/Register";
 import AddServices from "../views/AddServices";
 import { PublicRouter } from "./PublicRouter";
+import { PrivateRouter } from "./PrivateRouter";
 import jwtDecode from "jwt-decode";
 const Routers = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,11 @@ const Routers = () => {
           <PublicRouter exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
-          <Route exact path="/signup" component={Register} />
-          <Route exact path="/profile/:id" component={Profile} />
-          <Route exact path="/services/add" component={AddServices} />
+          <PublicRouter exact path="/signup" component={Register} />
+          
+          <PrivateRouter exact path="/profile/:id" component={Profile} />
+          <PrivateRouter exact path="/services/add" component={AddServices} />
+
           <Redirect to="/" />
         </Switch>
         <Footer />
