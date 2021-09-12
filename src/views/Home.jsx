@@ -3,7 +3,12 @@ import React, { useEffect } from "react";
 import SearchService from "../components/SearchService";
 import Carousel from "../components/Carousel";
 import Card from "../components/Card";
-import { Container, SuperContainer, Wrapper } from "../assets/styles/style";
+import {
+  Container,
+  ContainerTitleH1,
+  SuperContainer,
+  Wrapper,
+} from "../assets/styles/style";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../redux/actions/userActions";
 
@@ -31,9 +36,15 @@ const Home = () => {
           <Carousel />
           <SearchService />
           <Container>
-            {users.map((user, index) => (
-              <Card key={index} user={user} />
-            ))}
+            <ContainerTitleH1 align="center" padding="10px">
+              Ultimos Usuarios Registrado
+            </ContainerTitleH1>
+
+            <Container justifyContent="center">
+              {users.map((user) => (
+                <Card key={user._id} user={user} />
+              ))}
+            </Container>
           </Container>
         </Container>
       </Wrapper>

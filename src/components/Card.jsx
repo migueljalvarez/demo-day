@@ -1,62 +1,83 @@
 import React from "react";
 import Avatar from "./Avatar";
 import {
+  Button,
   Container,
   Img,
   Paragraph,
   Colors,
-  ContainerTitleH1,
+  ContainerTitle,
+  ContainerSubTitle,
 } from "../assets/styles/style";
+import { useHistory } from "react-router-dom";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const Card = ({ user }) => {
+  const history = useHistory();
+  const handleGoToProfile = () => {
+    history.push(`/profile/${user._id}`);
+  };
   return (
-    <>
+    <Container
+      width={"250px"}
+      padding={"0px"}
+      direction={"column"}
+      margin={"10px"}
+      background={Colors.dividerColor}
+      radius="8px"
+      shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
+    >
+      <Container padding={"0px"} width={"100%"}>
+        <Img
+          src={cover}
+          alt={"cover"}
+          width={"100%"}
+          height={"120px"}
+          margin={"0px"}
+          radius={"8px 8px 0px 0px"}
+        />
+      </Container>
       <Container
-        width={"350px"}
         padding={"0px"}
+        background={Colors.textPrimaryColor}
         direction={"column"}
-        background={Colors.dividerColor}
-        radius="8px"
-        shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
+        radius={"0px 0px 8px 8px"}
       >
-        <Container padding={"0px"} width={"100%"}>
-          <Img
-            src={cover}
-            alt={"cover"}
-            width={"100%"}
-            height={"150px"}
-            margin={"0px"}
-            radius={"8px 8px 0px 0px"}
+        <Container padding={"0px"} justifyContent={"center"}>
+          <Avatar
+            imageUrl={user.imageUrl}
+            name={user.displayName}
+            position={"static"}
+            margin={"-55px 0px 0px 0px"}
+            radius={"100%"}
+            width="100px"
+            border={`${Colors.dividerColor} 1px solid`}
           />
+          <ContainerTitle margin="0px 10px" align="left">
+            {user.displayName}
+          </ContainerTitle>
+          <ContainerSubTitle margin="0px 10px" align="left">
+            {user.occupation}
+          </ContainerSubTitle>
         </Container>
-        <Container
-          padding={"0px"}
-          background={Colors.textPrimaryColor}
-          direction={"column"}
-        >
-          <Container width={"350px"} padding={"0px"} justifyContent={"center"}>
-            <Avatar
-              imageUrl={user.imageUrl}
-              name={user.displayName}
-              position={"static"}
-              margin={"-80px 0px 0px 0px"}
-              radius={"100%"}
-              width="120px"
-              border={`${Colors.dividerColor} 1px solid`}
-            />
-            <ContainerTitleH1 margin="0px 10px" align="left">
-              {user.displayName}
-            </ContainerTitleH1>
-          </Container>
-          <Container padding={"5px"} width={"100%"} height={"250px"}>
-            <Paragraph align="left" margin="0px 10px">
-              {user.description}
-            </Paragraph>
-          </Container>
+        <Container padding={"5px"} width={"100%"}>
+          <Paragraph align="center" margin="0px 10px">
+            {user.about}
+          </Paragraph>
+        </Container>
+        <Container padding={"15px"}>
+          <Button
+            background={Colors.accentColor}
+            color={Colors.textPrimaryColor}
+            margin="15px 0"
+            onClick={handleGoToProfile}
+            width="100%"
+          >
+            Ver
+          </Button>
         </Container>
       </Container>
-    </>
+    </Container>
   );
 };
 

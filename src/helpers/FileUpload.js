@@ -1,5 +1,4 @@
 export const FileUpload = async (file) =>{
-
     const cloudUrl = 'https://api.cloudinary.com/v1_1/dthcn5bpf/image/upload';
     const formData = new FormData();
     formData.append('upload_preset','image-task');

@@ -14,4 +14,12 @@ const getProfiles = async () => {
   return data.docs;
 };
 
-export { getProfile, getProfiles };
+const updateProfile = async (id, body) => {
+  const url = `${baseUrl}/users/${id}`;
+  const result  = await axios.patch(url, body, {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  });
+  console.log(result)
+  return result.data;
+};
+export { getProfile, getProfiles, updateProfile };

@@ -23,11 +23,11 @@ html {
 body {
   margin: unset;
   padding: unset;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important;
 }
 
 footer {
@@ -183,6 +183,8 @@ const TextArea = styled.textarea`
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   min-height: ${(props) => (props.minHeight ? props.width : "200px")};
   max-height: ${(props) => (props.maxHeight ? props.width : "400px")};
+  border: ${(props) => (props.border ? props.border : "none")};
+
 
   font-size: 18px;
 `;
@@ -252,12 +254,14 @@ const ContainerTitle = styled.h3`
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 const ContainerSubTitle = styled.p`
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 const ContainerText = styled.h5`
@@ -278,12 +282,14 @@ const Paragraph = styled.p`
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
   position: ${(props) => (props.position ? props.position : "unset")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 const ContainerTitleH1 = styled.h1`
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
 const CarouselWrapper = styled.div`
