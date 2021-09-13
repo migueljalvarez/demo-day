@@ -162,6 +162,9 @@ const Label = styled.label`
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: 38px;
+  background: ${(props) =>
+    props.background ? props.background : "white"};
+  color: ${(props) => (props.color ? props.color : "black")};
   border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
@@ -338,13 +341,13 @@ const Heading = styled.h3`
 const Select = styled.select`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: 38px;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0 0 0 10px")};
-  border: none;
   outline: none;
   font-size: initial;
+
 
   ::-webkit-scrollbar {
     width: 8px;
