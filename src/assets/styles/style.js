@@ -175,18 +175,15 @@ const Input = styled.input`
   padding: ${(props) => (props.padding ? props.padding : "0")};
   outline: none;
   appearance: ${(props) => (props.appearance ? props.appearance : "auto")};
+  -moz-appearance: textfield;
   font-size: initial;
   padding-left: 10px;
   align-self: center;
 
-  & :hover {
-    appearance: none;
-  }
-  & :focus {
-    appearance: none;
-  }
-  & :selected {
-    appearance: none;
+  &::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 
