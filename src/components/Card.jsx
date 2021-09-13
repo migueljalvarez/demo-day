@@ -26,6 +26,8 @@ const Card = ({ user }) => {
       background={Colors.dividerColor}
       radius="8px"
       shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
+      height= "450px"
+      flexWrap="nowrap"
     >
       <Container padding={"0px"} width={"100%"}>
         <Img
@@ -42,6 +44,7 @@ const Card = ({ user }) => {
         background={Colors.textPrimaryColor}
         direction={"column"}
         radius={"0px 0px 8px 8px"}
+        height="100%"
       >
         <Container padding={"0px"} justifyContent={"center"}>
           <Avatar
