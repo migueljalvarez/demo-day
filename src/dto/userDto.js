@@ -1,9 +1,10 @@
 const buildUserDto = (data) => {
   const dto = {
     Profiles: {
-      // name: "Miguel",
-      // lastname: "Alvarez",
+      name: data.name,
+      lastname: data.lastname,
       imageUrl: data.imageUrl,
+      coverUrl: data.coverUrl,
       documentType: data.documentType,
       documentNumber: data.documentNumber,
       phone: data.phone,

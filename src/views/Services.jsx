@@ -7,7 +7,7 @@ import {
   Wrapper,
 } from "../assets/styles/style";
 import ServicesCard from "../components/ServicesCard";
-
+import { useHistory } from "react-router-dom";
 const properties = {
   containerMain: {
     direction: "column",
@@ -27,6 +27,11 @@ const properties = {
 };
 
 const Services = () => {
+  const history = useHistory();
+  const handleAddService = () => {
+    history.push("/services/add");
+  };
+
   return (
     <>
       <SuperContainer>
@@ -39,6 +44,7 @@ const Services = () => {
                 width={properties.button.width}
                 background={properties.button.background}
                 color={properties.button.color}
+                onClick={handleAddService}
               >
                 Añadir servicios
               </Button>

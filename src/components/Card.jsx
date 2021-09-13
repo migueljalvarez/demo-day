@@ -31,7 +31,7 @@ const Card = ({ user }) => {
     >
       <Container padding={"0px"} width={"100%"}>
         <Img
-          src={cover}
+          src={user.coverUrl || cover}
           alt={"cover"}
           width={"100%"}
           height={"120px"}
