@@ -6,7 +6,7 @@ import {
   facebook,
 } from "../../config/firebase/firebaseConfig";
 import { FileUpload } from "../../helpers/FileUpload";
-import { login as authLogin, signup as createUser} from "../../services/auth";
+import { login as authLogin, signup as createUser } from "../../services/auth";
 let fileUrl = [];
 
 //ENVIA LA IMAGEN A CLOUDINARY Y LA SUBE
@@ -28,26 +28,23 @@ export const startUploadingImage = (file) => {
   };
 };
 //CREA USUARIO CON CORREO Y CONTRASEÑA
-export const startRegisterWithEmailPasswordNameUrlImg = (
-  user
-) => {
+export const startRegisterWithEmailPasswordNameUrlImg = (user) => {
   return (dispatch) => {
     createUser({ user })
       .then((user) => {
         dispatch(login(user));
         Swal.fire({
-          position: "top-end",
+          position: "center",
           text: "Usuario creado",
-          title: '',
+          title: "",
           showConfirmButton: false,
           timer: 1500,
         });
       })
       .catch((e) => {
-        console.log(e);
         Swal.fire({
           icon: "error",
-          text: e,
+          text: e.response.data.message,
           title: "Oops ....",
           showConfirmButton: true,
           footer: "",
@@ -59,7 +56,7 @@ export const startRegisterWithEmailPasswordNameUrlImg = (
 //INICIA SESION CON CORREO Y CONTRASEÑA
 export const startLoginEmailPassword = (email, password, remenber) => {
   return (dispatch) => {
-    authLogin({ email, password, remenber})
+    authLogin({ email, password, remenber })
       .then((user) => {
         console.log(user);
         dispatch(login(user));
