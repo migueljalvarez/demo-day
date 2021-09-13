@@ -6,7 +6,7 @@ import {
   facebook,
 } from "../../config/firebase/firebaseConfig";
 import { FileUpload } from "../../helpers/FileUpload";
-import { login as authLogin } from "../../services/auth";
+import { login as authLogin, signup as createUser} from "../../services/auth";
 let fileUrl = [];
 
 //ENVIA LA IMAGEN A CLOUDINARY Y LA SUBE
@@ -23,33 +23,22 @@ export const startUploadingImage = (file) => {
 
     fileUrl = await FileUpload(file);
 
-    // console.log(fileUrl);
     Swal.close();
     return fileUrl;
   };
 };
 //CREA USUARIO CON CORREO Y CONTRASEÑA
 export const startRegisterWithEmailPasswordNameUrlImg = (
-  email,
-  password,
-  name,
-  urlImage
+  user
 ) => {
   return (dispatch) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async ({ user }) => {
-        // console.log(user);
-
-        await user.updateProfile({ displayName: name, photoURL: urlImage });
-
-        // console.log(user);
-
+    createUser({ user })
+      .then((user) => {
+        dispatch(login(user));
         Swal.fire({
           position: "top-end",
           text: "Usuario creado",
-          title: user.displayName,
+          title: '',
           showConfirmButton: false,
           timer: 1500,
         });
@@ -68,10 +57,11 @@ export const startRegisterWithEmailPasswordNameUrlImg = (
 };
 
 //INICIA SESION CON CORREO Y CONTRASEÑA
-export const startLoginEmailPassword = (email, password) => {
+export const startLoginEmailPassword = (email, password, remenber) => {
   return (dispatch) => {
-    authLogin({ email, password })
+    authLogin({ email, password, remenber})
       .then((user) => {
+        console.log(user);
         dispatch(login(user));
       })
       .catch((e) => {

@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -15,20 +14,22 @@ import {
   Hr,
   SuperContainer,
   Wrapper,
+  Select,
+  Option,
+  LINK,
 } from "../assets/styles/style";
 import LogoPrueba from "../assets/img/PruebaEmpresa.jpg";
 import ImgAuth from "../components/auth/ImgAuth";
-import {
-  startUploadingImage,
-  startRegisterWithEmailPasswordNameUrlImg,
-} from "../redux/actions/authActions.js";
+import { startRegisterWithEmailPasswordNameUrlImg } from "../redux/actions/authActions.js";
+import { documento } from "../helpers/document";
+import { buildUserDto } from "../dto/userDto";
 
 const prop = {
   containerLogin: {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: '0 0 297px 0',
+    margin: "0 0 297px 0",
   },
   form: {
     width: "70%",
@@ -68,6 +69,11 @@ const prop = {
   inputImg: {
     radius: "0.25rem 0 0 0.25rem",
   },
+  select: {
+    width: "100%",
+    borderRadius: " 5px",
+    margin: "0 auto 10px auto",
+  },
   error: {
     margin: "0 auto 1rem auto",
     color: "#f60000",
@@ -104,18 +110,27 @@ const RegisterComp = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
+      lastName: "",
       email: "",
+      documentType: "",
+      documentNumber: "",
       password: "",
       password2: "",
-      urlImg: "",
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(5, "El nombre es muy corto")
-        .required("Escribe nombre de la pelicula."),
+        .min(3, "El nombre es muy corto")
+        .required("Escribe tu nombre completo"),
+      lastName: Yup.string()
+        .min(3, "El nombre es muy corto")
+        .required("Escribe tus apellidos completos."),
       email: Yup.string()
-        .email("Invalid email address")
+        .email("Email invalido")
         .required("Email requerido"),
+      documentNumber: Yup.number('Solo acepta caracteres tipo numero')
+        .min( 1, "Numero de documento invalido")
+        .max( 9999999999, "Numero de documento invalido")
+        .required("Número de documento requerido"),
       password: Yup.string()
         .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
         .matches(
@@ -126,32 +141,22 @@ const RegisterComp = () => {
       password2: Yup.string()
         .oneOf([Yup.ref("password"), null], "Las contraseñas deben ser iguales")
         .required("Escribe tu contraseña."),
-      urlImg: Yup.string().url().required("URL requerido"),
     }),
     onSubmit: () => {
-      dispatch(
-        startRegisterWithEmailPasswordNameUrlImg(email, password, name, urlImg)
-      );
+      const formValues = buildUserDto(formik.values);
+      dispatch(startRegisterWithEmailPasswordNameUrlImg(formValues));
     },
   });
 
-  const { name, email, password, password2, urlImg } = formik.values;
-
-  // CARGAR IMAGEN
-  const handleClickFile = () => {
-    document.querySelector("#fileSelector").click();
-  };
-  const handleFileChange = async (e) => {
-    // console.log(e);
-    const file = e.target.files[0];
-    // console.log(file);
-    if (file) {
-      let fileURL = await dispatch(startUploadingImage(file));
-      let urlImg = document.querySelector("#urlImg");
-      urlImg.value = fileURL;
-      formik.values.urlImg = fileURL;
-    }
-  };
+  const {
+    name,
+    lastName,
+    email,
+    documentType,
+    documentNumber,
+    password,
+    password2,
+  } = formik.values;
 
   return (
     <SuperContainer>
@@ -212,6 +217,33 @@ const RegisterComp = () => {
               {formik.touched.name && formik.errors.name ? (
                 <Container margin={prop.error.margin} color={prop.error.color}>
                   {formik.errors.name}
+                </Container>
+              ) : null}
+
+              <Container
+                flexWrap={prop.containerInput.flexWrap}
+                display={prop.formGroup.display}
+                direction={prop.formGroup.direction}
+              >
+                <Label margin={prop.label.margin} htmlFor="name">
+                  Apellidos Completos
+                </Label>
+                <Input
+                  margin={prop.input.margin}
+                  // padding={prop.input.padding}
+                  radius={prop.input.borderRadius}
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  value={lastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </Container>
+
+              {formik.touched.lastName && formik.errors.lastName ? (
+                <Container margin={prop.error.margin} color={prop.error.color}>
+                  {formik.errors.lastName}
                 </Container>
               ) : null}
 
@@ -297,72 +329,71 @@ const RegisterComp = () => {
               ) : null}
 
               <Container
-                // margin={prop.containerInput.margin}
+                flexWrap={prop.containerInput.flexWrap}
                 display={prop.formGroup.display}
                 direction={prop.formGroup.direction}
-                flexWrap={prop.containerInput.flexWrap}
               >
-                <Label margin={prop.label.margin} htmlFor="floatingPassword">
-                  Url imagen
+                <Label margin={prop.label.margin} htmlFor="documentType">
+                  Tipo de documento
                 </Label>
-
-                <Container
-                  margin={prop.input.margin}
-                  display={prop.formGroup.display}
-                  // direction={prop.formGroup.direction}
+                <Select
+                  width={prop.select.width}
+                  radius={prop.select.borderRadius}
+                  margin={prop.select.margin}
+                  id="documentType"
+                  name="documentType"
+                  value={documentType}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 >
-                  <Input
-                    // margin={prop.input.margin}
-                    width="300px"
-                    // padding={prop.input.padding}
-                    radius={prop.inputImg.radius}
-                    type="url"
-                    id="urlImg"
-                    placeholder="Url"
-                    name="urlImg"
-                    value={urlImg}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    disabled
-                    required
-                  />
-
-                  <input
-                    id="fileSelector"
-                    type="file"
-                    name="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                  />
-                  <Button
-                    // margin={prop.button.margin}
-                    fontSize={prop.button.fontSize}
-                    // padding={prop.button.padding}
-                    border={prop.button.border}
-                    radius={prop.buttonCargarImg.radius}
-                    // width={prop.buttonCargarImg.width}
-                    background={prop.buttonCargarImg.backgrounColor}
-                    color={prop.buttonCargarImg.color}
-                    type="submit"
-                    value="Picture"
-                    onClick={handleClickFile}
-                  >
-                    Imagen
-                  </Button>
-                </Container>
+                  <Option value="" selected="selected" disabled>
+                    Selecciona tu tipo de documento
+                  </Option>
+                  {documento.map((d, i) => (
+                    <Option key={i} value={d.id}>
+                      {d.type}
+                    </Option>
+                  ))}
+                </Select>
               </Container>
 
-              {formik.touched.urlImg && formik.errors.urlImg ? (
+              {formik.touched.documentType && formik.errors.documentType ? (
                 <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.urlImg}
+                  {formik.errors.documentType}
+                </Container>
+              ) : null}
+
+              <Container
+                flexWrap={prop.containerInput.flexWrap}
+                display={prop.formGroup.display}
+                direction={prop.formGroup.direction}
+              >
+                <Label margin={prop.label.margin} htmlFor="documentNumber">
+                  número de documento
+                </Label>
+                <Input
+                  margin={prop.input.margin}
+                  // padding={prop.input.padding}
+                  radius={prop.input.borderRadius}
+                  type="number"
+                  name="documentNumber"
+                  id="documentNumber"
+                  value={documentNumber}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+              </Container>
+
+              {formik.touched.documentNumber && formik.errors.documentNumber ? (
+                <Container margin={prop.error.margin} color={prop.error.color}>
+                  {formik.errors.documentNumber}
                 </Container>
               ) : null}
 
               <Button
                 margin={prop.button.margin}
                 fontSize={prop.button.fontSize}
-                // padding={prop.button.padding}
+                padding={prop.button.padding}
                 border={prop.button.border}
                 borderRadius={prop.button.borderRadius}
                 width={prop.buttonLogin.width}
@@ -376,7 +407,7 @@ const RegisterComp = () => {
               <Hr margin={prop.hr.margin} />
 
               <Container justifyContent={prop.containerLink.justifyContent}>
-                <Link to="/login">Ya estas registrado</Link>
+                <LINK to="/login">Ya estas registrado</LINK>
               </Container>
             </Form>
           </Container>

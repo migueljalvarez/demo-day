@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Link } from "react-router-dom";
 import "./font.css";
 
 const Colors = {
@@ -100,6 +101,8 @@ const Img = styled.img`
   align-self: ${(props) => (props.self ? props.self : "center")};
   margin: ${(props) => (props.margin ? props.margin : "0 5px")};
   position: ${(props) => (props.position ? props.position : "unset")};
+  background-color: ${(props) =>
+    props.background ? props.background : "transparent"};
 `;
 
 const Wrapper = styled.div`
@@ -155,6 +158,8 @@ const Button = styled.button`
 const Label = styled.label`
   width: ${(props) => (props.width ? props.width : "100%")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "auto")};
+  text-align: ${(props) => (props.textAlign ? props.textAlign : "auto")};
   color: ${(props) => (props.color ? props.color : Colors.textPrimaryColor)};
   box-sizing: border-box;
 `;
@@ -162,17 +167,24 @@ const Label = styled.label`
 const Input = styled.input`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: 38px;
+  background: ${(props) => (props.background ? props.background : "white")};
+  color: ${(props) => (props.color ? props.color : "black")};
   border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   outline: none;
+  appearance: ${(props) => (props.appearance ? props.appearance : "auto")};
+  -moz-appearance: textfield;
   font-size: initial;
   padding-left: 10px;
   align-self: center;
-  background: ${(props) =>
-    props.background ? props.background : "white"};
-  color: ${(props) => (props.color ? props.color : "black")};
+
+  &::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const SelectBox = styled.select`
@@ -336,7 +348,6 @@ const Select = styled.select`
   outline: none;
   font-size: initial;
 
-
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -359,6 +370,17 @@ const Option = styled.option`
   }
 `;
 
+const LINK = styled(Link)`
+  text-align: center;
+  text-decoration: none;
+  color: ${(props) => (props.color ? props.color : Colors.textPrimaryColor)};
+  font-weight: 700;
+
+  &:hover {
+    color: ${(props) => (props.color ? props.color : Colors.accentColor)};
+  }
+`;
+
 export {
   Button,
   Colors,
@@ -378,6 +400,7 @@ export {
   SelectBox,
   TextArea,
   Label,
+  LINK,
   NavMenu,
   Option,
   Paragraph,
