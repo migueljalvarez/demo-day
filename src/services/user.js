@@ -19,7 +19,6 @@ const updateProfile = async (id, body) => {
   const result  = await axios.patch(url, body, {
     headers: { "Access-Control-Allow-Origin": "*" },
   });
-  console.log(result)
   return result.data;
 };
 export { getProfile, getProfiles, updateProfile };

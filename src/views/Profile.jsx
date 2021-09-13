@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Container,
@@ -17,15 +17,15 @@ import {
   TextArea,
   Label,
   Select,
+  Option,
 } from "../assets/styles/style";
 import Avatar from "../components/Avatar";
 import { FaWhatsapp, FaUserEdit } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import actionProfile from "../redux/actions/userActions";
 import { Modal } from "react-bootstrap";
-
 import { useCustomFormik } from "../hooks/useCustomFormik";
-
+import UI from "../redux/actions/uiActions";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const properties = {
@@ -57,12 +57,19 @@ const properties = {
     radius: "0.25rem 0 0 0.25rem",
   },
 };
+const documentsType = [
+  { value: "CC" },
+  { value: "CE" },
+  { value: "PA" },
+  { value: "PEP" },
+  { value: "OTHER" },
+];
 const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
-  const [modalShow, setModalShow] = useState(false);
+  const modalShow = useSelector((state) => state.modal);
   let isDisabled = auth.id === 0 || params.id !== auth.id;
 
   // const [isLoading, setIsLoading] = useState(true);
@@ -86,6 +93,8 @@ const Profile = () => {
     useCustomFormik(initialValues, "updateProfile", user._id);
 
   const {
+    name,
+    lastname,
     about,
     occupation,
     location,
@@ -146,7 +155,7 @@ const Profile = () => {
                     {user.occupation}
                   </ContainerSubTitle>
                   <Paragraph align="left" margin="2px 10px">
-                    Medellin, Antioquia
+                    {user.location}
                   </Paragraph>
                   <Container
                     justifyContent="flex-end"
@@ -160,7 +169,7 @@ const Profile = () => {
                       color={Colors.textPrimaryColor}
                       margin="5px"
                       disabled={isDisabled}
-                      onClick={() => setModalShow(true)}
+                      onClick={() => dispatch(UI.showModal())}
                     >
                       <FaUserEdit /> Editar
                     </Button>
@@ -226,7 +235,7 @@ const Profile = () => {
       </SuperContainer>
       <Modal
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={() => dispatch(UI.hideModal())}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -243,6 +252,32 @@ const Profile = () => {
             border="none"
             onSubmit={formik.handleSubmit}
           >
+            <Container>
+              <Label color={Colors.secondaryTextColor}>Nombre</Label>
+              <Input
+                name="name"
+                margin={properties.input.margin}
+                border={properties.input.border}
+                radius={properties.input.borderRadius}
+                type="text"
+                onChange={handleInputChange}
+                onBlur={formik.handleBlur}
+                value={name}
+              />
+            </Container>
+            <Container>
+              <Label color={Colors.secondaryTextColor}>Apellido</Label>
+              <Input
+                name="lastname"
+                margin={properties.input.margin}
+                border={properties.input.border}
+                radius={properties.input.borderRadius}
+                type="text"
+                onChange={handleInputChange}
+                onBlur={formik.handleBlur}
+                value={lastname}
+              />
+            </Container>
             <Container>
               <Label color={Colors.secondaryTextColor}>Ocupación</Label>
               <Input
@@ -316,17 +351,23 @@ const Profile = () => {
             </Container>
             <Container>
               <Label color={Colors.secondaryTextColor}>Tipo de Documento</Label>
-              <Select></Select>
-              <Input
+              <Select
                 name="documentType"
-                margin={properties.input.margin}
                 border={properties.input.border}
                 radius={properties.input.borderRadius}
-                type="text"
                 value={documentType}
                 onChange={handleInputChange}
-                onBlur={formik.handleBlur}
-              />
+              >
+                {documentsType.map((type, index) => (
+                  <Option
+                    key={index}
+                    value={type.value}
+                    selected={type.value === documentType}
+                  >
+                    {type.value}
+                  </Option>
+                ))}
+              </Select>
             </Container>
             <Container>
               <Label color={Colors.secondaryTextColor}>
@@ -389,7 +430,7 @@ const Profile = () => {
           <Button
             color={Colors.textPrimaryColor}
             background="#dc3545"
-            onClick={() => setModalShow(false)}
+            onClick={() => dispatch(UI.hideModal())}
           >
             Cancelar
           </Button>

@@ -170,6 +170,9 @@ const Input = styled.input`
   font-size: initial;
   padding-left: 10px;
   align-self: center;
+  background: ${(props) =>
+    props.background ? props.background : "white"};
+  color: ${(props) => (props.color ? props.color : "black")};
 `;
 
 const SelectBox = styled.select`
@@ -184,7 +187,6 @@ const TextArea = styled.textarea`
   min-height: ${(props) => (props.minHeight ? props.width : "200px")};
   max-height: ${(props) => (props.maxHeight ? props.width : "400px")};
   border: ${(props) => (props.border ? props.border : "none")};
-
 
   font-size: 18px;
 `;
@@ -327,13 +329,13 @@ const Heading = styled.h3`
 const Select = styled.select`
   width: ${(props) => (props.width ? props.width : "100%")};
   height: 38px;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0 0 0 10px")};
-  border: none;
   outline: none;
   font-size: initial;
+
 
   ::-webkit-scrollbar {
     width: 8px;
