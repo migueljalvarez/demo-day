@@ -57,10 +57,11 @@ export const startRegisterWithEmailPasswordNameUrlImg = (
 };
 
 //INICIA SESION CON CORREO Y CONTRASEÑA
-export const startLoginEmailPassword = (email, password) => {
+export const startLoginEmailPassword = (email, password, remenber) => {
   return (dispatch) => {
-    authLogin({ email, password })
+    authLogin({ email, password, remenber})
       .then((user) => {
+        console.log(user);
         dispatch(login(user));
       })
       .catch((e) => {

@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -17,6 +16,7 @@ import {
   Wrapper,
   Select,
   Option,
+  LINK,
 } from "../assets/styles/style";
 import LogoPrueba from "../assets/img/PruebaEmpresa.jpg";
 import ImgAuth from "../components/auth/ImgAuth";
@@ -119,11 +119,18 @@ const RegisterComp = () => {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(5, "El nombre es muy corto")
-        .required("Escribe nombre de la pelicula."),
+        .min(3, "El nombre es muy corto")
+        .required("Escribe tu nombre completo"),
+      lastName: Yup.string()
+        .min(3, "El nombre es muy corto")
+        .required("Escribe tus apellidos completos."),
       email: Yup.string()
-        .email("Invalid email address")
+        .email("Email invalido")
         .required("Email requerido"),
+      documentNumber: Yup.number('Solo acepta caracteres tipo numero')
+        .min( 1, "Numero de documento invalido")
+        .max( 9999999999, "Numero de documento invalido")
+        .required("Número de documento requerido"),
       password: Yup.string()
         .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
         .matches(
@@ -150,23 +157,6 @@ const RegisterComp = () => {
     password,
     password2,
   } = formik.values;
-
-  // console.log(documentType);
-  // // CARGAR IMAGEN
-  // const handleClickFile = () => {
-  //   document.querySelector("#fileSelector").click();
-  // };
-  // const handleFileChange = async (e) => {
-  //   // console.log(e);
-  //   const file = e.target.files[0];
-  //   // console.log(file);
-  //   if (file) {
-  //     let fileURL = await dispatch(startUploadingImage(file));
-  //     let urlImg = document.querySelector("#urlImg");
-  //     urlImg.value = fileURL;
-  //     formik.values.urlImg = fileURL;
-  //   }
-  // };
 
   return (
     <SuperContainer>
@@ -251,9 +241,9 @@ const RegisterComp = () => {
                 />
               </Container>
 
-              {formik.touched.name && formik.errors.name ? (
+              {formik.touched.lastName && formik.errors.lastName ? (
                 <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.name}
+                  {formik.errors.lastName}
                 </Container>
               ) : null}
 
@@ -356,9 +346,9 @@ const RegisterComp = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 >
-                <Option value="" selected="selected" disabled>
-                  Selecciona tu tipo de documento
-                </Option>
+                  <Option value="" selected="selected" disabled>
+                    Selecciona tu tipo de documento
+                  </Option>
                   {documento.map((d, i) => (
                     <Option key={i} value={d.id}>
                       {d.type}
@@ -386,8 +376,6 @@ const RegisterComp = () => {
                   // padding={prop.input.padding}
                   radius={prop.input.borderRadius}
                   type="number"
-                  min="1"
-                  max="9999999999"
                   name="documentNumber"
                   id="documentNumber"
                   value={documentNumber}
@@ -419,7 +407,7 @@ const RegisterComp = () => {
               <Hr margin={prop.hr.margin} />
 
               <Container justifyContent={prop.containerLink.justifyContent}>
-                <Link to="/login">Ya estas registrado</Link>
+                <LINK to="/login">Ya estas registrado</LINK>
               </Container>
             </Form>
           </Container>

@@ -1,6 +1,5 @@
 //IMPORTACION DE TERCEROS
 import React from "react";
-import { Link } from "react-router-dom";
 import { GrFacebookOption } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
@@ -20,6 +19,7 @@ import {
   Hr,
   SuperContainer,
   Wrapper,
+  LINK,
 } from "../assets/styles/style";
 
 //IMPORTACION DE IMAGENES
@@ -37,7 +37,7 @@ const prop = {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: '0 0 297px 0',
+    margin: "0 0 297px 0",
   },
   form: {
     width: "70%",
@@ -61,15 +61,36 @@ const prop = {
     border: "3px solid" + Colors.defaultPrimaryColor,
     borderRadius: "50%",
     margin: "0",
+    background: Colors.defaultPrimaryColor,
   },
   containerInput: {
     flexWrap: "wrap",
     margin: "0 auto 1rem auto",
   },
   label: {
+    width: "95%",
     margin: "0 auto 10px auto",
   },
   input: {
+    width: "5%",
+    borderRadius: "5px",
+    margin: "0 auto 10px auto",
+    padding: "10px 20px",
+  },
+  containerRemember: {
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "0 auto 1rem auto",
+  },
+  labelRemember: {
+    width: "95%",
+    margin: "0 auto 10px auto",
+    padding: "0 1rem",
+    textAlign: "end",
+  },
+  inputRemember: {
+    width: "5%",
     borderRadius: "5px",
     margin: "0 auto 10px auto",
     padding: "10px 20px",
@@ -118,10 +139,11 @@ const LoginComp = () => {
     initialValues: {
       email: "",
       password: "",
+      remenber: true,
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email("Invalid email address")
+        .email("Email invalido")
         .required("Email requerido"),
       // password: Yup.string()
       //   .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
@@ -132,11 +154,11 @@ const LoginComp = () => {
       //   .required("Escribe tu contraseña."),
     }),
     onSubmit: () => {
-      dispatch(startLoginEmailPassword(email, password));
+      dispatch(startLoginEmailPassword(email, password, remenber));
     },
   });
 
-  const { email, password } = formik.values;
+  const { email, password, remenber } = formik.values;
 
   const handleGoogleLogin = () => {
     dispatch(loginGoogle());
@@ -171,10 +193,12 @@ const LoginComp = () => {
                 left={prop.containerImg.left}
               >
                 <Img
+                  background={prop.img.background}
                   border={prop.img.border}
                   radius={prop.img.borderRadius}
                   margin={prop.img.margin}
                   width="100%"
+                  height="100%"
                   src={LogoPrueba}
                   alt="logo"
                 />
@@ -238,6 +262,34 @@ const LoginComp = () => {
                 ) : null}
               </Container>
 
+              <Container
+                margin={prop.containerRemember.margin}
+                flexWrap={prop.containerRemember.flexWrap}
+                justifyContent={prop.containerRemember.justifyContent}
+                alignItems={prop.containerRemember.alignItems}
+              >
+                <Label
+                  width={prop.labelRemember.width}
+                  padding={prop.labelRemember.padding}
+                  textAlign={prop.labelRemember.textAlign}
+                  htmlFor="remenber"
+                >
+                  Recuerdame
+                </Label>
+                <Input
+                  width={prop.inputRemember.width}
+                  padding={prop.inputRemember.padding}
+                  radius={prop.inputRemember.borderRadius}
+                  type="checkbox"
+                  name="remenber"
+                  id="remenber"
+                  value={remenber}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                
+              </Container>
+
               <Container>
                 <Button
                   margin={prop.button.margin}
@@ -292,8 +344,8 @@ const LoginComp = () => {
                   <Span margin={prop.span.margin}>Ingresa con Facebook</Span>
                 </Button>
               </Container>
-              <Container ustifyContent={prop.containerLink.justifyContent}>
-                <Link to="/signup">Aún no te has registrado</Link>
+              <Container justifyContent={prop.containerLink.justifyContent}>
+                <LINK to="/signup">Aún no te has registrado</LINK>
               </Container>
             </Form>
           </Container>
