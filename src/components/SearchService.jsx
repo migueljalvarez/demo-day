@@ -21,7 +21,7 @@ const PROP = {
   form: {
     width: "100%",
     padding: "30px 10px",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   containerInputService: {
     width: "40%",
@@ -131,7 +131,7 @@ const SearchService = () => {
           color={PROP.buttonSearch.color}
           fontWeight={PROP.buttonSearch.fontWeight}
         >
-          Buscar Servico
+          Buscar Servicio
         </Button>
       </Form>
     </Container>

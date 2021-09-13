@@ -87,7 +87,9 @@ export const loginGoogle = () => {
       .auth()
       .signInWithPopup(google)
       .then(({ user }) => {
-        dispatch(login(user));
+        authLogin(user).then((data) => {
+          dispatch(login(data));
+        });
       });
   };
 };
@@ -99,7 +101,9 @@ export const loginFacebook = () => {
       .auth()
       .signInWithPopup(facebook)
       .then(({ user }) => {
-        dispatch(login(user));
+        authLogin(user).then((data) => {
+          dispatch(login(data));
+        });
       });
   };
 };
@@ -125,8 +129,8 @@ export const logout = () => {
       if (user) {
         firebase.auth().signOut();
       }
-    })
-    localStorage.removeItem("token")
+    });
+    localStorage.removeItem("token");
     dispatch(logOutReducer());
   };
 };
