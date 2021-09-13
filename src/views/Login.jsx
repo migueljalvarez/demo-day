@@ -3,7 +3,7 @@ import React from "react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import ImgAuth from "../components/auth/ImgAuth";
 //IMPORTACION DE ESTILOS
@@ -141,18 +141,18 @@ const LoginComp = () => {
       password: "",
       remenber: true,
     },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Email invalido")
-        .required("Email requerido"),
-      // password: Yup.string()
-      //   .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
-      //   .matches(
-      //     /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S/,
-      //     "La contraseña debe tener un numero, una mayuscula y un minuscula."
-      //   )
-      //   .required("Escribe tu contraseña."),
-    }),
+    // validationSchema: Yup.object({
+    //   email: Yup.string()
+    //     .email("Invalid email address")
+    //     .required("Email requerido"),
+    //   password: Yup.string()
+    //     .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
+    //     .matches(
+    //       /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S/,
+    //       "La contraseña debe tener un numero, una mayuscula y un minuscula."
+    //     )
+    //     .required("Escribe tu contraseña."),
+    // }),
     onSubmit: () => {
       dispatch(startLoginEmailPassword(email, password, remenber));
     },

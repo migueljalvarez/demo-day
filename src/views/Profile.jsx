@@ -103,12 +103,16 @@ const Profile = () => {
     phone,
     documentType,
     documentNumber,
+    coverUrl,
   } = values;
 
   const handleImageProfile = () => {
     document.getElementById("imageProfile").click();
   };
 
+  const handleCover = () => {
+    document.getElementById("imageCover").click();
+  };
   useEffect(() => {
     dispatch(actionProfile.findByid(params.id));
   }, [dispatch, params]);
@@ -128,7 +132,7 @@ const Profile = () => {
               <Container padding="0px">
                 <Img
                   className="cover"
-                  src={cover}
+                  src={user.coverUrl || cover}
                   alt="cover"
                   width="100%"
                   height="250px"
@@ -336,6 +340,52 @@ const Profile = () => {
                 />
               </Container>
             </Container>
+
+            <Container
+              display={properties.formGroup.display}
+              direction={properties.formGroup.direction}
+            >
+              <Label color={Colors.secondaryTextColor}>Imagen de Perfil</Label>
+
+              <Container
+                margin={properties.input.margin}
+                display={properties.formGroup.display}
+              >
+                <Input
+                  width="85%"
+                  border={properties.input.border}
+                  radius={properties.inputImg.radius}
+                  type="url"
+                  id="coverUrl"
+                  placeholder="Url"
+                  name="coverUrl"
+                  value={coverUrl}
+                  disabled
+                />
+
+                <input
+                  id="imageCover"
+                  type="file"
+                  name="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleInputChangeFile(e, "coverUrl")}
+                />
+
+                <Input
+                  width="15%"
+                  type="button"
+                  padding={properties.buttonCargarImg.padding}
+                  border={properties.input.border}
+                  radius={properties.buttonCargarImg.radius}
+                  background={properties.buttonCargarImg.backgrounColor}
+                  color={properties.buttonCargarImg.color}
+                  onClick={handleCover}
+                  value="imagen"
+                />
+              </Container>
+            </Container>
+
             <Container>
               <Label color={Colors.secondaryTextColor}>Unicación</Label>
               <Input
