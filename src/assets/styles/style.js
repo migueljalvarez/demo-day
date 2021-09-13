@@ -167,9 +167,21 @@ const Input = styled.input`
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
   font-size: initial;
   padding-left: 10px;
   align-self: center;
+
+  & :hover {
+    appearance: none;
+  }
+  & :focus {
+    appearance: none;
+  }
+  & :selected {
+    appearance: none;
+  }
 `;
 
 const SelectBox = styled.select`
@@ -184,7 +196,6 @@ const TextArea = styled.textarea`
   min-height: ${(props) => (props.minHeight ? props.width : "200px")};
   max-height: ${(props) => (props.maxHeight ? props.width : "400px")};
   border: ${(props) => (props.border ? props.border : "none")};
-
 
   font-size: 18px;
 `;

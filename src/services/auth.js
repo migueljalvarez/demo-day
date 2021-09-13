@@ -18,5 +18,23 @@ const login = async (data) => {
     imageUrl: imageUrl,
   };
 };
+const signup = async (data) => {
+  console.log(data);
+  const url = `${baseUrl}/signup`;
+  const result =  await axios.post(url, data.user, {
+    headers: { "Access-Control-Allow-Origin": "*" }
+  })
+  console.log(result);
+  localStorage.setItem("token", result.data.token);
+  const token = localStorage.getItem("token");
+  const decodeToken = jwtDecode(token);
+  const { id, displayName, imageUrl } = decodeToken;
 
-export { login };
+  return {
+    id: id,
+    displayName: displayName,
+    imageUrl: imageUrl,
+  };
+};
+
+export { login, signup };

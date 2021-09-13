@@ -139,11 +139,9 @@ const LoginComp = () => {
   const { email, password } = formik.values;
 
   const handleGoogleLogin = () => {
-    // console.log('google');
     dispatch(loginGoogle());
   };
   const handleFacebookLogin = () => {
-    // console.log('facebook');
     dispatch(loginFacebook());
   };
 
