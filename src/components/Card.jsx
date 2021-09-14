@@ -17,6 +17,7 @@ const Card = ({ user }) => {
   const handleGoToProfile = () => {
     history.push(`/profile/${user._id}`);
   };
+
   const displayed = user.displayName.split(" ");
   if (displayed.length > 2) {
     user.displayName = `${displayed[0]} ${displayed[2]}`;

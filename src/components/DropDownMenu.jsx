@@ -13,6 +13,11 @@ const DropDownMenu = ({ user, items }) => {
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const displayed = user.name.split(" ");
+  if (displayed.length > 2) {
+    user.name = `${displayed[0]} ${displayed[2]}`;
+  }
   return (
     <Dropdown style={{ alignSelf: "center" }}>
       <Dropdown.Toggle
@@ -20,7 +25,12 @@ const DropDownMenu = ({ user, items }) => {
         style={{ color: Colors.textPrimaryColor }}
         id="dropdown-basic"
       >
-        <Avatar name={user.name} imageUrl={user.imageUrl} width="40px" height="40px" />
+        <Avatar
+          name={user.name}
+          imageUrl={user.imageUrl}
+          width="40px"
+          height="40px"
+        />
         {user.name}
       </Dropdown.Toggle>
 
