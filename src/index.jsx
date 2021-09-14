@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import App from "./components/App";
 
+
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import config from "./config/config";
@@ -10,6 +11,7 @@ import config from "./config/config";
 // esto es exprerimental, no es permanente pero es util
 const { app } = config();
 const projectTitle = document.getElementById("title")
+// console.log(app.api)
 projectTitle.innerHTML = app.projectName;
 
 ReactDOM.render(

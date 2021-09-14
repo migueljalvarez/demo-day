@@ -1,10 +1,11 @@
+import constants from "../../helpers/constants";
 import { types } from "../types/types";
 
 const initialState = {
   id: 0,
-  name: "anonymous",
+  name: "Anonymous",
   isAuthenticated: false,
-  imageUrl: "https://www.pngarea.com/pngm/90/6980003_profile-icon-png-facebook-default-profile-picture-girl.png",
+  imageUrl: constants.DEFAULT_AVATAR_IMAGES,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -12,7 +13,7 @@ const authReducer = (state = initialState, action) => {
     case types.login:
       return {
         id: action.payload.id,
-        name: action.payload.name,
+        name: action.payload.displayName,
         imageUrl: action.payload.imageUrl,
         isAuthenticated: action.payload.isAuthenticated,
       };

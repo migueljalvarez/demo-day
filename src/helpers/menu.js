@@ -1,15 +1,39 @@
-const menu = [
+import constants from "./constants";
+const { SIGN_IN, SIGN_UP, LOGOUT } = constants;
+const principalMenu = [
   {
-    label: "example",
-    path: "/example",
+    label: "Inicio",
+    path: "/home",
   },
   {
-    label: "example",
-    path: "/example",
+    label: "Servicios",
+    path: "/services",
   },
   {
-    label: "example",
-    path: "/example",
+    label: "Contacto",
+    path: "/contacts",
+  },
+  {
+    label: "Acerca de",
+    path: "/about",
   },
 ];
-export default menu;
+const dropDownMenu = [
+  {
+    label: "Perfil",
+    path: "/profile",
+  },
+  {
+    label: SIGN_UP,
+    path: "/signup",
+  },
+  {
+    label: SIGN_IN,
+    path: "/login",
+  },
+  {
+    label: LOGOUT,
+    path: "/logout",
+  },
+];
+export { principalMenu, dropDownMenu };
