@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 import {
   Container,
-  Img,
   Form,
   Colors,
   Label,
@@ -18,7 +18,6 @@ import {
   Option,
   LINK,
 } from "../assets/styles/style";
-import LogoPrueba from "../assets/img/PruebaEmpresa.jpg";
 import ImgAuth from "../components/auth/ImgAuth";
 import { startRegisterWithEmailPasswordNameUrlImg } from "../redux/actions/authActions.js";
 import { documento } from "../helpers/document";
@@ -41,19 +40,6 @@ const prop = {
     display: "flex",
     direction: "column",
   },
-  containerImg: {
-    width: "100px",
-    heigth: "100px",
-    position: "absolute",
-    top: "-50px",
-    left: "calc(50% - 50px)",
-  },
-
-  img: {
-    border: "3px solid" + Colors.defaultPrimaryColor,
-    borderRadius: "50%",
-    margin: "0",
-  },
   containerInput: {
     flexWrap: "wrap",
     margin: "0 auto 1rem auto",
@@ -65,6 +51,25 @@ const prop = {
     borderRadius: "5px",
     margin: "0 auto 10px auto",
     padding: "10px 20px",
+  },
+  containerInputPassword: {
+    flexWrap: "wrap",
+    margin: "0 auto 1rem auto",
+  },
+  inputPassword: {
+    width: "90%",
+    borderRadius: "5px 0 0 5px",
+    margin: "0 auto 10px auto",
+    padding: "10px 20px",
+  },
+  iconPassword: {
+    width: "10%",
+    height: "38px",
+    justifyContent: "center",
+    alignItems: "center",
+    background: Colors.textPrimaryColor,
+    borderRadius: "0 5px 5px 0",
+    color: Colors.dividerColor,
   },
   inputImg: {
     radius: "0.25rem 0 0 0.25rem",
@@ -105,6 +110,11 @@ const prop = {
 };
 
 const RegisterComp = () => {
+
+  const [mostrar, setMostrar] = useState(false);
+  const [mostrar2, setMostrar2] = useState(false);
+
+
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -120,22 +130,22 @@ const RegisterComp = () => {
     validationSchema: Yup.object({
       name: Yup.string()
         .min(3, "El nombre es muy corto")
-        .required("Escribe tu nombre completo"),
+        .required("Escribe tu nombre"),
       lastName: Yup.string()
         .min(3, "El nombre es muy corto")
-        .required("Escribe tus apellidos completos."),
+        .required("Escribe tus apellidos"),
       email: Yup.string()
         .email("Email invalido")
         .required("Email requerido"),
-      documentNumber: Yup.number('Solo acepta caracteres tipo numero')
+      documentNumber: Yup.number('Solo acepta caracteres tipo número')
         .min( 1, "Numero de documento invalido")
         .max( 9999999999, "Numero de documento invalido")
         .required("Número de documento requerido"),
       password: Yup.string()
         .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
         .matches(
-          /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S/,
-          "La contraseña debe tener un numero, una mayuscula y un minuscula."
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w*\W*]/,
+          "La contraseña debe tener minimo un numero, una mayuscula y un minuscula."
         )
         .required("Escribe tu contraseña."),
       password2: Yup.string()
@@ -158,6 +168,23 @@ const RegisterComp = () => {
     password2,
   } = formik.values;
 
+  const mostrarContraseña = () => {
+    if(mostrar === false){
+      setMostrar(true)
+    }else{
+      setMostrar(false)
+    }
+    
+  }
+  const mostrarContraseña2 = () => {
+    if(mostrar2 === false){
+      setMostrar2(true)
+    }else{
+      setMostrar2(false)
+    }
+    
+  }
+
   return (
     <SuperContainer>
       <Wrapper>
@@ -176,22 +203,6 @@ const RegisterComp = () => {
               borderRadius={prop.form.borderRadius}
               onSubmit={formik.handleSubmit}
             >
-              <Container
-                width={prop.containerImg.width}
-                height={prop.containerImg.heigth}
-                position={prop.containerImg.position}
-                top={prop.containerImg.top}
-                left={prop.containerImg.left}
-              >
-                <Img
-                  border={prop.img.border}
-                  radius={prop.img.borderRadius}
-                  margin={prop.img.margin}
-                  width="100%"
-                  src={LogoPrueba}
-                  alt="logo"
-                />
-              </Container>
 
               <Container
                 flexWrap={prop.containerInput.flexWrap}
@@ -199,7 +210,7 @@ const RegisterComp = () => {
                 direction={prop.formGroup.direction}
               >
                 <Label margin={prop.label.margin} htmlFor="name">
-                  Nombre Completo
+                  Nombres 
                 </Label>
                 <Input
                   margin={prop.input.margin}
@@ -226,7 +237,7 @@ const RegisterComp = () => {
                 direction={prop.formGroup.direction}
               >
                 <Label margin={prop.label.margin} htmlFor="name">
-                  Apellidos Completos
+                  Apellidos 
                 </Label>
                 <Input
                   margin={prop.input.margin}
@@ -275,60 +286,7 @@ const RegisterComp = () => {
               ) : null}
 
               <Container
-                flexWrap={prop.containerInput.flexWrap}
-                display={prop.formGroup.display}
-                direction={prop.formGroup.direction}
-              >
-                <Label margin={prop.label.margin} htmlFor="password">
-                  Contraseña
-                </Label>
-                <Input
-                  margin={prop.input.margin}
-                  // padding={prop.input.padding}
-                  radius={prop.input.borderRadius}
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </Container>
-
-              {formik.touched.password && formik.errors.password ? (
-                <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.password}
-                </Container>
-              ) : null}
-
-              <Container
-                flexWrap={prop.containerInput.flexWrap}
-                display={prop.formGroup.display}
-                direction={prop.formGroup.direction}
-              >
-                <Label margin={prop.label.margin} htmlFor="password2">
-                  Confirma tu contraseña
-                </Label>
-                <Input
-                  margin={prop.input.margin}
-                  // padding={prop.input.padding}
-                  radius={prop.input.borderRadius}
-                  type="password"
-                  name="password2"
-                  id="password2"
-                  value={password2}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </Container>
-
-              {formik.touched.password2 && formik.errors.password2 ? (
-                <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.password2}
-                </Container>
-              ) : null}
-
-              <Container
+                margin={prop.containerInput.margin}
                 flexWrap={prop.containerInput.flexWrap}
                 display={prop.formGroup.display}
                 direction={prop.formGroup.direction}
@@ -364,12 +322,13 @@ const RegisterComp = () => {
               ) : null}
 
               <Container
+                margin={prop.containerInput.margin}
                 flexWrap={prop.containerInput.flexWrap}
                 display={prop.formGroup.display}
                 direction={prop.formGroup.direction}
               >
                 <Label margin={prop.label.margin} htmlFor="documentNumber">
-                  número de documento
+                  Número de documento
                 </Label>
                 <Input
                   margin={prop.input.margin}
@@ -387,6 +346,96 @@ const RegisterComp = () => {
               {formik.touched.documentNumber && formik.errors.documentNumber ? (
                 <Container margin={prop.error.margin} color={prop.error.color}>
                   {formik.errors.documentNumber}
+                </Container>
+              ) : null}
+
+              <Container
+                margin={prop.containerInputPassword.margin}
+                flexWrap={prop.containerInputPassword.flexWrap}
+              >
+                <Label margin={prop.label.margin} htmlFor="password">
+                  Contraseña
+                </Label>
+                <Input
+                  width={prop.inputPassword.width}
+                  margin={prop.inputPassword.margin}
+                  // padding={prop.inputPassword.padding}
+                  radius={prop.inputPassword.borderRadius}
+                  type={mostrar ? 'text':'password'}
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <Container
+                  width={prop.iconPassword.width}
+                  height={prop.iconPassword.height}
+                  justifyContent={prop.iconPassword.justifyContent}
+                  alignItems={prop.iconPassword.alignItems}
+                  background={prop.iconPassword.background}
+                  radius={prop.iconPassword.borderRadius}
+                  color={prop.iconPassword.color}
+                  onClick={mostrarContraseña}
+                >
+                {mostrar ? <BsFillEyeFill color="black" />:<BsFillEyeSlashFill />}
+                  
+                </Container>
+
+                
+              </Container>
+
+              {formik.touched.password && formik.errors.password ? (
+                <Container margin={prop.error.margin} color={prop.error.color}>
+                  {formik.errors.password}
+                </Container>
+              ) : null}
+
+              <Container
+                margin={prop.containerInputPassword.margin}
+                flexWrap={prop.containerInputPassword.flexWrap}
+              >
+                <Label margin={prop.label.margin} htmlFor="password2">
+                  Confirma tu contraseña
+                </Label>
+                <Input
+                  width={prop.inputPassword.width}
+                  margin={prop.inputPassword.margin}
+                  // padding={prop.inputPassword.padding}
+                  radius={prop.inputPassword.borderRadius}
+                  type={mostrar2 ? 'text':'password'}
+                  name="password2"
+                  id="password2"
+                  value={password2}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <Container
+                  width={prop.iconPassword.width}
+                  height={prop.iconPassword.height}
+                  justifyContent={prop.iconPassword.justifyContent}
+                  alignItems={prop.iconPassword.alignItems}
+                  background={prop.iconPassword.background}
+                  radius={prop.iconPassword.borderRadius}
+                  color={prop.iconPassword.color}
+                  onClick={mostrarContraseña2}
+                >
+                  {mostrar2 ? <BsFillEyeFill  color="black" />:<BsFillEyeSlashFill />}
+                </Container>
+
+                {formik.touched.password && formik.errors.password ? (
+                  <Container
+                    margin={prop.error.margin}
+                    color={prop.error.color}
+                  >
+                    {formik.errors.password}
+                  </Container>
+                ) : null}
+              </Container>
+
+              {formik.touched.password2 && formik.errors.password2 ? (
+                <Container margin={prop.error.margin} color={prop.error.color}>
+                  {formik.errors.password2}
                 </Container>
               ) : null}
 

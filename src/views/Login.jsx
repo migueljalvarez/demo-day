@@ -1,15 +1,16 @@
 //IMPORTACION DE TERCEROS
-import React from "react";
+import React, { useState } from "react";
 import { GrFacebookOption } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 // import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import ImgAuth from "../components/auth/ImgAuth";
+
 //IMPORTACION DE ESTILOS
 import {
   Container,
-  Img,
   Form,
   Colors,
   Label,
@@ -21,9 +22,6 @@ import {
   Wrapper,
   LINK,
 } from "../assets/styles/style";
-
-//IMPORTACION DE IMAGENES
-import LogoPrueba from "../assets/img/PruebaEmpresa.jpg";
 
 //IMPORTACION DE ACCIONES
 import {
@@ -49,20 +47,7 @@ const prop = {
     display: "flex",
     direction: "column",
   },
-  containerImg: {
-    width: "100px",
-    heigth: "100px",
-    position: "absolute",
-    top: "-50px",
-    left: "calc(50% - 50px)",
-  },
 
-  img: {
-    border: "3px solid" + Colors.defaultPrimaryColor,
-    borderRadius: "50%",
-    margin: "0",
-    background: Colors.defaultPrimaryColor,
-  },
   containerInput: {
     flexWrap: "wrap",
     margin: "0 auto 1rem auto",
@@ -76,6 +61,25 @@ const prop = {
     borderRadius: "5px",
     margin: "0 auto 10px auto",
     padding: "10px 20px",
+  },
+  containerInputPassword: {
+    flexWrap: "wrap",
+    margin: "0 auto 1rem auto",
+  },
+  inputPassword: {
+    width: "90%",
+    borderRadius: "5px 0 0 5px",
+    margin: "0 auto 10px auto",
+    padding: "10px 20px",
+  },
+  iconPassword: {
+    width: "10%",
+    height: "38px",
+    justifyContent: "center",
+    alignItems: "center",
+    background: Colors.textPrimaryColor,
+    borderRadius: "0 5px 5px 0",
+    color: Colors.dividerColor,
   },
   containerRemember: {
     flexWrap: "wrap",
@@ -133,6 +137,7 @@ const prop = {
 };
 
 const LoginComp = () => {
+  const [mostrar, setMostrar] = useState(false);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -148,7 +153,7 @@ const LoginComp = () => {
     //   password: Yup.string()
     //     .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
     //     .matches(
-    //       /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S/,
+    //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w*\W*]/,
     //       "La contraseña debe tener un numero, una mayuscula y un minuscula."
     //     )
     //     .required("Escribe tu contraseña."),
@@ -166,6 +171,14 @@ const LoginComp = () => {
   const handleFacebookLogin = () => {
     dispatch(loginFacebook());
   };
+  const mostrarContraseña = () => {
+    if(mostrar === false){
+      setMostrar(true)
+    }else{
+      setMostrar(false)
+    }
+    
+  }
 
   return (
     <SuperContainer>
@@ -185,25 +198,6 @@ const LoginComp = () => {
               onSubmit={formik.handleSubmit}
               method="POST"
             >
-              <Container
-                width={prop.containerImg.width}
-                height={prop.containerImg.heigth}
-                position={prop.containerImg.position}
-                top={prop.containerImg.top}
-                left={prop.containerImg.left}
-              >
-                <Img
-                  background={prop.img.background}
-                  border={prop.img.border}
-                  radius={prop.img.borderRadius}
-                  margin={prop.img.margin}
-                  width="100%"
-                  height="100%"
-                  src={LogoPrueba}
-                  alt="logo"
-                />
-              </Container>
-
               <Container
                 flexWrap={prop.containerInput.flexWrap}
                 display={prop.formGroup.display}
@@ -232,25 +226,36 @@ const LoginComp = () => {
               ) : null}
 
               <Container
-                margin={prop.containerInput.margin}
-                flexWrap={prop.containerInput.flexWrap}
-                display={prop.formGroup.display}
-                direction={prop.formGroup.direction}
+                margin={prop.containerInputPassword.margin}
+                flexWrap={prop.containerInputPassword.flexWrap}
               >
                 <Label margin={prop.label.margin} htmlFor="password">
                   Contraseña
                 </Label>
                 <Input
-                  margin={prop.input.margin}
-                  // padding={prop.input.padding}
-                  radius={prop.input.borderRadius}
-                  type="password"
+                  width={prop.inputPassword.width}
+                  margin={prop.inputPassword.margin}
+                  // padding={prop.inputPassword.padding}
+                  radius={prop.inputPassword.borderRadius}
+                  type={mostrar ? 'text':'password'}
                   name="password"
                   id="password"
                   value={password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
+                <Container
+                  width={prop.iconPassword.width}
+                  height={prop.iconPassword.height}
+                  justifyContent={prop.iconPassword.justifyContent}
+                  alignItems={prop.iconPassword.alignItems}
+                  background={prop.iconPassword.background}
+                  radius={prop.iconPassword.borderRadius}
+                  color={prop.iconPassword.color}
+                  onClick={mostrarContraseña}
+                >
+                  {mostrar ? <BsFillEyeFill color="black" />:<BsFillEyeSlashFill />}
+                </Container>
 
                 {formik.touched.password && formik.errors.password ? (
                   <Container
@@ -287,7 +292,6 @@ const LoginComp = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                
               </Container>
 
               <Container>
