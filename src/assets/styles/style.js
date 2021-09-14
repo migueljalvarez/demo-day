@@ -103,6 +103,7 @@ const Img = styled.img`
   position: ${(props) => (props.position ? props.position : "unset")};
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
+  cursor: ${(props) => (props.cursor ? props.cursor : "unset")};
 `;
 
 const Wrapper = styled.div`

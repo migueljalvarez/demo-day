@@ -10,17 +10,17 @@ const getServices = async () =>{
 }
 
 const getService = async (id) =>{
-    const url = `${baseUrl}/services/${id}`;
-    const { data } = await axios.get(url);
-    return data;
+  const url = `${baseUrl}/services/${id}`;
+  const { data } = await axios.get(url);
+  return data;
 }
 
-const addService = async (id, body) => {
-    const url = `${baseUrl}/services/${id}`;
+const addService = async (body) => {
+    const url = `${baseUrl}/services/`;
   const result  = await axios.patch(url, body, {
     headers: { "Access-Control-Allow-Origin": "*" },
   });
   return result.data;
 }
 
-export {getServices, getService, addService}
+export {getServices,getService, addService}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from "react-redux";
 import {
     Button,
     Colors,
@@ -17,7 +18,8 @@ import {
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { categories } from '../helpers/categories';
-const cover = "https://fondosmil.com/fondo/9856.jpg";
+import { departamento } from '../helpers/departamentos';
+import { FileUpload } from '../helpers/FileUpload';
 
 const properties = {
     containerMain: {
@@ -64,15 +66,19 @@ const properties = {
 };
 
 const AddServices = () => {
+    const user = useSelector(state => state.auth)
+
     const formik = useFormik({
         initialValues: {
-            name: "",
+            title: "",
             description: "",
             category: "",
+            location: "",
             imageUrl: "",
+            user: user.id,
         },
         validationSchema: Yup.object({
-            name: Yup.string()
+            title: Yup.string()
                 .min(3, "El nombre es muy corto")
                 .required("Escribe un nombre para el servicio"),
             description: Yup.string()
@@ -81,12 +87,26 @@ const AddServices = () => {
 
         }),
         onSubmit: (data) => {
-            console.log(data)
+            
         }
 
 
     })
-    const { name, description, category } = formik.values
+    const { title, description, category, location } = formik.values
+
+    const handleInputChangeFile = (e) => {
+        const file = e.target.files[0];
+        FileUpload(file)
+          .then((response) => {
+              console.log(response)
+              formik.values.imageUrl = response
+              document.getElementById("imageService").setAttribute("src", response)
+          })
+          .catch((error) => {
+            throw error;
+          });
+      };
+
     return (
         <SuperContainer
             padding={"0px 4px 4px 4px"}>
@@ -126,7 +146,7 @@ const AddServices = () => {
                                         margin={properties.formGroup.margin}
                                     >
                                         <Label
-                                            htmlFor="name"
+                                            htmlFor="title"
                                             color={"black"}
                                         >
                                             Nombre del servicio
@@ -135,9 +155,9 @@ const AddServices = () => {
                                             border={"2px solid black"}
                                             radius={"8px"}
                                             type="text"
-                                            name="name"
-                                            id="name"
-                                            value={name}
+                                            name="title"
+                                            id="title"
+                                            value={title}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
@@ -191,16 +211,26 @@ const AddServices = () => {
                                         <Label
                                             color={"black"}
                                         >
-                                            Imagén del servicio
+                                            Imagen del servicio
                                         </Label>
                                         <Container
                                             width="100%"
                                             height="300px"
                                             justifyContent="center">
                                             <Img
-                                                src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-
+                                                cursor={"pointer"}
+                                                id="imageService"
+                                                src={formik.values.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"}
                                                 style={{ objectFit: "cover" }}
+                                                onClick={() => document.getElementById("imageSelect").click()}
+                                            />
+                                            <input
+                                                id="imageSelect"
+                                                type="file"
+                                                name="file"
+                                                accept="image/*"
+                                                style={{ display: "none" }}
+                                                onChange={handleInputChangeFile}
                                             />
                                         </Container>
 
@@ -224,12 +254,41 @@ const AddServices = () => {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         >
-                                            <Option value="" selected="selected" disabled>
+                                            <Option value="" selected disabled>
                                                 Selecciona la categoria de tu servicio
                                             </Option>
                                             {categories.map((d, i) => (
                                                 <Option key={i} value={d.id}>
                                                     {d.type}
+                                                </Option>
+                                            ))}
+                                        </Select>
+                                    </Container>
+                                    <Container
+                                        flexWrap={properties.containerInput.flexWrap}
+                                        display={properties.formGroup.display}
+                                        direction={properties.formGroup.direction}
+                                        margin={properties.formGroup.margin}
+                                    >
+                                        <Label
+                                            color={"black"}
+                                        >Lugar</Label>
+                                        <Select
+                                            name="location"
+                                            padding={"4px"}
+                                            border={"1px solid black"}
+                                            radius={"8px"}
+                                            id="location"
+                                            value={location}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                        >
+                                            <Option value="" selected disabled>
+                                                Selecciona el lugar donde ofreceras
+                                            </Option>
+                                            {departamento.map((d, i) => (
+                                                <Option key={i} value={d.id}>
+                                                    {d.depart}
                                                 </Option>
                                             ))}
                                         </Select>

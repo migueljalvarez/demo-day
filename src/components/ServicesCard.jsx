@@ -42,15 +42,12 @@ const ServicesCard = () => {
           justifyContent={"center"}
         >
           <ContainerTitleH1 margin="0px 10px" align="left" >
-            Username
+            Title
           </ContainerTitleH1>
         </Container>
         <Container padding={"5px"} width={"100%"} height={"250px"}>
           <Paragraph align="left" margin="0px 10px">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique
-            magni, commodi quas nihil accusantium ipsa harum perferendis a! Quo
-            soluta voluptas debitis aliquid eaque a vero excepturi dicta
-            aspernatur minus!
+            Service description
           </Paragraph>
         </Container>
       </Container>
