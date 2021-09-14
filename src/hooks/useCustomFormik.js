@@ -1,24 +1,31 @@
+import { useEffect } from "react";
 import { useFormik } from "formik";
 import { FileUpload } from "../helpers/FileUpload";
 import { useDispatch } from "react-redux";
 import actionProfile from "../redux/actions/userActions";
 import { buildUserDto } from "../dto/userDto";
-import UI from "../redux/actions/uiActions"
-const useCustomFormik = (initialValues = {}, type, id) => {
+import UI from "../redux/actions/uiActions";
+
+const useCustomFormik = (type, user) => {
   const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: {
-      ...initialValues
-    },
+    initialValues: {},
   });
+
+  useEffect(() => {
+    if (user) {
+      formik.setValues({ ...user });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   formik.handleSubmit = () => {
     switch (type) {
       case "updateProfile":
         const formValues = buildUserDto(formik.values);
-        dispatch(actionProfile.updateProfileUser(id, formValues));
-        dispatch(UI.hideModal())
+        dispatch(actionProfile.updateProfileUser(user._id, formValues));
+        dispatch(UI.hideModal());
         break;
       default:
         break;
@@ -26,7 +33,6 @@ const useCustomFormik = (initialValues = {}, type, id) => {
   };
 
   const handleInputChange = ({ target }) => {
-    console.log(target.name)
     formik.setValues({
       ...formik.values,
       [target.name]: target.value,

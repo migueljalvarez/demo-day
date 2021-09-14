@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Container,
@@ -22,10 +22,11 @@ import {
 import Avatar from "../components/Avatar";
 import { FaWhatsapp, FaUserEdit } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import actionProfile from "../redux/actions/userActions";
 import { Modal } from "react-bootstrap";
 import { useCustomFormik } from "../hooks/useCustomFormik";
 import UI from "../redux/actions/uiActions";
+import { getProfile } from "../services/user";
+
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const properties = {
@@ -68,29 +69,13 @@ const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.user);
   const modalShow = useSelector((state) => state.modal);
   let isDisabled = auth.id === 0 || params.id !== auth.id;
-
-  // const [isLoading, setIsLoading] = useState(true);
-
-  const initialValues = {
-    id: user._id,
-    name: user.name,
-    lastname: user.lastname,
-    about: user.about,
-    address: user.address,
-    documentNumber: user.documentNumber,
-    documentType: user.documentType,
-    imageUrl: user.imageUrl,
-    coverUrl: user.coverUrl,
-    location: user.location,
-    occupation: user.occupation,
-    phone: user.phone,
-  };
+  const currentUser = useSelector((state) => state.user);
+  const [user, setUser] = useState(currentUser);
 
   const [formik, values, handleInputChange, handleInputChangeFile] =
-    useCustomFormik(initialValues, "updateProfile", user._id);
+    useCustomFormik("updateProfile", user);
 
   const {
     name,
@@ -113,9 +98,20 @@ const Profile = () => {
   const handleCover = () => {
     document.getElementById("imageCover").click();
   };
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    dispatch(actionProfile.findByid(params.id));
-  }, [dispatch, params]);
+    if (loading) {
+      getProfile(params.id)
+        .then((user) => {
+          setUser(user);
+          setLoading(false);
+        })
+        .catch((err) => {});
+    } else {
+      setUser(currentUser);
+    }
+  }, [params, loading, currentUser]);
 
   return (
     <div>
@@ -132,7 +128,7 @@ const Profile = () => {
               <Container padding="0px">
                 <Img
                   className="cover"
-                  src={user.coverUrl || cover}
+                  src={user?.coverUrl || cover}
                   alt="cover"
                   width="100%"
                   height="250px"
@@ -142,8 +138,8 @@ const Profile = () => {
               </Container>
               <Container direction="column" padding="0px">
                 <Avatar
-                  imageUrl={user.imageUrl}
-                  name={user.name}
+                  imageUrl={user?.imageUrl}
+                  name={user?.name}
                   position="static"
                   width="150px"
                   margin="-80px 0px 10px 10px"
@@ -153,13 +149,13 @@ const Profile = () => {
 
                 <Container direction="column" padding="0px">
                   <ContainerTitle margin="0px 10px" align="left">
-                    {user.displayName}
+                    {user?.displayName}
                   </ContainerTitle>
                   <ContainerSubTitle align="left" margin="0px 10px">
-                    {user.occupation}
+                    {user?.occupation}
                   </ContainerSubTitle>
                   <Paragraph align="left" margin="2px 10px">
-                    {user.location}
+                    {user?.location}
                   </Paragraph>
                   <Container
                     justifyContent="flex-end"
@@ -192,7 +188,7 @@ const Profile = () => {
                     Acerca de
                   </ContainerTitle>
                   <Paragraph margin="5px 0px 5px 10px" align="left">
-                    {user.about}
+                    {user?.about}
                   </Paragraph>
                 </Container>
               </Container>
@@ -345,7 +341,7 @@ const Profile = () => {
               display={properties.formGroup.display}
               direction={properties.formGroup.direction}
             >
-              <Label color={Colors.secondaryTextColor}>Imagen de Perfil</Label>
+              <Label color={Colors.secondaryTextColor}>Imagen de Portada</Label>
 
               <Container
                 margin={properties.input.margin}

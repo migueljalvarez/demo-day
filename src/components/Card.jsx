@@ -17,6 +17,12 @@ const Card = ({ user }) => {
   const handleGoToProfile = () => {
     history.push(`/profile/${user._id}`);
   };
+
+  const displayed = user.displayName.split(" ");
+  if (displayed.length > 2) {
+    user.displayName = `${displayed[0]} ${displayed[2]}`;
+  }
+
   return (
     <Container
       width={"250px"}
@@ -26,7 +32,7 @@ const Card = ({ user }) => {
       background={Colors.dividerColor}
       radius="8px"
       shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
-      height= "450px"
+      height="450px"
       flexWrap="nowrap"
     >
       <Container padding={"0px"} width={"100%"}>
@@ -54,6 +60,7 @@ const Card = ({ user }) => {
             margin={"-55px 0px 0px 0px"}
             radius={"100%"}
             width="100px"
+            height="100px"
             border={`${Colors.dividerColor} 1px solid`}
           />
           <ContainerTitle margin="0px 10px" align="left">
@@ -63,7 +70,7 @@ const Card = ({ user }) => {
             {user.occupation}
           </ContainerSubTitle>
         </Container>
-        <Container padding={"5px"} width={"100%"}>
+        <Container padding={"5px"} width={"100%"} height="130px">
           <Paragraph align="center" margin="0px 10px">
             {user.about}
           </Paragraph>

@@ -4,8 +4,9 @@ const buildUserDto = (data) => {
     password: data.password,
     Profiles: {
       name: data.name,
-      lastname: data.lastName,
+      lastname: data.lastname,
       imageUrl: data.imageUrl,
+      coverUrl: data.coverUrl,
       documentType: data.documentType,
       documentNumber: data.documentNumber,
       phone: data.phone,
