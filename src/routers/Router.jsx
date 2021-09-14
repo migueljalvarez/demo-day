@@ -41,10 +41,8 @@ const Routers = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
           <PublicRouter exact path="/signup" component={Register} />
-          
-          <PrivateRouter exact path="/profile/:id" component={Profile} />
+          <Route exact path="/profile/:id" component={Profile} />
           <PrivateRouter exact path="/services/add" component={AddServices} />
-
           <Redirect to="/" />
         </Switch>
         <Footer />
