@@ -187,11 +187,6 @@ const Input = styled.input`
   }
 `;
 
-const SelectBox = styled.select`
-  height: 38px;
-  padding: ${(props) => (props.padding ? props.padding : "0")};
-`;
-
 const TextArea = styled.textarea`
   min-width: ${(props) => (props.width ? props.width : "100%")};
   max-width: ${(props) => (props.width ? props.width : "100%")};
@@ -397,7 +392,6 @@ export {
   Hr,
   Img,
   Input,
-  SelectBox,
   TextArea,
   Label,
   LINK,

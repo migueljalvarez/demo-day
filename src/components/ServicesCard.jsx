@@ -7,7 +7,6 @@ import {
   Paragraph,
   ContainerTitleH1,
 } from "../assets/styles/style";
-import Avatar from "./Avatar";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 const ServicesCard = () => {
   // const user = useSelector((state) => state.auth);
@@ -42,14 +41,6 @@ const ServicesCard = () => {
           //   position={"absolute"}
           justifyContent={"center"}
         >
-          <Avatar
-            // src={user.imageUrl}
-            position={"static"}
-            margin={"-80px 0px 0px 0px"}
-            radius={"100%"}
-            width="120px"
-            border={`${Colors.dividerColor} 1px solid`}
-          />
           <ContainerTitleH1 margin="0px 10px" align="left" >
             Username
           </ContainerTitleH1>
