@@ -101,14 +101,14 @@ const Profile = () => {
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    getProfile(params.id)
+      .then((user) => {
+        setUser(user);
+        setLoading(false);
+      })
+      .catch((err) => {});
+
     if (loading) {
-      getProfile(params.id)
-        .then((user) => {
-          setUser(user);
-          setLoading(false);
-        })
-        .catch((err) => {});
-    } else {
       setUser(currentUser);
     }
   }, [params, loading, currentUser]);
@@ -142,6 +142,7 @@ const Profile = () => {
                   name={user?.name}
                   position="static"
                   width="150px"
+                  height="150px"
                   margin="-80px 0px 10px 10px"
                   border={`${Colors.dividerColor} 1px solid`}
                   self="flex-start"
