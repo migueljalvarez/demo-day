@@ -11,6 +11,7 @@ import config from "./config/config";
 // esto es exprerimental, no es permanente pero es util
 const { app } = config();
 const projectTitle = document.getElementById("title")
+// console.log(app.api)
 projectTitle.innerHTML = app.projectName;
 
 ReactDOM.render(

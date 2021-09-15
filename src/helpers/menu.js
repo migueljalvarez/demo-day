@@ -1,17 +1,39 @@
+import constants from "./constants";
+const { SIGN_IN, SIGN_UP, LOGOUT } = constants;
 const principalMenu = [
   {
-    label: "Home",
+    label: "Inicio",
     path: "/home",
   },
   {
-    label: "Services",
-    path: "/service",
+    label: "Servicios",
+    path: "/services",
+  },
+  {
+    label: "Contacto",
+    path: "/contacts",
+  },
+  {
+    label: "Acerca de",
+    path: "/about",
   },
 ];
 const dropDownMenu = [
   {
-    label: "Profile",
+    label: "Perfil",
     path: "/profile",
+  },
+  {
+    label: SIGN_UP,
+    path: "/signup",
+  },
+  {
+    label: SIGN_IN,
+    path: "/login",
+  },
+  {
+    label: LOGOUT,
+    path: "/logout",
   },
 ];
 export { principalMenu, dropDownMenu };

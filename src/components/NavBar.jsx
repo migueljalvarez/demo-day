@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBar from "./SearchBar";
 import {
   Container,
   NavMenu,
@@ -10,13 +9,10 @@ import {
 } from "../assets/styles/style";
 import { Link } from "react-router-dom";
 import { dropDownMenu, principalMenu } from "../helpers/menu";
-
 import { useSelector } from "react-redux";
-
-import Logo from '../assets/image/Logo_DOM_Services0.svg';
-import Avatar from "./Avatar";
 import DropDownMenu from "./DropDownMenu";
 
+import logo from "../assets/svg/logo.svg";
 const properties = {
   background: Colors.defaultPrimaryColor,
 };
@@ -24,10 +20,12 @@ const properties = {
 const NavBar = () => {
   const user = useSelector((state) => state.auth);
   return (
-    <SuperContainer background={properties.background}>
+    <SuperContainer background={properties.background} padding="10px 0px">
       <Wrapper className="wrapper">
         <Container className="" width="auto">
-          <Img src={Logo} alt="logo" />
+          <Img src={logo} alt="logo" />
+        </Container>
+        <Container width="auto">
           <NavMenu>
             {principalMenu.map((item, index) => (
               <Link key={index} to={item.path}>
@@ -35,10 +33,8 @@ const NavBar = () => {
               </Link>
             ))}
           </NavMenu>
+          <DropDownMenu items={dropDownMenu} user={user} />
         </Container>
-        <SearchBar />
-        <Avatar user={user} />
-        <DropDownMenu items={dropDownMenu} user={user} />
       </Wrapper>
     </SuperContainer>
   );
