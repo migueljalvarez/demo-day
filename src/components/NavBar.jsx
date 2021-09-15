@@ -12,10 +12,11 @@ import { Link } from "react-router-dom";
 import { dropDownMenu, principalMenu } from "../helpers/menu";
 
 import { useSelector } from "react-redux";
+
+import Logo from '../assets/image/Logo_DOM_Services0.svg';
 import Avatar from "./Avatar";
 import DropDownMenu from "./DropDownMenu";
 
-const logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
 const properties = {
   background: Colors.defaultPrimaryColor,
 };
@@ -26,7 +27,7 @@ const NavBar = () => {
     <SuperContainer background={properties.background}>
       <Wrapper className="wrapper">
         <Container className="" width="auto">
-          <Img src={logo} alt="logo" />
+          <Img src={Logo} alt="logo" />
           <NavMenu>
             {principalMenu.map((item, index) => (
               <Link key={index} to={item.path}>

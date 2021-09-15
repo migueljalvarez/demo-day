@@ -152,10 +152,12 @@ const CarouselWrapper = styled.div`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: left;
+  margin-left: 60px;
 `;
 
 const Row = styled.div`
-  display: flex;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
   grid-gap: 50px;
   margin-left: 10em;
@@ -170,11 +172,9 @@ const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   bottom: 0px;
-  position: absolute;
   width: 100%;
-  height: 145px;
+  height: 80px;
   left: 0px;
-  top: 800px;
 `;
 
 const Heading = styled.p`

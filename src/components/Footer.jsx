@@ -5,17 +5,18 @@ import {
   Container,
   Row,
   Column,
-  Heading,
   Img,
   Colors,
+  NavMenu
 } from "../assets/styles/style";
+import Logo from '../assets/image/Logo_DOM_Services0.svg';
 import { FaFacebook, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
 import { Information, Terms, Help } from "../helpers/footerLink";
 
-const Logo = "https://nrskarmakar.com/images/company-logo/default-logo.png";
+
 const properties = {
   background: Colors.defaultPrimaryColor,
-  color: Colors.textPrimaryColor,
+color: Colors.dividerColor,
 };
 const styledLink = {textDecoration: 'none' };
 
@@ -28,28 +29,31 @@ const FooterComponent = () => {
 
         <Row>
           <Column>
-            <Heading>Información</Heading>
+          <NavMenu>
             {Information.map((item, index) => (
-              <Link key={index} to={item.path} style={styledLink} color={properties.color}>
+              <Link key={index} to={item.path}  color={properties.color}>
                 {item.label}
               </Link>
             ))}
+            </NavMenu>
           </Column>
           <Column>
-            <Heading>Términos</Heading>
+          <NavMenu>
             {Terms.map((item, index) => (
               <Link key={index} to={item.path} style={styledLink}>
                 {item.label}
               </Link>
             ))}
+            </NavMenu>
           </Column>
           <Column>
-            <Heading>Contacto</Heading>
+          <NavMenu>
             {Help.map((item, index) => (
               <Link key={index} to={item.path} style={styledLink}>
                 {item.label}
               </Link>
             ))}
+            </NavMenu>
           </Column>
           <Column>
           <Link href="#">

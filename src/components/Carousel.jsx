@@ -29,5 +29,4 @@ const CarouselComponent = () => {
     </CarouselWrapper>
   );
 }
-
 export default CarouselComponent;
