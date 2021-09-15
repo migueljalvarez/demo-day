@@ -11,6 +11,9 @@ import {
 } from "../assets/styles/style";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../redux/actions/userActions";
+import { findCategories } from "../redux/actions/categoriesActions";
+import { findServices } from "../redux/actions/serviceActions";
+import CardService from "../components/CardService";
 
 const PROP = {
   SuperContainer: {
@@ -24,9 +27,12 @@ const PROP = {
 const Home = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
+  const services = useSelector((state) => state.services);
 
   useEffect(() => {
     dispatch(userActions.findLastUser());
+    dispatch(findServices())
+    dispatch(findCategories());
   }, [dispatch]);
 
   return (
@@ -43,6 +49,17 @@ const Home = () => {
             <Container justifyContent="center">
               {users.map((user) => (
                 <Card key={user._id} user={user} />
+              ))}
+            </Container>
+          </Container>
+          <Container>
+            <ContainerTitleH1 align="center" padding="10px">
+              Ultimos servicios agregados
+            </ContainerTitleH1>
+
+            <Container justifyContent="center">
+              {services.map((service) => (
+                <CardService key={service._id} service={service} />
               ))}
             </Container>
           </Container>

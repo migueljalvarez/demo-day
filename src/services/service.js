@@ -4,9 +4,9 @@ const { app } = config();
 const baseUrl = app.api;
 
 const getServices = async () =>{
-    const url = `${baseUrl}/services/`;
+    const url = `${baseUrl}/services/?limit=4`;
     const { data } = await axios.get(url);
-    return data;
+    return data.docs;
 }
 
 const getService = async (id) =>{
@@ -17,8 +17,11 @@ const getService = async (id) =>{
 
 const addService = async (body) => {
     const url = `${baseUrl}/services/`;
-  const result  = await axios.patch(url, body, {
-    headers: { "Access-Control-Allow-Origin": "*" },
+  const result  = await axios.post(url, body, {
+    headers: { 
+    "Access-Control-Allow-Origin": "*", 
+    "Authorization": `Bearer ${localStorage.getItem("token")}`},
+
   });
   return result.data;
 }

@@ -5,46 +5,46 @@ import {
   Container,
   Img,
   Paragraph,
-  ContainerTitleH1,
+  ContainerTitle,
 } from "../assets/styles/style";
 
-const ServicesCard = ({service}) => {
+const CardService = ({ service }) => {
   return (
     <Container
-      width={"90%"}
+      width={"250px"}
       padding={"0px"}
+      direction={"column"}
+      margin={"10px"}
       background={Colors.dividerColor}
       radius="8px"
       shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
-      margin={"10px"}
-      flexWrap={"unset"}
+      height="450px"
+      flexWrap="nowrap"
     >
-      <Container padding={"0px"} width={"30%"} height={"100%"}>
+      <Container padding={"0px"} width={"100%"} justifyContent={"center"}>
         <Img
           src={service.imageUrl}
           alt={"cover"}
-          width={"100%"}
           margin={"0px"}
+          radius={"8px 8px 0px 0px"}
         />
       </Container>
       <Container
-      width={"70%"}
-        padding={"16px"}
+        padding={"0px"}
         background={Colors.textPrimaryColor}
-        direction={"row"}
+        direction={"column"}
+        radius={"0px 0px 8px 8px"}
+        height="100%"
       >
         <Container
-          width={"100%"}
-          padding={"0px"}
-          justifyContent={"center"}
+          padding={"0px"} justifyContent={"center"}
         >
-          <ContainerTitleH1 margin="0px 10px" align="left" >
+          <ContainerTitle margin="0px 10px" align="left" >
             {service.title}
-          </ContainerTitleH1>
+          </ContainerTitle>
         </Container>
-        
-        <Container padding={"5px"} width={"100%"} height={"250px"}>
-          <Paragraph align="left" margin="0px 10px">
+        <Container padding={"5px"} width={"100%"} height="130px">
+          <Paragraph align="center" margin="0px 10px">
             {service.description}
           </Paragraph>
         </Container>
@@ -53,6 +53,4 @@ const ServicesCard = ({service}) => {
   );
 };
 
-export default ServicesCard;
-
-
+export default CardService;

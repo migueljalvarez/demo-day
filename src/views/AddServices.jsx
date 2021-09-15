@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     Button,
     Colors,
@@ -17,9 +17,9 @@ import {
 } from '../assets/styles/style'
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { categories } from '../helpers/categories';
 import { departamento } from '../helpers/departamentos';
 import { FileUpload } from '../helpers/FileUpload';
+import { newService } from '../redux/actions/serviceActions';
 
 const properties = {
     containerMain: {
@@ -67,6 +67,9 @@ const properties = {
 
 const AddServices = () => {
     const user = useSelector(state => state.auth)
+    const categories = useSelector(state => state.categories)
+
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -87,7 +90,7 @@ const AddServices = () => {
 
         }),
         onSubmit: (data) => {
-            
+            dispatch(newService(data))
         }
 
 
@@ -97,15 +100,17 @@ const AddServices = () => {
     const handleInputChangeFile = (e) => {
         const file = e.target.files[0];
         FileUpload(file)
-          .then((response) => {
-              console.log(response)
-              formik.values.imageUrl = response
-              document.getElementById("imageService").setAttribute("src", response)
-          })
-          .catch((error) => {
-            throw error;
-          });
-      };
+            .then((response) => {
+                console.log(response)
+                formik.values.imageUrl = response
+                document.getElementById("imageService").setAttribute("src", response)
+            })
+            .catch((error) => {
+                throw error;
+            });
+    };
+
+
 
     return (
         <SuperContainer
@@ -258,8 +263,8 @@ const AddServices = () => {
                                                 Selecciona la categoria de tu servicio
                                             </Option>
                                             {categories.map((d, i) => (
-                                                <Option key={i} value={d.id}>
-                                                    {d.type}
+                                                <Option key={i} value={d._id}>
+                                                    {d.name}
                                                 </Option>
                                             ))}
                                         </Select>

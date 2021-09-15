@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  Button,
   Colors,
   Container,
   SuperContainer,
   Wrapper,
 } from "../assets/styles/style";
 import ServicesCard from "../components/ServicesCard";
-import { useHistory } from "react-router-dom";
+import SearchService from "../components/SearchService";
+import { useSelector } from "react-redux";
 const properties = {
   containerMain: {
     direction: "column",
@@ -27,40 +27,27 @@ const properties = {
 };
 
 const Services = () => {
-  const history = useHistory();
-  const handleAddService = () => {
-    history.push("/services/add");
-  };
+
+  const services = useSelector(state => state.services)
 
   return (
     <>
       <SuperContainer>
         <Wrapper>
           <Container direction={properties.containerMain.direction}>
-            <Container
-              justifyContent={properties.containerButton.justifyContent}
-            >
-              <Button
-                width={properties.button.width}
-                background={properties.button.background}
-                color={properties.button.color}
-                onClick={handleAddService}
-              >
-                Añadir servicios
-              </Button>
-              <Button
-                width={properties.button.width}
-                background={properties.button.background}
-                color={properties.button.color}
-              >
-                Buscar servicios
-              </Button>
-            </Container>
+          <SearchService />
             <Container
               justifyContent={properties.containerCard.justifyContent}
               padding={properties.containerCard.padding}
+              direction={"column"}
+              alignItems={"center"}
             >
-              <ServicesCard />
+              {
+                services.map((service) =>(
+                  <ServicesCard key={service._id} service={service}/>
+                ))
+              }
+              
             </Container>
           </Container>
         </Wrapper>
