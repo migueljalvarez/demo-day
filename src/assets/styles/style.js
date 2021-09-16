@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
 import "./font.css";
+import { FaStar } from "react-icons/fa";
 
 const Colors = {
   accentColor: "#448AFF",
@@ -377,6 +378,11 @@ const LINK = styled(Link)`
   }
 `;
 
+const START = styled(FaStar)`
+  cursor: pointer;
+  transition: color 200ms;
+`
+
 export {
   Button,
   Colors,
@@ -408,4 +414,5 @@ export {
   Column,
   Row,
   Heading,
+  START,
 };

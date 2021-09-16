@@ -10,6 +10,7 @@ import {
   ContainerSubTitle,
 } from "../assets/styles/style";
 import { useHistory } from "react-router-dom";
+import StarComponent from "./StarComponent";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const Card = ({ user }) => {
@@ -70,6 +71,7 @@ const Card = ({ user }) => {
             {user.occupation}
           </ContainerSubTitle>
         </Container>
+        <StarComponent active={false}/>
         <Container padding={"5px"} width={"100%"} height="130px">
           <Paragraph align="center" margin="0px 10px">
             {user.about}

@@ -20,8 +20,8 @@ import {
   Option,
 } from "../assets/styles/style";
 import Avatar from "../components/Avatar";
-import { FaWhatsapp, FaUserEdit } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { FaWhatsapp, FaUserEdit, FaBox } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { useCustomFormik } from "../hooks/useCustomFormik";
 import UI from "../redux/actions/uiActions";
@@ -164,6 +164,16 @@ const Profile = () => {
                     position="static"
                     margin="-46px 6px 0px -7px"
                   >
+                    <Button
+                      radius="0.25rem"
+                      background={Colors.accentColor}
+                      color={Colors.textPrimaryColor}
+                      margin="5px"
+                      as={Link}
+                      to={"/services/add"}
+                    >
+                      <FaBox /> Añadir servicio
+                    </Button>
                     <Button
                       radius="0.25rem"
                       background={Colors.accentColor}
