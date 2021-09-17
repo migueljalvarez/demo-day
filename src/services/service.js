@@ -4,8 +4,8 @@ const { app } = config();
 const baseUrl = app.api;
 
 const getServices = async () =>{
-    const url = `${baseUrl}/services/?limit=4`;
-    const { data } = await axios.get(url);
+    const url = `${baseUrl}/services/?all=true`;
+    const { data } = await axios.get(url)
     return data.docs;
 }
 

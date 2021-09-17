@@ -58,7 +58,7 @@ const Home = () => {
             </ContainerTitleH1>
 
             <Container justifyContent="center">
-              {services.map((service) => (
+              {services.reverse().slice(0, 4).map((service) => (
                 <CardService key={service._id} service={service} />
               ))}
             </Container>

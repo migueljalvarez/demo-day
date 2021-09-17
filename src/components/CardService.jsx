@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 // import { useSelector } from "react-redux";
 import {
   Colors,
@@ -6,9 +7,14 @@ import {
   Img,
   Paragraph,
   ContainerTitle,
+  Button,
 } from "../assets/styles/style";
 
 const CardService = ({ service }) => {
+  const history = useHistory();
+  const handleGoToService = () => {
+    history.push(`/service/${service._id}`);
+  };
   return (
     <Container
       width={"250px"}
@@ -47,6 +53,17 @@ const CardService = ({ service }) => {
           <Paragraph align="center" margin="0px 10px">
             {service.description}
           </Paragraph>
+        </Container>
+        <Container padding={"15px"}>
+          <Button
+            background={Colors.accentColor}
+            color={Colors.textPrimaryColor}
+            margin="15px 0"
+            onClick={handleGoToService}
+            width="100%"
+          >
+            Más información
+          </Button>
         </Container>
       </Container>
     </Container>
