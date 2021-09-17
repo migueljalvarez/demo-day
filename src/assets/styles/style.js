@@ -61,6 +61,8 @@ const Container = styled.div`
   left: ${(props) => (props.left ? props.left : "auto")};
   box-shadow: ${(props) => (props.shadow ? props.shadow : "unset")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  min-width: ${(props) => (props.minWidth ? props.minWidth : "unset")};
+  min-height: ${(props) => (props.minHeight ? props.minHeight : "unset")};
 `;
 
 const SuperContainer = styled.div`

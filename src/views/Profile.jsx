@@ -106,7 +106,7 @@ const Profile = () => {
         setUser(user);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => { });
 
     if (loading) {
       setUser(currentUser);
@@ -164,26 +164,34 @@ const Profile = () => {
                     position="static"
                     margin="-46px 6px 0px -7px"
                   >
-                    <Button
-                      radius="0.25rem"
-                      background={Colors.accentColor}
-                      color={Colors.textPrimaryColor}
-                      margin="5px"
-                      as={Link}
-                      to={"/services/add"}
-                    >
-                      <FaBox /> Añadir servicio
-                    </Button>
-                    <Button
-                      radius="0.25rem"
-                      background={Colors.accentColor}
-                      color={Colors.textPrimaryColor}
-                      margin="5px"
-                      disabled={isDisabled}
-                      onClick={() => dispatch(UI.showModal())}
-                    >
-                      <FaUserEdit /> Editar
-                    </Button>
+                    {
+                      !isDisabled ? (
+                        <Button
+                          radius="0.25rem"
+                          background={Colors.accentColor}
+                          color={Colors.textPrimaryColor}
+                          margin="5px"
+                          as={Link}
+                          to={"/services/add"}
+                        >
+                          <FaBox /> Añadir servicio
+                        </Button>
+                      ) : (null)
+                    }
+                    {
+                      !isDisabled ? (
+                        <Button
+                          radius="0.25rem"
+                          background={Colors.accentColor}
+                          color={Colors.textPrimaryColor}
+                          margin="5px"
+                          disabled={isDisabled}
+                          onClick={() => dispatch(UI.showModal())}
+                        >
+                          <FaUserEdit /> Editar
+                        </Button>
+                      ) : (null)
+                    }
                     <Button
                       radius="0.25rem"
                       background="#128C7E"

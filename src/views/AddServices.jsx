@@ -20,6 +20,7 @@ import * as Yup from "yup";
 import { departamento } from '../helpers/departamentos';
 import { FileUpload } from '../helpers/FileUpload';
 import { newService } from '../redux/actions/serviceActions';
+import { useHistory } from 'react-router';
 
 const properties = {
     containerMain: {
@@ -69,6 +70,7 @@ const AddServices = () => {
     const user = useSelector(state => state.auth)
     const categories = useSelector(state => state.categories)
 
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -89,8 +91,9 @@ const AddServices = () => {
                 .required("Escribe una descripción de tu servicio"),
 
         }),
-        onSubmit: (data) => {
-            dispatch(newService(data))
+        onSubmit: async (data) => {
+            await dispatch(newService(data))
+            history.push("/services")
         }
 
 
@@ -263,7 +266,7 @@ const AddServices = () => {
                                                 Selecciona la categoria de tu servicio
                                             </Option>
                                             {categories.map((d, i) => (
-                                                <Option key={i} value={d._id}>
+                                                <Option key={i} value={d.name}>
                                                     {d.name}
                                                 </Option>
                                             ))}
