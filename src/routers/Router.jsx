@@ -15,6 +15,7 @@ import Services from "../views/Services";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import About from "../views/About";
 import AddServices from "../views/AddServices";
 import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
@@ -40,6 +41,7 @@ const Routers = () => {
           <PublicRouter exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
+          <Route exact path="/about" component={About} />
           <PublicRouter exact path="/signup" component={Register} />
           <Route exact path="/profile/:id" component={Profile} />
           <PrivateRouter exact path="/services/add" component={AddServices} />
