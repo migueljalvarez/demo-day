@@ -16,8 +16,11 @@ const getProfiles = async () => {
 
 const updateProfile = async (id, body) => {
   const url = `${baseUrl}/users/${id}`;
-  const result  = await axios.patch(url, body, {
-    headers: { "Access-Control-Allow-Origin": "*" },
+  const result = await axios.patch(url, body, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
   });
   return result.data;
 };
