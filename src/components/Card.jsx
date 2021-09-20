@@ -74,7 +74,7 @@ const Card = ({ user }) => {
         <StarComponent active={false}/>
         <Container padding={"5px"} width={"100%"} height="130px">
           <Paragraph align="center" margin="0px 10px">
-            {user.about}
+            {user.about.slice(0, 140)}...
           </Paragraph>
         </Container>
         <Container padding={"15px"}>

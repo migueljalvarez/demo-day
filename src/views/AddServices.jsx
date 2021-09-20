@@ -88,6 +88,7 @@ const AddServices = () => {
                 .required("Escribe un nombre para el servicio"),
             description: Yup.string()
                 .min(4, "La descripción es muy corta")
+                .max(500, "La descripción es muy larga")
                 .required("Escribe una descripción de tu servicio"),
 
         }),
@@ -197,6 +198,9 @@ const AddServices = () => {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         />
+                                        <Container justifyContent={"flex-end"}>
+                                            {formik.values.description.length}/500
+                                        </Container>
 
                                         {formik.touched.description && formik.errors.description ? (
                                             <Container margin={"10px"} color={Colors.darkPrimaryColor}>
