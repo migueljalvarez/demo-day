@@ -26,4 +26,10 @@ const addService = async (body) => {
   return result.data;
 }
 
-export {getServices,getService, addService}
+const search = async (title, location) =>{
+  const url = `${baseUrl}/services/search/?title=${title}&location=${location}`
+  const { data } = await axios.get(url);
+  return data.docs
+}
+
+export {getServices,getService, addService, search}

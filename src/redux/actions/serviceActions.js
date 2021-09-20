@@ -2,7 +2,8 @@ import Swal from "sweetalert2"
 import {
     addService,
     getService,
-    getServices
+    getServices,
+    search
 } from "../../services/service"
 import {
     types
@@ -58,4 +59,31 @@ export const findServicesById = (id) => {
                 console.log(e);
             })
     }
+}
+
+export const searchServices = (title, location) => {
+    return (dispatch) => {
+        search(title, location)
+            .then((services) => {
+                console.log(services)
+                dispatch({
+                    type: types.searchServices,
+                    payload: {
+                        title: title,
+                        location: location,
+                        services: services,
+                    }
+                })
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+    }
+}
+
+export const searchReset = () =>{
+    return({
+        type: types.searchReset,
+        payload: []
+    })
 }

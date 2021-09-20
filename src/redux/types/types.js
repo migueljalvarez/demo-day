@@ -8,6 +8,8 @@ export const types = {
   addService: "[SERVICE] Add Service",
   getServices: "[SERVICE] Get Service",
   getService: "[SERVICE] Get Services",
+  searchServices: "[SERVICE] Search Services",
+  searchReset: "[SERVICE] Search Reset",
 
   getCategories: "[CATEGORIES] Get Categories",
 

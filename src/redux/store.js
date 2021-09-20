@@ -3,7 +3,7 @@ import { authReducer } from "./reducers/authReducer";
 import thunk from "redux-thunk";
 import { userReducer, usersReducer } from "./reducers/userReducer";
 import { modalReducer } from "./reducers/uiReducer";
-import { serviceReducer, servicesReducer } from "./reducers/serviceReducer";
+import { searchReducer, serviceReducer, servicesReducer } from "./reducers/serviceReducer";
 import { categoriesReducer } from "./reducers/categoriesReducer";
 
 const composeEnhancers =
@@ -18,6 +18,7 @@ const reducers = combineReducers({
   modal: modalReducer,
   service: serviceReducer,
   services: servicesReducer,
+  search: searchReducer,
   categories: categoriesReducer,
 });
 

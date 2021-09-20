@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import {
   Colors,
   Container,
@@ -28,7 +28,20 @@ const properties = {
 
 const Services = () => {
 
-  const services = useSelector(state => state.services)
+  const allServices = useSelector(state => state.services)
+  const {title, location, services} = useSelector(state => state.search)
+
+  const [serviceList, setserviceList] = useState([])
+
+  useEffect(() => {
+    
+    if(services.length > 0){
+      setserviceList(services)
+    }else{
+      setserviceList(allServices)
+    }
+    
+  }, [services, allServices])
 
   return (
     <>
@@ -43,9 +56,14 @@ const Services = () => {
               alignItems={"center"}
             >
               {
-                services.map((service) =>(
+                (serviceList.length > 0) ?
+
+                (services.length === 0 && title !== "") ? <Container>No hay resultados para "{title}"" en {location.charAt(0).toUpperCase()+location.slice(1)}</Container> :
+                serviceList.map((service) =>(
                   <ServicesCard key={service._id} service={service} info={true}/>
                 ))
+                :
+                <Container>No hay servicios disponibles</Container>
               }
               
             </Container>

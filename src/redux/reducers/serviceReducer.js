@@ -20,4 +20,25 @@ const servicesReducer = (state = [], action) => {
     }
 }
 
-export {serviceReducer, servicesReducer};
+const searchReducer = (state = {title: "", location: "", services: []}, action) => {
+    switch(action.type) {
+        case types.searchServices:
+            return {
+                title: action.payload.title,
+                location: action.payload.location,
+                services: action.payload.services,
+            }
+        case types.searchReset:
+            return (
+                {
+                    title: "",
+                    location: "",
+                    services: [],
+                }
+            )
+        default:
+            return state
+    }
+}
+
+export {serviceReducer, servicesReducer, searchReducer};
