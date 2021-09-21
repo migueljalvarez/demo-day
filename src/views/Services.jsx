@@ -8,6 +8,7 @@ import {
 import ServicesCard from "../components/ServicesCard";
 import SearchService from "../components/SearchService";
 import { useSelector } from "react-redux";
+import NotFound from "../components/NotFound";
 const properties = {
   containerMain: {
     direction: "column",
@@ -58,12 +59,12 @@ const Services = () => {
               {
                 (serviceList.length > 0) ?
 
-                (services.length === 0 && title !== "") ? <Container>No hay resultados para "{title}"" en {location.charAt(0).toUpperCase()+location.slice(1)}</Container> :
+                (services.length === 0 && title !== "") ? <NotFound description={`No hay resultados para "${title}" en ${location.charAt(0).toUpperCase()+location.slice(1)}`}/> :
                 serviceList.map((service) =>(
                   <ServicesCard key={service._id} service={service} info={true}/>
                 ))
                 :
-                <Container>No hay servicios disponibles</Container>
+                <NotFound description={"No hemos encontrado servicios"} />
               }
               
             </Container>
