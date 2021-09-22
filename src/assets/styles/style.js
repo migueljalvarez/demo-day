@@ -63,6 +63,7 @@ const Container = styled.div`
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   min-width: ${(props) => (props.minWidth ? props.minWidth : "unset")};
   min-height: ${(props) => (props.minHeight ? props.minHeight : "unset")};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "auto")};
 `;
 
 const SuperContainer = styled.div`
@@ -185,7 +186,7 @@ const Input = styled.input`
   align-self: center;
 
   &::-webkit-outer-spin-button,
-    ::-webkit-inner-spin-button {
+  ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -252,11 +253,20 @@ const Form = styled.form`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
-
   box-sizing: border-box;
 `;
 const Span = styled.span`
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : Colors.defaultPrimaryColor};
+  border: ${(props) =>
+    props.border ? props.border : "3px solid" + Colors.defaultPrimaryColor};
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  color: ${(props) => (props.color ? props.color : "auto")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "auto")};
+
 `;
 const Hr = styled.hr`
   width: ${(props) => (props.width ? props.width : "100%")};
@@ -383,7 +393,7 @@ const LINK = styled(Link)`
 const START = styled(FaStar)`
   cursor: pointer;
   transition: color 200ms;
-`
+`;
 
 export {
   Button,

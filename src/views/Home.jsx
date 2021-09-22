@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import SearchService from "../components/SearchService";
+import UserCounter from "../components/UsersCounter";
 import Carousel from "../components/Carousel";
 import Card from "../components/Card";
 import {
@@ -31,7 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(userActions.findLastUser());
-    dispatch(findServices())
+    dispatch(findServices());
     dispatch(findCategories());
   }, [dispatch]);
 
@@ -41,6 +42,7 @@ const Home = () => {
         <Container flexWrap={PROP.containerHome.flexWrap}>
           <Carousel />
           <SearchService />
+          <UserCounter />
           <Container>
             <ContainerTitleH1 align="center" padding="10px">
               Ultimos Usuarios Registrado
@@ -58,9 +60,12 @@ const Home = () => {
             </ContainerTitleH1>
 
             <Container justifyContent="center">
-              {services.reverse().slice(0, 4).map((service) => (
-                <CardService key={service._id} service={service} />
-              ))}
+              {services
+                .reverse()
+                .slice(0, 4)
+                .map((service) => (
+                  <CardService key={service._id} service={service} />
+                ))}
             </Container>
           </Container>
         </Container>
