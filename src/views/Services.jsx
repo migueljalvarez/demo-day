@@ -7,8 +7,9 @@ import {
 } from "../assets/styles/style";
 import ServicesCard from "../components/ServicesCard";
 import SearchService from "../components/SearchService";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NotFound from "../components/NotFound";
+import { findServices } from "../redux/actions/serviceActions";
 const properties = {
   containerMain: {
     direction: "column",
@@ -28,6 +29,8 @@ const properties = {
 };
 
 const Services = () => {
+  
+  const dispatch = useDispatch();
 
   const allServices = useSelector(state => state.services)
   const {title, location, services} = useSelector(state => state.search)
@@ -43,6 +46,10 @@ const Services = () => {
     }
     
   }, [services, allServices])
+
+  useEffect(() => {
+    dispatch(findServices())
+  }, [dispatch]);
 
   return (
     <>

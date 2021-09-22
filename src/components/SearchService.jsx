@@ -86,12 +86,10 @@ const SearchService = () => {
   const { title, location } = formik.values
 
   useEffect(() => {
-    console.log(title.length)
     if (title.length > 0) {
       dispatch(searchServices(title, location));
     }else{
       dispatch(searchReset())
-      console.log("reset");
     }
   }, [dispatch, title, location]);
 

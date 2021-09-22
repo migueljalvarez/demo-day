@@ -9,8 +9,6 @@ const NotFound = ({ description }) => {
             <Wrapper>
                 <Container
                     direction="column"
-                    justifyContent={"center"}
-                    alignItems={"center"}
                     style={{"textAlign": "center"}}
                     >
                         <Img src={file} size="50"

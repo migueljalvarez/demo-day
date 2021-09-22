@@ -74,7 +74,7 @@ const Card = ({ user }) => {
         <StarComponent userRating={user.ratings} active={false}/>
         <Container padding={"5px"} width={"100%"} height="130px">
           <Paragraph align="center" margin="0px 10px">
-            {user.about.slice(0, 140)}...
+            {user.about?.slice(0, 140)}...
           </Paragraph>
         </Container>
         <Container padding={"15px"}>
