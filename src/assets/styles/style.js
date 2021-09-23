@@ -257,9 +257,9 @@ const Form = styled.form`
 `;
 const Span = styled.span`
   background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : Colors.defaultPrimaryColor};
+    props.backgroundColor ? props.backgroundColor : "transparent"};
   border: ${(props) =>
-    props.border ? props.border : "3px solid" + Colors.defaultPrimaryColor};
+    props.border ? props.border : "none"};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   color: ${(props) => (props.color ? props.color : "auto")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
