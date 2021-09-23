@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { FiUsers } from "react-icons/fi";
 
 import {
@@ -41,15 +42,31 @@ const PROP = {
   },
   SpanNumberCounter: {
     backgroundColor: Colors.textPrimaryColor,
-    radius: '10px',
-    color:Colors.darkPrimaryColor,
-    fontWeight: '700',
+    radius: "10px",
+    color: Colors.darkPrimaryColor,
+    fontWeight: "700",
     padding: "15px 20px",
     lineHeight: "initial",
   },
 };
 
 const UserCounter = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const data = async () => {
+      try {
+        const {data} = await axios.get(
+          "https://dom-service-api.herokuapp.com/api/v1/users/?all=true"
+        );
+        setUsers(data.docs)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    data();
+  }, []);
+
   return (
     <Container
       flexWrap={PROP.containerCounter.flexWrap}
@@ -94,7 +111,7 @@ const UserCounter = () => {
           padding={PROP.SpanNumberCounter.padding}
           lineHeight={PROP.SpanNumberCounter.lineHeight}
         >
-          500
+          {users.length}
         </Span>
       </Container>
     </Container>
