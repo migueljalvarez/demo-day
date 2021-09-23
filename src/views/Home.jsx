@@ -15,6 +15,7 @@ import userActions from "../redux/actions/userActions";
 import { findCategories } from "../redux/actions/categoriesActions";
 import { findServices } from "../redux/actions/serviceActions";
 import CardService from "../components/CardService";
+import ServicesCounter from "../components/ServicesCounter";
 
 const PROP = {
   SuperContainer: {
@@ -54,6 +55,7 @@ const Home = () => {
               ))}
             </Container>
           </Container>
+          <ServicesCounter />
           <Container>
             <ContainerTitleH1 align="center" padding="10px">
               Ultimos servicios agregados
