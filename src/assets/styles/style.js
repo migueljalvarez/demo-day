@@ -274,20 +274,24 @@ const Hr = styled.hr`
 `;
 
 const ContainerTitle = styled.h3`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "500")};
   color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
-const ContainerSubTitle = styled.p`
+const ContainerSubTitle = styled.h5`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
-const ContainerText = styled.h5`
+const ContainerText = styled.p`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};

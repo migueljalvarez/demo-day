@@ -16,6 +16,8 @@ import { findCategories } from "../redux/actions/categoriesActions";
 import { findServices } from "../redux/actions/serviceActions";
 import CardService from "../components/CardService";
 import ServicesCounter from "../components/ServicesCounter";
+import TutorialOfferDescription from "../components/TutorialOfferDescription";
+import TutorialOfferComp from "../components/TutorialOfferComp";
 
 const PROP = {
   SuperContainer: {
@@ -42,6 +44,7 @@ const Home = () => {
       <Wrapper>
         <Container flexWrap={PROP.containerHome.flexWrap}>
           <Carousel />
+          <TutorialOfferComp />
           <SearchService />
           <UserCounter />
           <Container>
@@ -70,6 +73,7 @@ const Home = () => {
                 ))}
             </Container>
           </Container>
+          <TutorialOfferDescription />
         </Container>
       </Wrapper>
     </SuperContainer>

@@ -20,6 +20,8 @@ import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
 import jwtDecode from "jwt-decode";
 import Service from "../views/Service";
+import TutorialOffer from "../views/TutorialOffer";
+import TutorialHire from "../views/TutorialHire";
 const Routers = () => {
   const dispatch = useDispatch();
 
@@ -44,6 +46,8 @@ const Routers = () => {
           <Route exact path="/services" component={Services} />
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/service/:id" component={Service} />
+          <Route exact path="/tutorialOffer" component={TutorialOffer} />
+          <Route exact path="/tutorialHire" component={TutorialHire} />
           <PrivateRouter exact path="/services/add" component={AddServices} />
           <Redirect to="/" />
         </Switch>
