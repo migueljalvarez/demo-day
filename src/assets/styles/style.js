@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
 import "./font.css";
+import { FaStar } from "react-icons/fa";
 
 const Colors = {
   accentColor: "#448AFF",
@@ -35,7 +36,7 @@ footer {
   background: ${Colors.defaultPrimaryColor};
   bottom: 0px;
   width: 100%;
-  position: absolute;
+  position: relative;
 }
 `;
 
@@ -60,6 +61,9 @@ const Container = styled.div`
   left: ${(props) => (props.left ? props.left : "auto")};
   box-shadow: ${(props) => (props.shadow ? props.shadow : "unset")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  min-width: ${(props) => (props.minWidth ? props.minWidth : "unset")};
+  min-height: ${(props) => (props.minHeight ? props.minHeight : "unset")};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "auto")};
 `;
 
 const SuperContainer = styled.div`
@@ -97,12 +101,13 @@ const Img = styled.img`
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   border: ${(props) => (props.border ? props.border : "none")};
-  margin: ${(props) => (props.margin ? props.margin : "0 5px")};
   align-self: ${(props) => (props.self ? props.self : "center")};
   margin: ${(props) => (props.margin ? props.margin : "0 5px")};
   position: ${(props) => (props.position ? props.position : "unset")};
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
+  cursor: ${(props) => (props.cursor ? props.cursor : "unset")};
+  float: ${(props) => (props.float ? props.float : "none")};
 `;
 
 const Wrapper = styled.div`
@@ -187,11 +192,6 @@ const Input = styled.input`
   }
 `;
 
-const SelectBox = styled.select`
-  height: 38px;
-  padding: ${(props) => (props.padding ? props.padding : "0")};
-`;
-
 const TextArea = styled.textarea`
   min-width: ${(props) => (props.width ? props.width : "100%")};
   max-width: ${(props) => (props.width ? props.width : "100%")};
@@ -253,11 +253,18 @@ const Form = styled.form`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
-
   box-sizing: border-box;
 `;
 const Span = styled.span`
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "transparent"};
+  border: ${(props) => (props.border ? props.border : "none")};
+  border-radius: ${(props) => (props.radius ? props.radius : "0")};
+  color: ${(props) => (props.color ? props.color : "auto")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "auto")};
 `;
 const Hr = styled.hr`
   width: ${(props) => (props.width ? props.width : "100%")};
@@ -265,20 +272,24 @@ const Hr = styled.hr`
 `;
 
 const ContainerTitle = styled.h3`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "500")};
   color: ${(props) => (props.color ? props.color : Colors.primaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
-const ContainerSubTitle = styled.p`
+const ContainerSubTitle = styled.h5`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
 `;
 
-const ContainerText = styled.h5`
+const ContainerText = styled.p`
+  width: ${(props) => (props.width ? props.width : "auto")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   color: ${(props) => (props.color ? props.color : Colors.secondaryTextColor)};
   text-align: ${(props) => (props.align ? props.align : "center")};
@@ -297,6 +308,7 @@ const Paragraph = styled.p`
   text-align: ${(props) => (props.align ? props.align : "center")};
   position: ${(props) => (props.position ? props.position : "unset")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
+  width: ${(props) => (props.width ? props.width : "100%")};
 `;
 
 const ContainerTitleH1 = styled.h1`
@@ -316,11 +328,10 @@ const CarouselWrapper = styled.div`
 `;
 
 const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: 60px;
-  width: 250px;
+  display: ${(props) => (props.mdisplay ? props.display : "flex")};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "column"};
+  width: ${(props) => (props.width ? props.width : "250px")};
 `;
 
 const Row = styled.div`
@@ -335,9 +346,9 @@ const Row = styled.div`
 `;
 
 const Heading = styled.h3`
-  color: #fff;
-  margin-bottom: 20px;
-  font-weight: bold;
+  color: ${(props) => (props.color ? props.color : Colors.textPrimaryColor)};
+  margin: ${(props) => (props.margin ? props.margin : "0 0 20px 0")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "bold")};
 `;
 
 const Select = styled.select`
@@ -383,6 +394,11 @@ const LINK = styled(Link)`
   }
 `;
 
+const START = styled(FaStar)`
+  cursor: pointer;
+  transition: color 200ms;
+`;
+
 export {
   Button,
   Colors,
@@ -399,7 +415,6 @@ export {
   Hr,
   Img,
   Input,
-  SelectBox,
   TextArea,
   Label,
   LINK,
@@ -415,4 +430,5 @@ export {
   Column,
   Row,
   Heading,
+  START,
 };

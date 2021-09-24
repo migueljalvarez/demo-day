@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 // import { useSelector } from "react-redux";
 import {
   Colors,
@@ -6,65 +7,75 @@ import {
   Img,
   Paragraph,
   ContainerTitleH1,
+  Button,
 } from "../assets/styles/style";
-import Avatar from "./Avatar";
-const cover = "https://fondosmil.com/fondo/9856.jpg";
-const ServicesCard = () => {
-  // const user = useSelector((state) => state.auth);
+
+const ServicesCard = ({ service, info }) => {
+  const history = useHistory();
+  const handleGoToService = () => {
+    history.push(`/service/${service._id}`);
+  };
 
   return (
     <Container
-      width={"350px"}
+      width={"60%"}
       padding={"0px"}
-      direction={"column"}
       background={Colors.dividerColor}
       radius="8px"
       shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
+      margin={"10px"}
+      flexWrap={"unset"}
     >
-      <Container padding={"0px"} width={"100%"}>
+      <Container padding={"0px"} width={"30%"} height={"100%"}>
         <Img
-          src={cover}
+          src={service.imageUrl}
           alt={"cover"}
           width={"100%"}
-          height={"150px"}
           margin={"0px"}
-          radius={"8px 8px 0px 0px"}
         />
       </Container>
       <Container
-        padding={"0px"}
+        width={"70%"}
+        padding={"16px"}
         background={Colors.textPrimaryColor}
-        direction={"column"}
+        direction={"row"}
       >
         <Container
-          width={"350px"}
+          width={"100%"}
           padding={"0px"}
-          //   position={"absolute"}
           justifyContent={"center"}
         >
-          <Avatar
-            // src={user.imageUrl}
-            position={"static"}
-            margin={"-80px 0px 0px 0px"}
-            radius={"100%"}
-            width="120px"
-            border={`${Colors.dividerColor} 1px solid`}
-          />
-          <ContainerTitleH1 margin="0px 10px" align="left" >
-            Username
+          <ContainerTitleH1 margin="0px 10px" align={"center"} >
+            {service.title}
           </ContainerTitleH1>
         </Container>
-        <Container padding={"5px"} width={"100%"} height={"250px"}>
+
+        <Container padding={"5px"} width={"100%"} height={"auto"} minHeight={"250px"}>
           <Paragraph align="left" margin="0px 10px">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique
-            magni, commodi quas nihil accusantium ipsa harum perferendis a! Quo
-            soluta voluptas debitis aliquid eaque a vero excepturi dicta
-            aspernatur minus!
+            {service.description}
           </Paragraph>
         </Container>
+        {
+          info && (
+            <Container padding={"15px"}>
+              <Button
+                background={Colors.accentColor}
+                color={Colors.textPrimaryColor}
+                margin="15px 0"
+                onClick={handleGoToService}
+                width="100%"
+              >
+                Más información
+              </Button>
+            </Container>
+          )
+        }
+
       </Container>
     </Container>
   );
 };
 
 export default ServicesCard;
+
+

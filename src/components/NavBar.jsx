@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import DropDownMenu from "./DropDownMenu";
 
 import logo from "../assets/svg/logo.svg";
+
 const properties = {
   background: Colors.defaultPrimaryColor,
 };

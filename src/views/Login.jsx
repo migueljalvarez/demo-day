@@ -4,7 +4,7 @@ import { GrFacebookOption } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import ImgAuth from "../components/auth/ImgAuth";
 
@@ -31,18 +31,22 @@ import {
 } from "../redux/actions/authActions.js";
 
 const prop = {
+  containerComp: {
+    alignItems: "center",
+  },
   containerLogin: {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: "0 0 297px 0",
   },
-  form: {
+  containerForm: {
     width: "70%",
     margin: "auto",
     padding: "80px 50px 30px 50px",
-    borderRadius: "5px",
+    radius: "5px",
+    background: Colors.defaultPrimaryColor,
   },
+  form: {},
   formGroup: {
     display: "flex",
     direction: "column",
@@ -146,18 +150,18 @@ const LoginComp = () => {
       password: "",
       remenber: true,
     },
-    // validationSchema: Yup.object({
-    //   email: Yup.string()
-    //     .email("Invalid email address")
-    //     .required("Email requerido"),
-    //   password: Yup.string()
-    //     .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
-    //     .matches(
-    //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w*\W*]/,
-    //       "La contraseña debe tener un numero, una mayuscula y un minuscula."
-    //     )
-    //     .required("Escribe tu contraseña."),
-    // }),
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email requerido"),
+      password: Yup.string()
+        .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\w*\W*]/,
+          "La contraseña debe tener un numero, una mayuscula y un minuscula."
+        )
+        .required("Escribe tu contraseña."),
+    }),
     onSubmit: () => {
       dispatch(startLoginEmailPassword(email, password, remenber));
     },
@@ -172,145 +176,151 @@ const LoginComp = () => {
     dispatch(loginFacebook());
   };
   const mostrarContraseña = () => {
-    if(mostrar === false){
-      setMostrar(true)
-    }else{
-      setMostrar(false)
+    if (mostrar === false) {
+      setMostrar(true);
+    } else {
+      setMostrar(false);
     }
-    
-  }
+  };
 
   return (
     <SuperContainer>
       <Wrapper>
-        <Container>
+        <Container alignItems={prop.containerComp.alignItems}>
           <Container
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
-            margin={prop.containerLogin.margin}
           >
-            <Form
-              width={prop.form.width}
-              margin={prop.form.margin}
-              padding={prop.form.padding}
-              borderRadius={prop.form.borderRadius}
-              onSubmit={formik.handleSubmit}
-              method="POST"
+            <Container
+              width={prop.containerForm.width}
+              background={prop.containerForm.background}
+              margin={prop.containerForm.margin}
+              padding={prop.containerForm.padding}
+              radius={prop.containerForm.radius}
             >
-              <Container
-                flexWrap={prop.containerInput.flexWrap}
-                display={prop.formGroup.display}
-                direction={prop.formGroup.direction}
-              >
-                <Label margin={prop.label.margin} htmlFor="email">
-                  Correo electronico
-                </Label>
-                <Input
-                  margin={prop.input.margin}
-                  // padding={prop.input.padding}
-                  radius={prop.input.borderRadius}
-                  type="text"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </Container>
-
-              {formik.touched.email && formik.errors.email ? (
-                <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.email}
-                </Container>
-              ) : null}
-
-              <Container
-                margin={prop.containerInputPassword.margin}
-                flexWrap={prop.containerInputPassword.flexWrap}
-              >
-                <Label margin={prop.label.margin} htmlFor="password">
-                  Contraseña
-                </Label>
-                <Input
-                  width={prop.inputPassword.width}
-                  margin={prop.inputPassword.margin}
-                  // padding={prop.inputPassword.padding}
-                  radius={prop.inputPassword.borderRadius}
-                  type={mostrar ? 'text':'password'}
-                  name="password"
-                  id="password"
-                  value={password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+              <Form onSubmit={formik.handleSubmit} method="POST">
                 <Container
-                  width={prop.iconPassword.width}
-                  height={prop.iconPassword.height}
-                  justifyContent={prop.iconPassword.justifyContent}
-                  alignItems={prop.iconPassword.alignItems}
-                  background={prop.iconPassword.background}
-                  radius={prop.iconPassword.borderRadius}
-                  color={prop.iconPassword.color}
-                  onClick={mostrarContraseña}
+                  flexWrap={prop.containerInput.flexWrap}
+                  display={prop.formGroup.display}
+                  direction={prop.formGroup.direction}
                 >
-                  {mostrar ? <BsFillEyeFill color="black" />:<BsFillEyeSlashFill />}
+                  <Label margin={prop.label.margin} htmlFor="email">
+                    Correo electronico
+                  </Label>
+                  <Input
+                    margin={prop.input.margin}
+                    // padding={prop.input.padding}
+                    radius={prop.input.borderRadius}
+                    type="text"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
                 </Container>
 
-                {formik.touched.password && formik.errors.password ? (
+                {formik.touched.email && formik.errors.email ? (
                   <Container
                     margin={prop.error.margin}
                     color={prop.error.color}
                   >
-                    {formik.errors.password}
+                    {formik.errors.email}
                   </Container>
                 ) : null}
-              </Container>
 
-              <Container
-                margin={prop.containerRemember.margin}
-                flexWrap={prop.containerRemember.flexWrap}
-                justifyContent={prop.containerRemember.justifyContent}
-                alignItems={prop.containerRemember.alignItems}
-              >
-                <Label
-                  width={prop.labelRemember.width}
-                  padding={prop.labelRemember.padding}
-                  textAlign={prop.labelRemember.textAlign}
-                  htmlFor="remenber"
+                <Container
+                  margin={prop.containerInputPassword.margin}
+                  flexWrap={prop.containerInputPassword.flexWrap}
                 >
-                  Recuerdame
-                </Label>
-                <Input
-                  width={prop.inputRemember.width}
-                  padding={prop.inputRemember.padding}
-                  radius={prop.inputRemember.borderRadius}
-                  type="checkbox"
-                  name="remenber"
-                  id="remenber"
-                  value={remenber}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
-              </Container>
+                  <Label margin={prop.label.margin} htmlFor="password">
+                    Contraseña
+                  </Label>
+                  <Input
+                    width={prop.inputPassword.width}
+                    margin={prop.inputPassword.margin}
+                    // padding={prop.inputPassword.padding}
+                    radius={prop.inputPassword.borderRadius}
+                    type={mostrar ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  <Container
+                    width={prop.iconPassword.width}
+                    height={prop.iconPassword.height}
+                    justifyContent={prop.iconPassword.justifyContent}
+                    alignItems={prop.iconPassword.alignItems}
+                    background={prop.iconPassword.background}
+                    radius={prop.iconPassword.borderRadius}
+                    color={prop.iconPassword.color}
+                    onClick={mostrarContraseña}
+                  >
+                    {mostrar ? (
+                      <BsFillEyeFill color="black" />
+                    ) : (
+                      <BsFillEyeSlashFill />
+                    )}
+                  </Container>
 
-              <Container>
-                <Button
-                  margin={prop.button.margin}
-                  fontSize={prop.button.fontSize}
-                  // padding={prop.button.padding}
-                  border={prop.button.border}
-                  borderRadius={prop.button.borderRadius}
-                  width={prop.buttonLogin.width}
-                  background={prop.buttonLogin.backgrounColor}
-                  color={prop.buttonLogin.color}
-                  type="submit"
+                  {formik.touched.password && formik.errors.password ? (
+                    <Container
+                      margin={prop.error.margin}
+                      color={prop.error.color}
+                    >
+                      {formik.errors.password}
+                    </Container>
+                  ) : null}
+                </Container>
+
+                <Container
+                  margin={prop.containerRemember.margin}
+                  flexWrap={prop.containerRemember.flexWrap}
+                  justifyContent={prop.containerRemember.justifyContent}
+                  alignItems={prop.containerRemember.alignItems}
                 >
-                  Ingresar
-                </Button>
-              </Container>
+                  <Label
+                    width={prop.labelRemember.width}
+                    padding={prop.labelRemember.padding}
+                    textAlign={prop.labelRemember.textAlign}
+                    htmlFor="remenber"
+                  >
+                    Recuerdame
+                  </Label>
+                  <Input
+                    width={prop.inputRemember.width}
+                    padding={prop.inputRemember.padding}
+                    radius={prop.inputRemember.borderRadius}
+                    type="checkbox"
+                    name="remenber"
+                    id="remenber"
+                    value={remenber}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </Container>
 
-              <Hr margin={prop.hr.margin} />
+                <Container>
+                  <Button
+                    margin={prop.button.margin}
+                    fontSize={prop.button.fontSize}
+                    // padding={prop.button.padding}
+                    border={prop.button.border}
+                    borderRadius={prop.button.borderRadius}
+                    width={prop.buttonLogin.width}
+                    background={prop.buttonLogin.backgrounColor}
+                    color={prop.buttonLogin.color}
+                    type="submit"
+                  >
+                    Ingresar
+                  </Button>
+                </Container>
+
+                <Hr margin={prop.hr.margin} />
+              </Form>
 
               <Container
                 display={prop.formGroup.display}
@@ -325,7 +335,6 @@ const LoginComp = () => {
                   width={prop.buttonGoogle.width}
                   background={prop.buttonGoogle.backgrounColor}
                   color={prop.buttonGoogle.color}
-                  type="submit"
                   onClick={handleGoogleLogin}
                 >
                   <FcGoogle />
@@ -341,7 +350,6 @@ const LoginComp = () => {
                   width={prop.buttonFacebook.width}
                   background={prop.buttonFacebook.backgrounColor}
                   color={prop.buttonFacebook.color}
-                  type="submit"
                   onClick={handleFacebookLogin}
                 >
                   <GrFacebookOption />
@@ -351,7 +359,7 @@ const LoginComp = () => {
               <Container justifyContent={prop.containerLink.justifyContent}>
                 <LINK to="/signup">Aún no te has registrado</LINK>
               </Container>
-            </Form>
+            </Container>
           </Container>
           <ImgAuth />
         </Container>

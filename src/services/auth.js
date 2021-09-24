@@ -25,8 +25,8 @@ const signup = async (data) => {
   const result = await axios.post(url, data.user, {
     headers: { "Access-Control-Allow-Origin": "*" },
   });
-  
-  return result.data
+
+  return result
 };
 
 export { login, signup };

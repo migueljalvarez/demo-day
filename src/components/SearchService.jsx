@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaSearch, FaLocationArrow } from "react-icons/fa";
 
 import { departamento } from "../helpers/departamentos";
@@ -12,6 +12,10 @@ import {
   Option,
   Select,
 } from "../assets/styles/style";
+import { useDispatch } from "react-redux";
+import { searchReset, searchServices } from "../redux/actions/serviceActions";
+import { useFormik } from "formik";
+import { useHistory } from "react-router";
 
 const PROP = {
   containerForm: {
@@ -64,9 +68,29 @@ const PROP = {
 };
 
 const SearchService = () => {
-  // const handleSelect = () => {
-  //   document.getElementById('departamento')
-  // }
+
+  const dispatch = useDispatch();
+  const history = useHistory()
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      location: "bogota",
+    },
+    onSubmit: (data) => {
+      dispatch(searchServices(data.title, data.location))
+      history.push("/services")
+    }
+  })
+  
+  const { title, location } = formik.values
+
+  useEffect(() => {
+    if (title.length === 0) {
+      dispatch(searchReset())
+    }
+  }, [dispatch, title]);
+
 
   return (
     <Container
@@ -77,6 +101,7 @@ const SearchService = () => {
         width={PROP.form.width}
         padding={PROP.form.padding}
         justifyContent={PROP.form.justifyContent}
+        onSubmit={formik.handleSubmit}
       >
         <Container width={PROP.containerInputService.width}>
           <Container
@@ -93,8 +118,14 @@ const SearchService = () => {
           <Input
             width={PROP.inputService.width}
             radius={PROP.inputService.borderRadius}
+            name="title"
             type="text"
+            id="title"
             placeholder="Tipo de servicio"
+            value={title.toLowerCase()}
+            onChange={formik.handleChange}
+
+            onBlur={formik.handleBlur}
           />
         </Container>
 
@@ -115,7 +146,11 @@ const SearchService = () => {
             width={PROP.inputLocation.width}
             radius={PROP.inputLocation.borderRadius}
             placeholder="Lugar"
-            id="departamento"
+            name="location"
+            id="location"
+            value={location}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           >
             {departamento.map((d, i) => (
               <Option key={i} value={d.id}>

@@ -10,6 +10,7 @@ import {
   ContainerSubTitle,
 } from "../assets/styles/style";
 import { useHistory } from "react-router-dom";
+import StarComponent from "./StarComponent";
 const cover = "https://fondosmil.com/fondo/9856.jpg";
 
 const Card = ({ user }) => {
@@ -18,8 +19,8 @@ const Card = ({ user }) => {
     history.push(`/profile/${user._id}`);
   };
 
-  const displayed = user.displayName.split(" ");
-  if (displayed.length > 2) {
+  const displayed = user?.displayName?.split(" ");
+  if (displayed?.length > 2) {
     user.displayName = `${displayed[0]} ${displayed[2]}`;
   }
 
@@ -52,7 +53,7 @@ const Card = ({ user }) => {
         radius={"0px 0px 8px 8px"}
         height="100%"
       >
-        <Container padding={"0px"} justifyContent={"center"}>
+        <Container padding={"0px"} justifyContent={"center"} direction={"column"} alignItems={"center"}>
           <Avatar
             imageUrl={user.imageUrl}
             name={user.displayName}
@@ -63,16 +64,17 @@ const Card = ({ user }) => {
             height="100px"
             border={`${Colors.dividerColor} 1px solid`}
           />
-          <ContainerTitle margin="0px 10px" align="left">
+          <ContainerTitle margin="0px 10px" align="center">
             {user.displayName}
           </ContainerTitle>
           <ContainerSubTitle margin="0px 10px" align="left">
             {user.occupation}
           </ContainerSubTitle>
         </Container>
+        <StarComponent userRating={user.ratings} active={false}/>
         <Container padding={"5px"} width={"100%"} height="130px">
           <Paragraph align="center" margin="0px 10px">
-            {user.about}
+            {user.about?.slice(0, 100)}...
           </Paragraph>
         </Container>
         <Container padding={"15px"}>
