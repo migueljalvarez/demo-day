@@ -19,6 +19,7 @@ import Home from "../views/Home";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import About from "../views/About";
 import AddServices from "../views/AddServices";
 import Services from "../views/Services";
 import Service from "../views/Service";
@@ -48,6 +49,8 @@ const Routers = () => {
           <PublicRouter exact path="/signup" component={Register} />
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
+          <Route exact path="/about" component={About} />
+          <PublicRouter exact path="/signup" component={Register} />
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/service/:id" component={Service} />
           <Route exact path="/contactUs" component={ContactUs} />

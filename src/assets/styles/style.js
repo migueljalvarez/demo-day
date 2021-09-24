@@ -36,7 +36,7 @@ footer {
   background: ${Colors.defaultPrimaryColor};
   bottom: 0px;
   width: 100%;
-  position: absolute;
+  position: relative;
 }
 `;
 
@@ -108,6 +108,7 @@ const Img = styled.img`
   background-color: ${(props) =>
     props.background ? props.background : "transparent"};
   cursor: ${(props) => (props.cursor ? props.cursor : "unset")};
+  float: ${(props) => (props.float ? props.float : "none")};
 `;
 
 const Wrapper = styled.div`
@@ -310,6 +311,7 @@ const Paragraph = styled.p`
   text-align: ${(props) => (props.align ? props.align : "center")};
   position: ${(props) => (props.position ? props.position : "unset")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
+  width: ${(props) => (props.width ? props.width : "100%")};
 `;
 
 const ContainerTitleH1 = styled.h1`
@@ -329,9 +331,10 @@ const CarouselWrapper = styled.div`
 `;
 
 const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 250px;
+  display: ${(props) => (props.mdisplay ? props.display : "flex")};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "column"};
+  width: ${(props) => (props.width ? props.width : "250px")};
 `;
 
 const Row = styled.div`
@@ -346,9 +349,9 @@ const Row = styled.div`
 `;
 
 const Heading = styled.h3`
-  color: #fff;
-  margin-bottom: 20px;
-  font-weight: bold;
+  color: ${(props) => (props.color ? props.color : Colors.textPrimaryColor)};
+  margin: ${(props) => (props.margin ? props.margin : "0 0 20px 0")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "bold")};
 `;
 
 const Select = styled.select`

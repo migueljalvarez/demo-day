@@ -18,7 +18,7 @@ const ServicesCard = ({ service, info }) => {
 
   return (
     <Container
-      width={"75%"}
+      width={"60%"}
       padding={"0px"}
       background={Colors.dividerColor}
       radius="8px"
@@ -45,7 +45,7 @@ const ServicesCard = ({ service, info }) => {
           padding={"0px"}
           justifyContent={"center"}
         >
-          <ContainerTitleH1 margin="0px 10px" align="left" >
+          <ContainerTitleH1 margin="0px 10px" align={"center"} >
             {service.title}
           </ContainerTitleH1>
         </Container>
