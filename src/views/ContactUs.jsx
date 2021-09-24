@@ -24,7 +24,6 @@ const prop = {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: "0 0 297px 0",
   },
   containerForm: {
     width: "70%",
@@ -102,7 +101,6 @@ const ContactUs = () => {
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
-            margin={prop.containerLogin.margin}
           >
             <Container
               width={prop.containerForm.width}

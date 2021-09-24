@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogoPrueba from "../../assets/img/PruebaEmpresa.jpg";
+import ImgAuth1 from "../../assets/img/ImgAuth.jpg";
 
 import { 
   Container, 
@@ -9,16 +9,20 @@ import {
 
 
 
-const prop = {
+ const prop = {
+  containerImg:{
   display: "inline-block",
   width: "calc(50% - 5px)",
-  wImg:'100%'
+  },
+  img: {
+    width:'100%',
+  }
 }
 
 const ImgAuth = () => {
   return (
-    <Container display={prop.display} width={prop.width}>
-      <Img width={prop.wImg} src={LogoPrueba} alt="Logo" />
+    <Container display={prop.containerImg.display} width={prop.containerImg.width}>
+      <Img width={prop.img.width} src={ImgAuth1} alt="Logo"/>
     </Container>
   );
 };

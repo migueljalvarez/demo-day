@@ -31,22 +31,22 @@ import {
 } from "../redux/actions/authActions.js";
 
 const prop = {
+  containerComp: {
+    alignItems: "center",
+  },
   containerLogin: {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: "0 0 297px 0",
   },
-  containerForm:{
+  containerForm: {
     width: "70%",
     margin: "auto",
     padding: "80px 50px 30px 50px",
     radius: "5px",
     background: Colors.defaultPrimaryColor,
   },
-  form: {
-    
-  },
+  form: {},
   formGroup: {
     display: "flex",
     direction: "column",
@@ -186,12 +186,11 @@ const LoginComp = () => {
   return (
     <SuperContainer>
       <Wrapper>
-        <Container>
+        <Container alignItems={prop.containerComp.alignItems}>
           <Container
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
-            margin={prop.containerLogin.margin}
           >
             <Container
               width={prop.containerForm.width}

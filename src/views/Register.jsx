@@ -24,11 +24,15 @@ import { documento } from "../helpers/document";
 import { buildUserDto } from "../dto/userDto";
 
 const prop = {
+  
+  containerComp: {
+    alignItems: "center",
+  },
+
   containerLogin: {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: "0 0 297px 0",
   },
   form: {
     width: "70%",
@@ -188,13 +192,12 @@ const RegisterComp = () => {
   return (
     <SuperContainer>
       <Wrapper>
-        <Container>
+        <Container alignItems={prop.containerComp.alignItems}>
           <ImgAuth />
           <Container
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
-            margin={prop.containerLogin.margin}
           >
             <Form
               width={prop.form.width}

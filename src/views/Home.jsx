@@ -20,9 +20,6 @@ import TutorialOfferDescription from "../components/TutorialOfferDescription";
 import TutorialOfferComp from "../components/TutorialOfferComp";
 
 const PROP = {
-  SuperContainer: {
-    margin: "0 0 297px 0",
-  },
   containerHome: {
     flexWrap: "wrap",
   },
@@ -40,7 +37,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <SuperContainer margin={PROP.SuperContainer.margin}>
+    <SuperContainer >
       <Wrapper>
         <Container flexWrap={PROP.containerHome.flexWrap}>
           <Carousel />
