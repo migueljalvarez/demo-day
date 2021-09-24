@@ -15,6 +15,7 @@ import {
 import { useDispatch } from "react-redux";
 import { searchReset, searchServices } from "../redux/actions/serviceActions";
 import { useFormik } from "formik";
+import { useHistory } from "react-router";
 
 const PROP = {
   containerForm: {
@@ -67,11 +68,9 @@ const PROP = {
 };
 
 const SearchService = () => {
-  // const handleSelect = () => {
-  //   document.getElementById('departamento')
-  // }
 
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const formik = useFormik({
     initialValues: {
@@ -80,18 +79,17 @@ const SearchService = () => {
     },
     onSubmit: (data) => {
       dispatch(searchServices(data.title, data.location))
+      history.push("/services")
     }
   })
   
   const { title, location } = formik.values
 
   useEffect(() => {
-    if (title.length > 0) {
-      dispatch(searchServices(title, location));
-    }else{
+    if (title.length === 0) {
       dispatch(searchReset())
     }
-  }, [dispatch, title, location]);
+  }, [dispatch, title]);
 
 
   return (
