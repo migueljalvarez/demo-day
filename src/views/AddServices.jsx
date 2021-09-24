@@ -266,9 +266,9 @@ const AddServices = () => {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         >
-                                            <Option value="" selected disabled>
+                                            {/* <Option value="" selected disabled>
                                                 Selecciona la categoria de tu servicio
-                                            </Option>
+                                            </Option> */}
                                             {categories.map((d, i) => (
                                                 <Option key={i} value={d.name}>
                                                     {d.name}
@@ -295,9 +295,9 @@ const AddServices = () => {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         >
-                                            <Option value="" selected disabled>
+                                            {/* <Option value="" selected disabled>
                                                 Selecciona el lugar donde ofreceras
-                                            </Option>
+                                            </Option> */}
                                             {departamento.map((d, i) => (
                                                 <Option key={i} value={d.id}>
                                                     {d.depart}
@@ -317,6 +317,7 @@ const AddServices = () => {
                                 >Cancelar</Button>
                                 <Button
                                     type="submit"
+                                    color={Colors.textPrimaryColor}
                                     margin={properties.button.margin}
                                     background={properties.button.background}>Guardar</Button>
                             </Container>

@@ -27,7 +27,14 @@ const CardService = ({ service }) => {
       height="450px"
       flexWrap="nowrap"
     >
-      <Container padding={"0px"} width={"100%"} justifyContent={"center"}>
+      <Container
+        padding={"0px"}
+        width={"100%"}
+        justifyContent={"center"}
+        height={"150px"}
+        minHeight={"150px"}
+        maxHeight={"150px"}
+      >
         <Img
           src={service.imageUrl}
           alt={"cover"}
@@ -45,13 +52,20 @@ const CardService = ({ service }) => {
         <Container
           padding={"0px"} justifyContent={"center"}
         >
-          <ContainerTitle margin="0px 10px" align="left" >
+          <ContainerTitle
+            margin="0px 10px"
+            align="center"
+          >
             {service.title}
           </ContainerTitle>
         </Container>
-        <Container padding={"5px"} width={"100%"} height="130px">
+        <Container
+          padding={"5px"}
+          width={"100%"}
+          height="130px"
+        >
           <Paragraph align="center" margin="0px 10px">
-          {service.description.slice(0, 140)}...
+            {service.description.slice(0, 140)}...
           </Paragraph>
         </Container>
         <Container padding={"15px"}>
