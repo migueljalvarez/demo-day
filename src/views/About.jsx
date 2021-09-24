@@ -1,29 +1,30 @@
 import React from 'react';
-import HowWorks from '../components/About/HowWorksService';
-import StartStepsServices from '../components/About/StartStepsServices';
-import ButtonAbout from '../components/ButtonAbout';
+import History from '../components/About/History';
+import Banner from '../components/About/Banner';
 import {
     Container,
     SuperContainer,
     Wrapper,
-  } from "../assets/styles/style";
+} from "../assets/styles/style";
+import WeOffer from '../components/About/WeOffer';
 
 
 
-  
-  const About = () => {
+
+const About = () => {
     return (
-<SuperContainer>
-    
-    <Wrapper>
-    <Container>
-        <HowWorks />
-        <ButtonAbout />
-        <StartStepsServices />
-        
-    </Container>
-    </Wrapper>
-</SuperContainer>
+        <SuperContainer>
+
+            <Wrapper>
+                <Container>
+                    <Banner />
+                    <History />
+                    <WeOffer />
+
+
+                </Container>
+            </Wrapper>
+        </SuperContainer>
     );
 }
 
