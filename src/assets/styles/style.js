@@ -76,7 +76,7 @@ const SuperContainer = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
-  margin: ${(props) => (props.margin ? props.margin : "0")};
+  margin: ${(props) => (props.margin ? props.margin : "0")}; .
 `;
 
 const NavMenu = styled.ul`
@@ -101,6 +101,7 @@ const Img = styled.img`
   height: ${(props) => (props.height ? props.height : "auto")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   border: ${(props) => (props.border ? props.border : "none")};
+  margin: ${(props) => (props.margin ? props.margin : "0 5px")};
   align-self: ${(props) => (props.self ? props.self : "center")};
   margin: ${(props) => (props.margin ? props.margin : "0 5px")};
   position: ${(props) => (props.position ? props.position : "unset")};
