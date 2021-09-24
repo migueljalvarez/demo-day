@@ -77,6 +77,7 @@ const TutorialOfferDescription = () => {
       padding={PROP.containerTutorialDescription.padding}
       margin={PROP.containerTutorialDescription.margin}
       background={PROP.containerTutorialDescription.background}
+      id="tutorial-description"
     >
       <ContainerTitle
         margin={PROP.TitleTutorial.margin}

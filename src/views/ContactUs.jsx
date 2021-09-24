@@ -15,6 +15,8 @@ import {
   Wrapper,
   TextArea,
 } from "../assets/styles/style";
+
+//IMPORTACION DE COMPONENTES
 import ContactUsComp from "../components/ContactUsComp";
 
 const prop = {

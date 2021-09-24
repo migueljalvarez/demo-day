@@ -44,7 +44,7 @@ const Home = () => {
       <Wrapper>
         <Container flexWrap={PROP.containerHome.flexWrap}>
           <Carousel />
-          <TutorialOfferComp />
+          <TutorialOfferComp/>
           <SearchService />
           <UserCounter />
           <Container>
