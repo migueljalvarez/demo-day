@@ -259,15 +259,13 @@ const Form = styled.form`
 const Span = styled.span`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "transparent"};
-  border: ${(props) =>
-    props.border ? props.border : "none"};
+  border: ${(props) => (props.border ? props.border : "none")};
   border-radius: ${(props) => (props.radius ? props.radius : "0")};
   color: ${(props) => (props.color ? props.color : "auto")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "400")};
   line-height: ${(props) => (props.lineHeight ? props.lineHeight : "0")};
   margin: ${(props) => (props.margin ? props.margin : "0")};
   padding: ${(props) => (props.padding ? props.padding : "auto")};
-
 `;
 const Hr = styled.hr`
   width: ${(props) => (props.width ? props.width : "100%")};
@@ -338,7 +336,7 @@ const Column = styled.div`
 `;
 
 const Row = styled.div`
-  display: flex;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
   grid-gap: 50px;
   margin-left: 10em;
