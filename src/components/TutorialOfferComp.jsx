@@ -57,7 +57,7 @@ const TutorialOfferComp = () => {
       padding={PROP.containerCounter.padding}
       margin={PROP.containerCounter.margin}
       background={PROP.containerCounter.background}
-      onClick={window.location='#tutorial-description'}
+      onClick={()=> window.location='#tutorial-description'}
     >
       <Container
         width={PROP.containerTextCounter.width}
