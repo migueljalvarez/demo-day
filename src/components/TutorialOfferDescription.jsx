@@ -144,7 +144,7 @@ const TutorialOfferDescription = () => {
             color={PROP.containerText.color}
           >
             Contratar un servicio es muy sencillo pulsa el boton y te
-            explicaremos como puedes ofrecer un servicio
+            explicaremos como puedes contratar un servicio
           </ContainerText>
 
           <Container

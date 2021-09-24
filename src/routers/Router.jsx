@@ -7,21 +7,25 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
+import jwtDecode from "jwt-decode";
 
-import Home from "../views/Home";
+import { PublicRouter } from "./PublicRouter";
+import { PrivateRouter } from "./PrivateRouter";
+
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Services from "../views/Services";
+
+import Home from "../views/Home";
 import Profile from "../views/Profile";
 import Login from "../views/Login";
 import Register from "../views/Register";
 import AddServices from "../views/AddServices";
-import { PublicRouter } from "./PublicRouter";
-import { PrivateRouter } from "./PrivateRouter";
-import jwtDecode from "jwt-decode";
+import Services from "../views/Services";
 import Service from "../views/Service";
 import TutorialOffer from "../views/TutorialOffer";
 import TutorialHire from "../views/TutorialHire";
+import ContactUs from "../views/ContactUs";
+
 const Routers = () => {
   const dispatch = useDispatch();
 
@@ -46,6 +50,7 @@ const Routers = () => {
           <Route exact path="/services" component={Services} />
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/service/:id" component={Service} />
+          <Route exact path="/contactUs" component={ContactUs} />
           <Route exact path="/tutorialOffer" component={TutorialOffer} />
           <Route exact path="/tutorialHire" component={TutorialHire} />
           <PrivateRouter exact path="/services/add" component={AddServices} />
