@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import {
-  Button,
   Colors,
   Container,
   SuperContainer,
   Wrapper,
 } from "../assets/styles/style";
 import ServicesCard from "../components/ServicesCard";
-import { useHistory } from "react-router-dom";
+import SearchService from "../components/SearchService";
+import { useDispatch, useSelector } from "react-redux";
+import NotFound from "../components/NotFound";
+import { findServices } from "../redux/actions/serviceActions";
 const properties = {
   containerMain: {
     direction: "column",
@@ -27,40 +29,51 @@ const properties = {
 };
 
 const Services = () => {
-  const history = useHistory();
-  const handleAddService = () => {
-    history.push("/services/add");
-  };
+  
+  const dispatch = useDispatch();
+
+  const allServices = useSelector(state => state.services)
+  const {title, location, services} = useSelector(state => state.search)
+
+  const [serviceList, setserviceList] = useState([])
+
+  useEffect(() => {
+    
+    if(services.length > 0){
+      setserviceList(services)
+    }else{
+      setserviceList(allServices)
+    }
+    
+  }, [services, allServices])
+
+  useEffect(() => {
+    dispatch(findServices())
+  }, [dispatch]);
 
   return (
     <>
       <SuperContainer>
         <Wrapper>
           <Container direction={properties.containerMain.direction}>
-            <Container
-              justifyContent={properties.containerButton.justifyContent}
-            >
-              <Button
-                width={properties.button.width}
-                background={properties.button.background}
-                color={properties.button.color}
-                onClick={handleAddService}
-              >
-                Añadir servicios
-              </Button>
-              <Button
-                width={properties.button.width}
-                background={properties.button.background}
-                color={properties.button.color}
-              >
-                Buscar servicios
-              </Button>
-            </Container>
+          <SearchService />
             <Container
               justifyContent={properties.containerCard.justifyContent}
               padding={properties.containerCard.padding}
+              direction={"column"}
+              alignItems={"center"}
             >
-              <ServicesCard />
+              {
+                (serviceList.length > 0) ?
+
+                (services.length === 0 && title !== "") ? <NotFound description={`No hay resultados para "${title}" en ${location.charAt(0).toUpperCase()+location.slice(1)}`}/> :
+                serviceList.map((service) =>(
+                  <ServicesCard key={service._id} service={service} info={true}/>
+                ))
+                :
+                <NotFound description={"No hemos encontrado servicios"} />
+              }
+              
             </Container>
           </Container>
         </Wrapper>

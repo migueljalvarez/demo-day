@@ -24,11 +24,15 @@ import { documento } from "../helpers/document";
 import { buildUserDto } from "../dto/userDto";
 
 const prop = {
+  
+  containerComp: {
+    alignItems: "center",
+  },
+
   containerLogin: {
     width: "calc(50% - 5px)",
     display: "flex",
     padding: "80px 0 30px 0",
-    margin: "0 0 297px 0",
   },
   form: {
     width: "70%",
@@ -120,7 +124,7 @@ const RegisterComp = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      lastName: "",
+      lastname: "",
       email: "",
       documentType: "",
       documentNumber: "",
@@ -131,7 +135,7 @@ const RegisterComp = () => {
       name: Yup.string()
         .min(3, "El nombre es muy corto")
         .required("Escribe tu nombre"),
-      lastName: Yup.string()
+      lastname: Yup.string()
         .min(3, "El nombre es muy corto")
         .required("Escribe tus apellidos"),
       email: Yup.string()
@@ -139,7 +143,7 @@ const RegisterComp = () => {
         .required("Email requerido"),
       documentNumber: Yup.number('Solo acepta caracteres tipo número')
         .min( 1, "Numero de documento invalido")
-        .max( 9999999999, "Numero de documento invalido")
+        .max( 999999999999999, "Numero de documento invalido")
         .required("Número de documento requerido"),
       password: Yup.string()
         .min(8, "La contraseña es muy corta - debe tener minimo 8 caracteres.")
@@ -160,7 +164,7 @@ const RegisterComp = () => {
 
   const {
     name,
-    lastName,
+    lastname,
     email,
     documentType,
     documentNumber,
@@ -188,13 +192,12 @@ const RegisterComp = () => {
   return (
     <SuperContainer>
       <Wrapper>
-        <Container>
+        <Container alignItems={prop.containerComp.alignItems}>
           <ImgAuth />
           <Container
             padding={prop.containerLogin.padding}
             display={prop.containerLogin.display}
             width={prop.containerLogin.width}
-            margin={prop.containerLogin.margin}
           >
             <Form
               width={prop.form.width}
@@ -244,17 +247,17 @@ const RegisterComp = () => {
                   // padding={prop.input.padding}
                   radius={prop.input.borderRadius}
                   type="text"
-                  name="lastName"
-                  id="lastName"
-                  value={lastName}
+                  name="lastname"
+                  id="lastname"
+                  value={lastname}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </Container>
 
-              {formik.touched.lastName && formik.errors.lastName ? (
+              {formik.touched.lastname && formik.errors.lastname ? (
                 <Container margin={prop.error.margin} color={prop.error.color}>
-                  {formik.errors.lastName}
+                  {formik.errors.lastname}
                 </Container>
               ) : null}
 

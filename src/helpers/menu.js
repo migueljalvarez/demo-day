@@ -10,8 +10,8 @@ const principalMenu = [
     path: "/services",
   },
   {
-    label: "Contacto",
-    path: "/contacts",
+    label: "Contactenos",
+    path: "/contactUs",
   },
   {
     label: "Acerca de",
