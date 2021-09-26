@@ -309,6 +309,15 @@ const Paragraph = styled.p`
   position: ${(props) => (props.position ? props.position : "unset")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   width: ${(props) => (props.width ? props.width : "100%")};
+
+  
+  overflow: ${(props) => (props.overflow ? "hidden" : "unset")};
+  text-overflow: ${(props) => (props.overflow ? "ellipsis" : "unset")};
+  display: ${(props) => (props.overflow ? "-webkit-box" : "unset")};
+  -webkit-line-clamp: ${(props) => (props.overflow ? 2 : "unset")};
+  -webkit-box-orient: ${(props) => (props.overflow ? "vertical" : "unset")};
+  
+
 `;
 
 const ContainerTitleH1 = styled.h1`
