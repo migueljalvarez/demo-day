@@ -36,7 +36,7 @@ footer {
   background: ${Colors.defaultPrimaryColor};
   bottom: 0px;
   width: 100%;
-  position: relative;
+  position: static;
 }
 `;
 
