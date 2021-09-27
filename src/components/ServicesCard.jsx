@@ -51,7 +51,7 @@ const ServicesCard = ({ service, info }) => {
         </Container>
 
         <Container padding={"5px"} width={"100%"} height={"auto"} >
-          <Paragraph align="left" margin="0px 10px" overflow={true}>
+          <Paragraph align="left" margin="0px 10px" limit={info}>
             {service.description}
           </Paragraph>
         </Container>
