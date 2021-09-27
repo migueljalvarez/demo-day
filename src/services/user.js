@@ -9,7 +9,7 @@ const getProfile = async (id) => {
   return data;
 };
 const getProfiles = async () => {
-  const url = `${baseUrl}/users/?limit=4`;
+  const url = `${baseUrl}/profiles/?limit=4`;
   const { data } = await axios.get(url);
   return data.docs;
 };

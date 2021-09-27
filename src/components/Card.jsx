@@ -53,7 +53,7 @@ const Card = ({ user }) => {
         radius={"0px 0px 8px 8px"}
         height="100%"
       >
-        <Container padding={"0px"} justifyContent={"center"} direction={"column"} alignItems={"center"}>
+        <Container padding={"0px"} justifyContent={"flex-start"} direction={"column"} alignItems={"center"} height={"160px"}>
           <Avatar
             imageUrl={user.imageUrl}
             name={user.displayName}
@@ -67,14 +67,15 @@ const Card = ({ user }) => {
           <ContainerTitle margin="0px 10px" align="center">
             {user.displayName}
           </ContainerTitle>
-          <ContainerSubTitle margin="0px 10px" align="left">
+          <ContainerSubTitle margin="0px 10px" align="center">
             {user.occupation}
           </ContainerSubTitle>
+          <StarComponent userRating={user.ratings} active={false}/>
         </Container>
-        <StarComponent userRating={user.ratings} active={false}/>
-        <Container padding={"5px"} width={"100%"} height="130px">
-          <Paragraph align="center" margin="0px 10px">
-            {user.about?.slice(0, 100)}...
+        
+        <Container padding={"5px"} width={"100%"} height="60px">
+          <Paragraph align="center" margin="0px 10px" limit={true}>
+            {user.about}
           </Paragraph>
         </Container>
         <Container padding={"15px"}>

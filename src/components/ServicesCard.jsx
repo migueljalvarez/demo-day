@@ -50,18 +50,18 @@ const ServicesCard = ({ service, info }) => {
           </ContainerTitleH1>
         </Container>
 
-        <Container padding={"5px"} width={"100%"} height={"auto"} minHeight={"250px"}>
-          <Paragraph align="left" margin="0px 10px">
+        <Container padding={"5px"} width={"100%"} height={"auto"} >
+          <Paragraph align="left" margin="0px 10px" limit={info}>
             {service.description}
           </Paragraph>
         </Container>
         {
           info && (
-            <Container padding={"15px"}>
+            <Container padding={"5px"}>
               <Button
                 background={Colors.accentColor}
                 color={Colors.textPrimaryColor}
-                margin="15px 0"
+                margin="5px 0"
                 onClick={handleGoToService}
                 width="100%"
               >

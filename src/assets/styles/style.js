@@ -36,7 +36,7 @@ footer {
   background: ${Colors.defaultPrimaryColor};
   bottom: 0px;
   width: 100%;
-  position: relative;
+  position: static;
 }
 `;
 
@@ -310,6 +310,16 @@ const Paragraph = styled.p`
   position: ${(props) => (props.position ? props.position : "unset")};
   padding: ${(props) => (props.padding ? props.padding : "0")};
   width: ${(props) => (props.width ? props.width : "100%")};
+
+  ${({ limit }) => limit && `
+    overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;    
+  max-height: 32px;      
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  `}
 `;
 
 const ContainerTitleH1 = styled.h1`

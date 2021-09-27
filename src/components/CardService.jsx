@@ -24,7 +24,7 @@ const CardService = ({ service }) => {
       background={Colors.dividerColor}
       radius="8px"
       shadow={"0px 8px 16px 0px rgba(0, 0, 0, 0.2)"}
-      height="450px"
+      height="400px"
       flexWrap="nowrap"
     >
       <Container
@@ -39,7 +39,6 @@ const CardService = ({ service }) => {
           src={service.imageUrl}
           alt={"cover"}
           margin={"0px"}
-          radius={"8px 8px 0px 0px"}
         />
       </Container>
       <Container
@@ -50,7 +49,7 @@ const CardService = ({ service }) => {
         height="100%"
       >
         <Container
-          padding={"0px"} justifyContent={"center"}
+          padding={"0px"} justifyContent={"center"} height={"70px"} alignItems={"center"}
         >
           <ContainerTitle
             margin="0px 10px"
@@ -62,10 +61,10 @@ const CardService = ({ service }) => {
         <Container
           padding={"5px"}
           width={"100%"}
-          height="130px"
+          height="80px"
         >
-          <Paragraph align="center" margin="0px 10px">
-            {service.description.slice(0, 140)}...
+          <Paragraph align="center" margin="0px 10px" limit={true}>
+            {service.description}
           </Paragraph>
         </Container>
         <Container padding={"15px"}>

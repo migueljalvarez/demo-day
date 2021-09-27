@@ -46,7 +46,7 @@ const Home = () => {
           <UserCounter />
           <Container>
             <ContainerTitleH1 align="center" padding="10px">
-              Ultimos Usuarios Registrado
+              Usuarios mejor calificados
             </ContainerTitleH1>
 
             <Container justifyContent="center">
