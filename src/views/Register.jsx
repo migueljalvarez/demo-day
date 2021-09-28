@@ -459,7 +459,7 @@ const RegisterComp = () => {
               <Hr margin={prop.hr.margin} />
 
               <Container justifyContent={prop.containerLink.justifyContent}>
-                <LINK to="/login">Ya estas registrado</LINK>
+                <LINK to="/login">Ya estás registrado</LINK>
               </Container>
             </Form>
           </Container>

@@ -41,16 +41,17 @@ const Routers = () => {
   }, [dispatch]);
 
   return (
-    <div>
       <Router>
+        <div id="main">
         <NavBar />
+        
         <Switch>
+          
           <PublicRouter exact path="/login" component={Login} />
           <PublicRouter exact path="/signup" component={Register} />
           <Route exact path="/" component={Home} />
           <Route exact path="/services" component={Services} />
           <Route exact path="/about" component={About} />
-          <PublicRouter exact path="/signup" component={Register} />
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/service/:id" component={Service} />
           <Route exact path="/contactUs" component={ContactUs} />
@@ -58,10 +59,13 @@ const Routers = () => {
           <Route exact path="/tutorialHire" component={TutorialHire} />
           <PrivateRouter exact path="/services/add" component={AddServices} />
           <Redirect to="/" />
+          
+          
         </Switch>
+        
         <Footer />
+        </div>
       </Router>
-    </div>
   );
 };
 

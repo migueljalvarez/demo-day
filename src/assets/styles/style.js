@@ -28,10 +28,16 @@ body {
   font-family: 'Montserrat', sans-serif !important;
 }
 
+#main{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', sans-serif !important;
 }
-
 footer {
   background: ${Colors.defaultPrimaryColor};
   bottom: 0px;
@@ -76,7 +82,7 @@ const SuperContainer = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   flex-direction: ${(props) => (props.direction ? props.direction : "row")};
-  margin: ${(props) => (props.margin ? props.margin : "0")}; .
+  margin: ${(props) => (props.margin ? props.margin : "0")}; 
 `;
 
 const NavMenu = styled.ul`
