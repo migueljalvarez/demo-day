@@ -32,6 +32,7 @@ export const startRegisterWithEmailPasswordNameUrlImg = (user) => {
   return (dispatch) => {
     createUser({ user })
       .then((user) => {
+        
         dispatch(login(user.data));
         Swal.fire({
           icon: "success",

@@ -1,7 +1,10 @@
 //IMPORTACION DE TERCEROS
-import React from "react";
+import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router";
 
 //IMPORTACION DE ESTILOS
 import {
@@ -49,7 +52,7 @@ const prop = {
     margin: "0 auto 10px auto",
     padding: "10px 20px",
   },
-  textArea:{
+  textArea: {
     borderRadius: "5px",
   },
   error: {
@@ -71,6 +74,9 @@ const prop = {
 };
 
 const ContactUs = () => {
+  const form = useRef();
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -86,7 +92,35 @@ const ContactUs = () => {
         .max(500, "No debes exceder los 500 caracteres")
         .required("Dinos tu motivo"),
     }),
-    onSubmit: () => {},
+    onSubmit: () => {
+      console.log("EMAILJS");
+      emailjs
+        .sendForm(
+          'service_e175k4m', 'template_vvbdjnq', form.current, 'user_lw8NNKW7Lc8w3k2Xy6blB'
+        )
+        .then(
+          (result) => {
+            Swal.fire({
+              icon: "success",
+              position: "center",
+              title: "Mensaje enviado",
+              text: "Por favor espera nuestra respuesta",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            history.push('/')
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              text: error,
+              title: "Oops ....",
+              showConfirmButton: true,
+              footer: "",
+            });
+          }
+        );
+    },
   });
 
   const { name, email, tellUs } = formik.values;
@@ -109,7 +143,7 @@ const ContactUs = () => {
               padding={prop.containerForm.padding}
               radius={prop.containerForm.radius}
             >
-              <Form onSubmit={formik.handleSubmit} method="POST">
+              <Form ref={form} onSubmit={formik.handleSubmit} method="POST">
                 <Container
                   flexWrap={prop.containerInput.flexWrap}
                   display={prop.formGroup.display}
