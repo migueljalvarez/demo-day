@@ -55,8 +55,7 @@ const History = () => {
                             fontSize: "30px",
                         }}
                     >
-                        Ser profesional, no es tener un titulo, es saber lo que estás
-                        haciendo.
+                        Enfócate en lo que eres bueno y serás imparable.
                     </Heading>
                     <Hr
                         width={properties.Hr.width}

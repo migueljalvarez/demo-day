@@ -45,7 +45,7 @@ const Benefits = () => {
           <Heading
             color={properties.Heading.color}
             margin={properties.Heading.margin}
-            style={{ textAlign: "center", width: "60%" }}
+            style={{ textAlign: "center", width: "60%", fontSize: "30px" }}
           >
             Las pequeñas cosas hacen una gran diferencia.
           </Heading>
@@ -248,9 +248,8 @@ const Benefits = () => {
                 margin={properties.Paragraph.margin}
                 style={{ width: "90%" }}
               >
-                Usamos el sistema Crowdsourcing, donde los usuarios tienen ese
-                espacio donde dar sugerencias o peticiones de agregar nuevas
-                categorias que se adapten mejor a sus servicios.
+                Acudimos a la estrategia Crowdsourcing, aprendiendo así
+                del usuario e implementar ese aprendizaje.
               </Paragraph>
             </Column>
           </Container>
