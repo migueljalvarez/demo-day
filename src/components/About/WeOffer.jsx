@@ -1,75 +1,100 @@
-import React from 'react';
-import { SuperContainer, Container, Paragraph, Colors, Wrapper, Heading, Column } from '../../assets/styles/style';
-
+import React from "react";
+import {
+    Colors,
+    Container,
+    Paragraph,
+    SuperContainer,
+    Wrapper,
+    Heading,
+    Hr,
+    Img,
+    Column,
+} from "../../assets/styles/style";
+import Beneficio from "../../assets/img/beneficios.jpg";
 
 const properties = {
+    Heading: {
+        color: Colors.primaryTextColor,
+        margin: "40px 20px 0px 40px",
+    },
+    Paragraph: {
+        margin: "auto ",
+        align: "justify",
+        position: "absolute",
+        color: Colors.primaryTextColor,
+    },
+    Img: {
+        width: "300px",
+        height: "250px",
+        margin: "15px auto"
+    },
 
-  Heading: {
-    margin: "20px 10px 10px 80px",
-    color: "black",
-  },
-
-  Paragraph: {
-    align: "justify",
-    color: "black",
-  },
-  Column: {
-    width: "32.5%",
-  },
-  SuperContainer: {
-    background: Colors.defaultPrimaryColor,
-  }
-
+    Hr: {
+        width: "60%",
+        margin: "5px auto",
+    },
+    Column: {
+        width: "70%",
+    },
+    Container: {
+        margin: "auto",
+    },
 };
 
-const WeOffer = () => {
-  return (
+const History = () => {
+    return (
+        <SuperContainer>
+            <Wrapper>
+                <Container margin={properties.Container.margin}>
+                    <Heading
+                        color={properties.Heading.color}
+                        style={{
+                            margin: "50px auto 10px auto",
+                            width: "92%",
+                            textAlign: "center",
+                            fontSize: "30px",
+                        }}
+                    >
+                        Ser profesional, no es tener un titulo, es saber lo que estás
+                        haciendo.
+                    </Heading>
+                    <Hr
+                        width={properties.Hr.width}
+                        margin={properties.Hr.margin}
+                        style={{ background: Colors.secondaryTextColor, height: "5px" }}
+                    />
+                    <Column width={properties.Column.width}>
 
-    <SuperContainer
-      background={properties.SuperContainer.background}>
-      <Wrapper>
-        <Container direction={"Column"} >
-          <Heading
-            color={properties.Heading.color}>
-            Más allá de ofrecer, brindamos un espacio para el crecimiento profesional</Heading>
-          <Container >
-            <Column
-              width={properties.Column.width}
-              style={{ margin: "10px 0px 20px 7px" }}>
-              <Paragraph
-                color={properties.Paragraph.color}>
-                La situación de migración es una realidad que ya está incorporada en el país, lo que conlleva a una necesidad de obtener un empleo
-                formal que permita alcanzar una calidad de vida.
-              </Paragraph>
+                        <Paragraph
+                            style={{
+                                width: "90%",
+                                textAlign: "justify",
+                                fontSize: "20px",
+                            }}
+                            color={properties.Paragraph.color}
+                            margin={properties.Paragraph.margin}
+                        >
+                            DOM Services va dirigidos a esas personas como Diego que tienen
+                            conocimientos y habilidades pero que por ciertas circunstancia no
+                            cuentan con un titulo universitario que acrediten sus actitudes,
+                            dandole un espacio donde puedan dar a conocer sus servicios de una
+                            manera profesional, al mismo tiempo brindandole el poder de
+                            ampliar su red de trabajo, obtimizando su proceso de busqueda en
+                            la busqueda de un trabajo de calidad.
+                        </Paragraph>
+                    </Column>
+                    <Column width={"30%"}>
+                        <Img
+                            src={Beneficio}
+                            width={properties.Img.width}
+                            height={properties.Img.height}
+                            margin={properties.Img.margin}
+                        />
+                    </Column>
+                </Container>
+            </Wrapper>
+        </SuperContainer>
+    );
+};
 
-            </Column>
-            <Column
-              width={properties.Column.width}
-              style={{ margin: "10px 0px 20px 10px" }}>
-              <Paragraph
-                color={properties.Paragraph.color}>
-                La situación de migración es una realidad que ya está incorporada en el país, lo que conlleva a una necesidad de obtener un empleo
-                formal que permita alcanzar una calidad de vida.
-              </Paragraph>
-            </Column>
-            <Column
-              width={properties.Column.width}
-              style={{ margin: "10px 5px 20px 10px" }}>
-              <Paragraph
-                color={properties.Paragraph.color}>
-                La situación de migración es una realidad que ya está incorporada en el país, lo que conlleva a una necesidad de obtener un empleo
-                formal que permita alcanzar una calidad de vida.
-              </Paragraph>
-            </Column>
-
-
-          </Container>
-        </Container>
-      </Wrapper>
-    </SuperContainer>
-
-
-  );
-}
-
-export default WeOffer;
+export default History;

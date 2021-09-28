@@ -14,15 +14,9 @@ const properties = {
         position: "absolute",
         color: Colors.primaryTextColor,
     },
-    Img: {
-        width: "300px",
-        height: "300px",
-        position: "absolute",
-        margin: "50px"
-    },
 
     Hr: {
-        width: "60%",
+        width: "92%",
         margin: "5px auto",
     }
 }
@@ -32,12 +26,11 @@ const History = () => {
         <SuperContainer>
             <Wrapper>
                 <Container
-                    direction={"column"}
-                    style={{ bottom: "0px" }}>
+                    direction={"column"}>
                     <Container>
                         <Heading
                             color={properties.Heading.color}
-                            style={{ margin: "0px auto", width: "60%", textAlign: "center", fontSize: "30px" }}>
+                            style={{ margin: "50px auto 10px auto", width: "92%", textAlign: "center", fontSize: "30px" }}>
                             Ser profesional, no es tener un titulo, es saber lo que estás haciendo.
                         </Heading>
                         <Hr
@@ -45,7 +38,7 @@ const History = () => {
                             margin={properties.Hr.margin}
                             style={{ background: Colors.secondaryTextColor, height: "5px" }} />
                         <Paragraph
-                            style={{ width: "60%", margin: "10px auto", textAlign: "justify", fontSize: "20px" }}
+                            style={{ width: "92%", margin: "10px auto", textAlign: "justify", fontSize: "20px" }}
                             color={properties.Paragraph.color}>
                             La situación de migración es una realidad que ya está incorporada en el país, lo que conlleva a una necesidad de obtener un empleo
                             formal que permita alcanzar una calidad de vida. Pero se ha visto que durante los ultimos años se ha intensificado las exigencias
@@ -53,7 +46,7 @@ const History = () => {
                             los conocimientos y habilidades son acordes al puesto vacante.
                         </Paragraph>
                         <Paragraph
-                            style={{ width: "60%", margin: "10px auto", textAlign: "justify", fontSize: "20px" }}
+                            style={{ width: "92%", margin: "10px auto", textAlign: "justify", fontSize: "20px" }}
                             color={properties.Paragraph.color}>
                             Esta experiencia sirvió para implementar una plataforma donde los usuarios que tienen conocimientos y habilidades pero que no cuentan
                             con un titulo univeristario, tengan un espacio donde podrán publicar sus servicios de una manera rápida sin obstaculizar dicho porceso,

@@ -7,6 +7,7 @@ import {
     Wrapper,
 } from "../assets/styles/style";
 import WeOffer from '../components/About/WeOffer';
+import Benefits from '../components/About/Benefits';
 
 
 
@@ -20,8 +21,7 @@ const About = () => {
                     <Banner />
                     <History />
                     <WeOffer />
-
-
+                    <Benefits />
                 </Container>
             </Wrapper>
         </SuperContainer>

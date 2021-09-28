@@ -328,7 +328,7 @@ const CarouselWrapper = styled.div`
 `;
 
 const Column = styled.div`
-  display: ${(props) => (props.mdisplay ? props.display : "flex")};
+  display: ${(props) => (props.display ? props.display : "flex")};
   flex-direction: ${(props) =>
     props.flexDirection ? props.flexDirection : "column"};
   width: ${(props) => (props.width ? props.width : "250px")};
@@ -399,6 +399,11 @@ const START = styled(FaStar)`
   transition: color 200ms;
 `;
 
+const Icon = styled.div`
+  height: ${(props) => (props.height ? props.height : "100%")};
+  width: ${(props) => (props.width ? props.width : "auto")};
+`;
+
 export {
   Button,
   Colors,
@@ -431,4 +436,5 @@ export {
   Row,
   Heading,
   START,
+  Icon,
 };
